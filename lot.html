@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lot — Golden Lion Auctions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500&family=IBM+Plex+Mono:wght@400;500&family=Libre+Caslon+Display&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/gla.css?v=3">
+<style>
+  .lotpage { padding: var(--s-8) 0 var(--s-10); }
+  .lotpage .back { display: inline-block; margin-bottom: var(--s-7); }
+  .lotpage .back:hover { color: var(--ink); }
+  .lotpage__grid { align-items: start; row-gap: var(--s-7); }
+  .lotpage__img { grid-column: 1 / span 7; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; background: var(--g1); }
+  .lotpage__info { grid-column: 9 / span 4; }
+  .lotpage__info h1 { font-family: var(--f-display); font-weight: 400; font-size: var(--t-section); line-height: 1.04; margin: var(--s-2) 0 var(--s-4); }
+  .lotpage__bid { font: 400 var(--t-bid)/1 var(--f-display); display: block; margin: var(--s-2) 0 var(--s-5); }
+  .lotpage__note { margin-top: var(--s-7); padding-top: var(--s-5); border-top: 1px solid var(--rule); color: var(--ink-2); font-size: var(--t-data); }
+  @media (max-width: 760px) { .lotpage__img, .lotpage__info { grid-column: 1 / -1; } }
+</style>
+</head>
+<body>
+<header class="hdr">
+  <div class="wrap hdr__in">
+    <a class="lockup" href="index.html" aria-label="Golden Lion Auctions, home">
+      <img src="assets/mark-brass.svg" alt="" width="42" height="28">
+      <span class="lockup__word">Golden Lion <span>Auctions</span></span>
+    </a>
+  </div>
+</header>
+<main class="lotpage">
+  <div class="wrap">
+    <a class="back key" href="index.html#floor">← All lots</a>
+    <div class="grid lotpage__grid">
+      <img class="lotpage__img" id="img" src="assets/lots/lot-73.jpg" alt="" width="1920" height="1280">
+      <div class="lotpage__info">
+        <p class="key" id="lotno">Lot</p>
+        <h1 id="name">Lot</h1>
+        <p class="data" id="chassis"></p>
+        <p class="key" style="margin-top: var(--s-6)">Current bid · sample</p>
+        <span class="lotpage__bid" id="bid"></span>
+        <p class="data" id="meta"></p>
+        <p class="lotpage__note">The full lot page comes in stage 2 of this prototype: the complete photo set and start-up video from the specialist, the Golden Lion Verified report, bidding, comments and bid history, fees and shipping.</p>
+      </div>
+    </div>
+  </div>
+</main>
+<script src="data/lots.js?v=3"></script>
+<script>
+  (function () {
+    var id = Number(new URLSearchParams(location.search).get('id')) || 73;
+    var l = (window.GLA.lots.filter(function (x) { return x.feed_id === id; })[0]) || window.GLA.lots[0];
+    var name = l.year + ' ' + l.make + ' ' + l.model;
+    document.title = name + ' — Golden Lion Auctions';
+    document.getElementById('img').src = l.image;
+    document.getElementById('img').alt = name + ', photographed at Patton Motors';
+    document.getElementById('lotno').textContent = 'Lot ' + String(l.lot).padStart(2, '0') + ' of 12';
+    document.getElementById('name').textContent = name;
+    document.getElementById('chassis').textContent = l.chassis + (l.mileage ? ' · ' + l.mileage.toLocaleString('en-US') + ' mi' : '');
+    document.getElementById('bid').textContent = '$' + l.current_bid.toLocaleString('en-US');
+    document.getElementById('meta').textContent = l.bid_count + ' bids · ' + l.watchers + ' watching';
+  })();
+</script>
+</body>
+</html>

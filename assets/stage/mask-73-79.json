@@ -1,0 +1,11 @@
+{
+  "files": ["mask-73.png", "mask-79.png"],
+  "what": "Car silhouettes used ONLY as CSS masks for the 'house light' on the two stage lots (hero = feed id 73, record = feed id 79). They decide which pixels of the unaltered feed photograph stay at full strength (the car) and which are dimmed (the room).",
+  "origin": "pixelcut/background-removal on fal, output_format alpha, 2026-10-05. Requests 01a10e27-c01b-7933-8195-052fc3477103 (73) and 01a10e27-ac67-7913-94e0-76bd5d097d0a (79).",
+  "sources": [
+    "https://www.pattonmotors.com/imagetag/73/main/l/Used-1972-Lamborghini-Miura-P400-SV-1780158651.jpg",
+    "https://www.pattonmotors.com/imagetag/79/main/l/Used-2024-Aston-Martin-Valour-1783966396.jpg"
+  ],
+  "processing": "edge eroded 1px and blurred 0.7px so no bright room rim survives around the body; downscaled to 960px (mask-size 100%)",
+  "car_pixels": "not generated, not altered: the photograph is shown as it is; only the room outside the silhouette is dimmed"
+}

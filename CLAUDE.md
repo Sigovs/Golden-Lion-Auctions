@@ -20,6 +20,10 @@ git" (BRIEF.md decision 1). This folder currently sits inside the PATTON MOTORS 
 repo, so set up the git link deliberately when the build starts. Push only when
 Alex says so.
 
+**Jarvis** (GDBURO project intelligence) follows this repo: https://jarvis.gdburo.com/#project/5.
+It reads the repo, starting from README.md. Keep README.md current at every
+milestone, and write commit bodies that say what changed and the project's state.
+
 ## The brief will keep contradicting itself — work with it
 
 Alex, 5 Oct 2026: there is no order in the brief or in the agreement with the client,

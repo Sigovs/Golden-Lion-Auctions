@@ -6,8 +6,51 @@ luxury presentation. The difference from BaT: every listing is documented to one
 standard by Golden Lion (a third-party specialist plus AI on the VIN and photos,
 then a human check), not written by the seller.
 
-**Status, 5 Oct 2026: concept v2 is written and nothing has been coded.** The
-next step is building HOME as a static clickable prototype.
+**Status, 5 Oct 2026: HOME is built** as a static clickable prototype (stage 1),
+following concept v2. The lot page is a stub, and the full SRP and lot page are
+stage 2.
+
+## Run it
+
+```
+python3 -m http.server 8731     # from this folder
+open http://localhost:8731/
+```
+
+No build step. Fonts come from Google Fonts. GSAP, ScrollTrigger and Lenis load from
+CDNs. Everything else is local.
+
+## What HOME contains
+
+| Section | What it is |
+|---|---|
+| Hero | Lot 01, 1972 Miura P400 SV, on the "house light": the car's own silhouette stays at full strength, the Patton room is dimmed. Below it, the rostrum: current bid (sample), countdown d·h·m·s, bids/watching, View lot, Watch |
+| The floor | 12 lots in tabs (Live / Ending soon / No reserve), masked plate reveals, live timers, watch (localStorage), and header search that filters the lots. It rises over the hero |
+| Silence | One line: *Every lot is examined before it is offered.* |
+| Golden Lion Verified (peak) | Pinned (DNA95). The struck hallmark, the Valour VIN with three checks, four steps; the text exits on scroll, then the section follows |
+| Recently sold | 6 real Patton sold cars as a ledger; prices are sample data |
+| Consign + house | VIN input (validated, nothing is sent), Patton address |
+| Footer | Nav plus the page-wide sample-data notice |
+
+`lot.html?id=<feed id>` is a stub lot page.
+
+## Files
+
+| Path | What it is |
+|---|---|
+| `index.html`, `lot.html` | the pages |
+| `css/gla.css` | all tokens (top of the file) and styles |
+| `js/home.js` | framing (the car, not the photo, sets each crop), house light, tabs, search, watch, clocks, Lenis + GSAP motion |
+| `data/lots.json` → `data/lots.js` | 12 lots and 6 sold. Car, VIN, mileage and photo come from Patton's feed; bids, timers, counts, reserves and results are **sample**. Regenerate lots.js after editing the JSON |
+| `assets/lots/` | Patton feed photos, 1920px `main/l`, unaltered |
+| `assets/stage/mask-73.png`, `mask-79.png` | car silhouettes used only as CSS masks for the house light (sidecar `mask-73-79.json`) |
+| `assets/mark*.svg` | the working hallmark: a lion passant in an assay cartouche. The lion is public domain (Fox-Davies via Wikimedia Commons), not from the client's art |
+
+## Checked
+
+- Desktop 1440 and phone 390; no horizontal scroll; no console errors.
+- kill-ai-slop scan clean. The intentional hits are pinned with `deslop-ignore` and a reason.
+- anti-ui-slop audit: three findings (inert buttons, clock units, sold crops), all fixed.
 
 ## Read in this order
 
