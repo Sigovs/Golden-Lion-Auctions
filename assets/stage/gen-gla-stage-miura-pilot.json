@@ -1,0 +1,20 @@
+{
+  "file": "gen-gla-stage-miura-pilot.jpg",
+  "kind": "composite: real photograph on a generated stage",
+  "date": "2026-10-05",
+  "subject": "1972 Lamborghini Miura P400 SV, Patton feed id 73",
+  "car": {
+    "origin": "client-supplied photograph (not generated)",
+    "source": "https://www.pattonmotors.com/imagetag/73/main/l/Used-1972-Lamborghini-Miura-P400-SV-1780158651.jpg",
+    "processing": "background removed with pixelcut/background-removal on fal (request 01a10df1-b27b-7e03-a287-eb8529731cb9). Car pixels kept; global brightness 0.86 and contrast 1.06 only; scaled x1.28"
+  },
+  "stage": {
+    "origin": "synthetic",
+    "file": "gen-gla-stage-empty-01.png",
+    "model": "fal-ai/nano-banana-pro, 2K, 16:9 (request 01a10df2-01fe-7080-b022-458c0ef2318c)",
+    "prompt": "Photorealistic empty automotive photo studio, 16:9 wide frame. A single low circular display plinth, about 6 metres wide and 20 cm high, made of dark honed stone with a satin finish, sits slightly right of centre in the lower half of the frame. The plinth is empty: nothing stands on it. Camera at eye level about 1.1 metres high, 35mm lens, looking slightly down so the plinth top reads as a wide ellipse; horizon at roughly 55% of frame height. Lighting: one large soft overhead light directly above the plinth creates a gentle pool of warm-neutral light on the plinth top and a soft sheen on its edge; everything else falls off into deep charcoal darkness. The seamless studio floor is dark graphite with a faint, soft reflection near the plinth only. Background is a seamless dark cyclorama wall, out of focus, almost black at the edges, with a very subtle vertical gradient. Lower-left quarter of the frame is calm, even, dark floor with no detail, for text overlay. Restrained, quiet, expensive, gallery-like; no gold, no glow effects, no neon, no lens flare, no haze beams. Absolutely no text, no letters, no numbers, no logos, no signage, no people, no vehicles, no props."
+  },
+  "composite": "local PIL: contact and tyre shadows drawn, top 190px cropped (softbox in frame)",
+  "disclosure": "must be labelled as a staged composite wherever shown; the lot gallery uses unaltered photographs",
+  "status": "pilot, not final"
+}
