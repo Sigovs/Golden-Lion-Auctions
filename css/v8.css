@@ -1174,3 +1174,22 @@ html.intro .lotbar > * { opacity: 0; }
 .lockup__word { font: 500 22px/1 var(--f-disp); letter-spacing: .005em; }
 .lockup__sub { font: 500 14px/1 var(--f-disp); letter-spacing: .26em; text-transform: uppercase; color: var(--ink-2); padding-top: 3px; }
 @media (max-width: 639.98px) { .lockup__crest { height: 40px; } .lockup__sub { display: none; } }
+
+/* the consign headline sets on exactly two lines (Alex, 8 Oct 2026) */
+.consign__title .ln { display: block; }
+@media (min-width: 1024px) { .consign__title { max-width: none; } .consign__title .ln { white-space: nowrap; } }
+
+/* two-line headline (Alex, 8 Oct 2026) */
+.verified__title .ln { display: block; }
+@media (min-width: 1024px) { .verified__title { max-width: none; } .verified__title .ln { white-space: nowrap; } }
+/* the crest, larger in the header */
+.lockup__crest { height: 60px; }
+@media (max-width: 639.98px) { .lockup__crest { height: 44px; } }
+/* the finale: the crest large and centred behind GOLDEN LION, held back so the letters lead */
+.finale__word { position: relative; isolation: isolate; }
+.finale__word::before {
+  content: ""; position: absolute; left: 50%; top: 50%; z-index: -1; width: auto; height: 112%; aspect-ratio: 908 / 1287;
+  transform: translate(-50%, -50%); background: url(../assets/crest-900.webp) center / contain no-repeat;
+  opacity: .42; filter: saturate(.8) brightness(.8); pointer-events: none;
+}
+.finale__w { position: relative; }
