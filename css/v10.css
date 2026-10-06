@@ -224,35 +224,55 @@ address { font-style: normal; }
 .floor__more [hidden] { display: none; }
 .empty { grid-column: 1 / -1; color: var(--ink-2); padding: var(--s8) 0; }
 
-/* ---------- 3 · verified: the dark ground turns to paper under the Valour ---------- */
+/* ---------- 3 · verified: the inspection record is the object ----------
+   The Valour takes ~62% of the width and bleeds off the right edge, its top standing in a short dark
+   band (the turn from the floor). The argument sits left; the record it produces is laid on the
+   photograph's lower-left corner, over floor and platform only — never over the car. */
 .verified {
-  --band: 200px;   /* where the ground turns: the plate stands across it */
-  position: relative; isolation: isolate;
-  background: var(--paper); color: var(--pink); padding-bottom: var(--s8);
+  --band: 40px;      /* the turn: the plate's top stands in the floor's dark */
+  --overhang: 96px;  /* the record always runs at least this far past the plate's foot */
+  position: relative; isolation: isolate; overflow-x: clip;
+  background: var(--paper); color: var(--pink); padding-bottom: var(--s7);
 }
 .verified::before { content: ''; position: absolute; inset: 0 0 auto 0; height: var(--band); background: var(--g0); z-index: -1; }
-.verified__grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--s9); align-items: start; }
-.verified__text { padding-top: calc(var(--band) + var(--s8)); }
-.verified__text .display { margin-bottom: var(--s5); max-width: 13ch; }
-.verified__text .lede { color: var(--pink-2); margin-bottom: var(--s7); }
-.steps { display: grid; gap: var(--s4); counter-reset: none; }
-.steps li { display: grid; grid-template-columns: 40px 1fr; font-size: 17px; line-height: 1.45; text-wrap: pretty; }
-.steps .data { font-size: 14px; color: var(--pink-2); padding-top: 2px; }
-.verified__plate { position: relative; aspect-ratio: 5 / 4; overflow: hidden; background: #1B1E25; }
-.verified__plate img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 58%; }
-.verified__plate .cap { position: absolute; bottom: var(--s5); left: var(--s5); color: var(--ink); }
-.record {
-  display: grid; grid-template-columns: 1fr auto; gap: var(--s6); align-items: center;
-  padding: var(--s6) 0 0;
+.verified__grid { display: grid; grid-template-columns: minmax(0, 37fr) minmax(0, 63fr); align-items: stretch; }
+.verified__col { display: flex; flex-direction: column; padding-top: calc(var(--band) + var(--s5)); position: relative; z-index: 2; }
+.verified__text { padding-bottom: var(--s6); }
+.verified__text .label { margin-bottom: var(--s5); }
+.verified__text .display { margin-bottom: var(--s4); }
+.verified__text .lede { color: var(--pink-2); max-width: 44ch; }
+.verified__plate {
+  position: relative; overflow: hidden; background: #1B1E25;
+  aspect-ratio: 1.93 / 1; align-self: start;
+  margin-right: calc(-1 * max(var(--m), (100vw - var(--max)) / 2));   /* bleeds to the page edge at any width */
+  margin-bottom: var(--overhang);
 }
+.verified__plate img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 62%; }
+.verified__plate .cap { position: absolute; bottom: var(--s5); right: calc(var(--m) + var(--s2)); color: var(--ink); text-align: right; }
+
+/* the record: a sheet of the same paper, lifted, with the seal struck on it */
+.record {
+  margin-top: auto;                            /* sits at the foot of the column, across the plate's corner */
+  width: calc(100% + 224px); max-width: 720px;
+  background: #EFEDE8; color: var(--pink);
+  padding: var(--s5) var(--s7) var(--s6);
+  box-shadow: 0 1px 2px rgba(14, 16, 18, .10), 0 28px 48px -32px rgba(14, 16, 18, .55);
+}
+.record__id { display: grid; grid-template-columns: 1fr auto; gap: var(--s6); align-items: start; padding-bottom: var(--s5); }
 .record__vin { display: grid; gap: var(--s2); }
 .record .key { color: var(--pink-2); text-wrap: pretty; }
-.record__num { font-size: clamp(22px, 2.2vw, 32px); line-height: 1.1; letter-spacing: .04em; color: var(--pink); }
+.record__num { font-size: clamp(24px, 2.3vw, 34px); line-height: 1.1; letter-spacing: .05em; color: var(--pink); }
 .record__num b { font-weight: 500; text-decoration: underline 1px; text-underline-offset: 6px; }
 .record__seal { display: grid; justify-items: center; gap: var(--s2); text-align: center; }
+.record__seal .key { white-space: nowrap; }
+.record .mark--ink { width: 64px; }
+/* the five checks as a numbered system: two columns, read down */
+.steps { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: repeat(3, auto); grid-auto-flow: column; gap: var(--s2) var(--s6); }
+.steps li { display: grid; grid-template-columns: 32px 1fr; font-size: 15px; line-height: 1.4; text-wrap: pretty; }
+.steps .data { font-size: 14px; color: var(--pink-2); padding-top: 1px; }
 
-/* pinned on desktop (DNA95): it fills the viewport under the header so no ground shows below it */
-@media (min-width: 1024px) { .verified { min-height: calc(100vh - var(--hdr)); } }
+/* pinned on desktop (DNA95): the pin spacer keeps the paper so no dark shows under the short section */
+.pin-spacer:has(> .verified) { background: var(--paper); }
 
 /* ---------- 4 · recently sold ---------- */
 .sold { background: var(--paper); color: var(--pink); padding: var(--s9) 0 var(--s10); }
@@ -340,13 +360,15 @@ address { font-style: normal; }
   .hero__plate { height: max(400px, calc(100svh - var(--hdr) - var(--s4) - 330px)); }
   .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s8) var(--s5); }
   .head { grid-template-columns: 1fr; gap: var(--s5); align-items: start; }
-  .verified { --band: 200px; }
-  .verified__grid { grid-template-columns: 1fr; gap: var(--s8); }
-  /* the plate stands across the turn first, then the argument, then the record it produces */
-  .verified__media { display: contents; }
-  .verified__plate { order: -1; }
-  .record { order: 1; padding-top: 0; }
-  .verified__text { padding-top: 0; }
+  .verified { --band: 120px; }
+  .verified__grid { grid-template-columns: 1fr; }
+  /* the plate stands across the turn first, then the argument, then the record laid on its foot */
+  .verified__plate { order: -1; margin-bottom: 0; margin-left: calc(var(--m) * -1); aspect-ratio: 16 / 9; }
+  .verified__plate { margin-right: calc(var(--m) * -1); }
+  .verified__plate .cap { right: var(--m); }
+  .verified__col { padding-top: var(--s8); }
+  .verified__text { padding-right: 0; }
+  .record { width: 100%; max-width: none; margin-top: var(--s3); }
   .ledger { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .consign__grid { grid-template-columns: 1fr; text-align: center; gap: var(--s6); }
   .consign__side { padding-bottom: 0; }
@@ -383,12 +405,14 @@ address { font-style: normal; }
   .cards { grid-template-columns: 1fr; gap: var(--s8); }
   .tabs { gap: var(--s4); flex-wrap: wrap; }
   .head { margin-bottom: var(--s7); }
-  .verified { --band: 120px; padding-bottom: var(--s9); }
-  .verified__plate { margin-inline: calc(var(--m) * -1); }
-  .verified__plate .cap { top: auto; bottom: var(--s4); right: var(--s4); left: var(--s4); text-align: right; }
-  .record { grid-template-columns: 1fr; }
+  .verified { --band: 96px; padding-bottom: var(--s9); }
+  .verified__plate { aspect-ratio: 4 / 3; }
+  .verified__plate .cap { bottom: var(--s4); right: var(--s4); left: var(--s4); }
+  .record { padding: var(--s5) var(--s5) var(--s6); }
+  .record__id { grid-template-columns: 1fr; }
   .record__seal { justify-items: start; text-align: left; grid-auto-flow: column; justify-content: start; align-items: center; gap: var(--s4); }
-  .mark--ink { width: 64px; }
+  .mark--ink { width: 56px; }
+  .steps { grid-template-columns: 1fr; grid-template-rows: none; grid-auto-flow: row; }
   .ledger { grid-template-columns: 1fr; gap: var(--s7); }
   .row__result { font-size: 40px; }
   .consign { padding-bottom: var(--s10); }
