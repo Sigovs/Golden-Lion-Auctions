@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500&family=IBM+Plex+Mono:wght@400;500&family=Libre+Caslon+Display&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="assets/stage/gen-gla-hall-73.jpg" fetchpriority="high">
 <link rel="icon" href="assets/logo/crest-favicon.png" type="image/png">
-<link rel="stylesheet" href="css/v10.css?v=19">
+<link rel="stylesheet" href="css/v10.css?v=22">
 <script>if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('js-motion');</script>
 </head>
 <body>
@@ -96,40 +96,41 @@
 
   <!-- 3 — Golden Lion Verified (peak): the ground turns to paper under the Valour -->
   <section class="verified" id="verified" aria-labelledby="verified-title">
-    <div class="wrap verified__grid">
-      <div class="verified__col">
+    <div class="verified__grid">
+      <!-- the photograph holds still while the five checks pass beside it -->
+      <div class="verified__media">
+        <figure class="verified__plate">
+          <img id="record-img" src="assets/stage/gen-gla-hall-79.jpg" alt="2024 Aston Martin Valour in black with gold trim, on a low platform in a hall" width="2528" height="1696" loading="lazy">
+          <figcaption class="cap">Staged · setting generated<br>Car photographed at Patton Motors</figcaption>
+        </figure>
+      </div>
+      <div class="verified__flow">
         <div class="verified__text" id="verified-text">
           <p class="label label--ink">Golden Lion Verified</p>
           <h2 class="display" id="verified-title">Every lot is examined before it is&nbsp;offered.</h2>
           <p class="lede">The seller never writes the listing. Golden Lion does, to one standard, and puts a name to it.</p>
         </div>
-        <!-- the object of the section: the record the process produces, laid on the corner of the photograph -->
+        <!-- the five checks: what no other auction does, one at a time -->
+        <ol class="steps">
+          <li><span class="data">01</span><span class="steps__t">The VIN is read and decoded by AI</span></li>
+          <li><span class="data">02</span><span class="steps__t">An independent specialist photographs the full car</span></li>
+          <li><span class="data">03</span><span class="steps__t">The cold start is recorded on video</span></li>
+          <li><span class="data">04</span><span class="steps__t">AI drafts the listing and flags missing shots</span></li>
+          <li><span class="data">05</span><span class="steps__t">A Golden Lion specialist checks it and signs</span></li>
+        </ol>
+        <!-- what the five checks produce: the signed record -->
         <article class="record" aria-label="Sample inspection record">
-          <div class="record__id">
-            <div class="record__vin">
-              <span class="key">Lot 03 · 2024 Aston Martin Valour · VIN</span>
-              <span class="record__num data"><b>SCF</b>SBGKV<b>0</b><b>R</b>GZ10077</span>
-              <span class="key">SCF Aston Martin · R model year 2024 · check digit 0, valid</span>
-            </div>
-            <div class="record__seal">
-              <img class="crest crest--seal" id="seal" src="assets/logo/crest-192.png" srcset="assets/logo/crest-192.png 1x, assets/logo/crest-288.webp 2x" alt="" width="51" height="72">
-              <span class="key">Inspection record · sample</span>
-            </div>
+          <div class="record__vin">
+            <span class="key">Lot 03 · 2024 Aston Martin Valour · VIN</span>
+            <span class="record__num data"><b>SCF</b>SBGKV<b>0</b><b>R</b>GZ10077</span>
+            <span class="key">SCF Aston Martin · R model year 2024 · check digit 0, valid</span>
+          </div>
+          <div class="record__seal">
+            <img class="crest crest--seal" id="seal" src="assets/logo/crest-192.png" srcset="assets/logo/crest-192.png 1x, assets/logo/crest-288.webp 2x" alt="" width="51" height="72">
+            <span class="key">Inspection record · sample</span>
           </div>
         </article>
       </div>
-      <figure class="verified__plate">
-        <img id="record-img" src="assets/stage/gen-gla-hall-79.jpg" alt="2024 Aston Martin Valour in black with gold trim, on a low platform in a hall" width="2528" height="1696" loading="lazy">
-        <figcaption class="cap">Staged · setting generated<br>Car photographed at Patton Motors</figcaption>
-      </figure>
-      <!-- the five checks: what no other auction does, set as the section's own row -->
-      <ol class="steps">
-        <li><span class="data">01</span>The VIN is read and decoded by AI</li>
-        <li><span class="data">02</span>An independent specialist photographs the full car</li>
-        <li><span class="data">03</span>The cold start is recorded on video</li>
-        <li><span class="data">04</span>AI drafts the listing and flags missing shots</li>
-        <li><span class="data">05</span>A Golden Lion specialist checks it and signs</li>
-      </ol>
     </div>
   </section>
 
@@ -222,6 +223,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 <script src="https://unpkg.com/lenis@1.3.26/dist/lenis.min.js" defer></script>
-<script src="js/v10.js?v=3" defer></script>
+<script src="js/v10.js?v=6" defer></script>
 </body>
 </html>

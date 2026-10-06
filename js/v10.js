@@ -1,7 +1,7 @@
 /* Golden Lion Auctions — HOME v10 behaviour (v2 simplified: six lots, three results, no tabs).
    Data: data/lots.js (window.GLA). Bids, timers, counts and results are SAMPLE DATA.
    Motion (SUPPORT): Lenis on gsap.ticker (DNA90); the hero scene settles once; plates unmask once;
-   one DNA95 pin on Verified when the section fits the viewport. Nothing moves under reduced motion. */
+   Verified: sticky photograph, the five checks lit one at a time (desktop only). Nothing moves under reduced motion. */
 (function () {
   'use strict';
   var D = window.GLA;
@@ -239,12 +239,16 @@
   mm.add('(min-width: 1024px)', function () {
     // the hero scene drifts slower than the page as the floor arrives
     gsap.to('#hero-img', { yPercent: 6, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
-    // DNA95 on Verified — only when the whole section fits under the header; otherwise it scrolls plainly
-    var sec = $('.verified'), hdrH = $('.hdr').offsetHeight;
-    if (sec.offsetHeight <= window.innerHeight - hdrH + 8) {
-      var tl = gsap.timeline({ scrollTrigger: { trigger: sec, start: 'top ' + hdrH + 'px', end: '+=90%', pin: true, scrub: 0.35, invalidateOnRefresh: true } });
-      tl.to({}, { duration: 0.5 }).to('#verified-text', { y: -80, opacity: 0, ease: 'none', duration: 0.5 });
-    }
+    // Verified: the photograph is CSS-sticky; the check in the middle of the screen is lit, the others wait
+    var list = $('.steps');
+    list.classList.add('is-live');
+    var items = $$('.steps li');
+    items.forEach(function (li, i) {
+      // the last check (the signature) stays lit through the record it produces
+      var last = i === items.length - 1;
+      ST.create({ trigger: li, start: 'top 50%', endTrigger: last ? '.verified' : li, end: last ? 'bottom top' : 'bottom 50%', toggleClass: { targets: li, className: 'is-on' } });
+    });
+    return function () { list.classList.remove('is-live'); items.forEach(function (li) { li.classList.remove('is-on'); }); };
   });
 
   window.addEventListener('load', refresh);
