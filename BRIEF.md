@@ -149,3 +149,22 @@ Tactics:
    light and perspective don't match and the stage reads as a stock mockup. If we
    come back to it: generate the surroundings onto the whole real photo, then lay
    the original car cut-out on top.
+8. **The staged setting is back, and Alex's concepts lead (5 Oct 2026).** Alex rated
+   the as-is showroom photos 1/10 and supplied concept boards (`__CONCEPTS/1`,
+   `__CONCEPTS/2`; layouts "7/10 on every example").
+   - Lot images are now staged composites: the unaltered Patton car is laid back
+     pixel-for-pixel on a generated hazy industrial hall with a low platform
+     (`assets/stage/gen-gla-hall-*.jpg`, provenance in `gen-gla-hall.json`).
+     They are captioned as staged.
+   - **From here, Alex makes the images himself. Don't generate more.**
+   - The layout follows the concept grammar:
+     - a centred hero stack over the car, with a brass LIVE chip, a data strip,
+       a brass View lot button, and corner brackets;
+     - the lot floor as a sheet overlapping the hero;
+     - tracked-caps section labels between hairlines;
+     - Verified shown as a paper inspection record over the dark hall, with
+       the struck hallmark;
+     - a cream results band;
+     - Consign as a paper panel over a dark frame;
+     - a closing full-bleed scene with the wordmark.
+   - Brass now also fills the primary CTA, as the concepts do.

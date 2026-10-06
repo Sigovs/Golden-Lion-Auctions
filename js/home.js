@@ -10,7 +10,7 @@
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var phoneMQ = window.matchMedia('(max-width: 760px)');
   var T0 = Date.now();
-  var HEADER = 64;
+  var HEADER = 76;
 
   /* ---------- helpers ---------- */
   var $ = function (s, c) { return (c || document).querySelector(s); };
@@ -34,10 +34,12 @@
     var bw = (box[2] - box[0]) * iw, bh = (box[3] - box[1]) * ih;
     var s = Math.min(o.fill * cw / bw, (o.maxH || 0.8) * ch / bh);
     if (o.cover) s = Math.max(s, cw / iw, ch / ih);
+    if (o.free) s = Math.max(s, cw / iw);
     var w = iw * s, h = ih * s;
     var x = o.cx * cw - (box[0] + (box[2] - box[0]) / 2) * iw * s;
     var y = o.bottom - box[3] * ih * s;
     if (o.cover) { x = Math.min(0, Math.max(cw - w, x)); y = Math.min(0, Math.max(ch - h, y)); }
+    if (o.free) { x = Math.min(0, Math.max(cw - w, x)); y = Math.max(ch - h, y); }
     img.style.width = w + 'px'; img.style.height = h + 'px';
     img.style.left = x + 'px'; img.style.top = y + 'px';
     return { s: s, x: x, y: y, w: w, h: h,
@@ -51,9 +53,10 @@
     if (!stage) return;
     var img = $('.stage__img', stage);
     var lot = byId[o.id];
-    img.style.setProperty('--mask', 'url(../assets/stage/mask-' + o.id + '.png)');
+    if (lot.stage_image) { img.classList.add('is-staged'); o.cover = !o.free; if (o.free) img.classList.add('is-fade-top'); }
+    else img.style.setProperty('--mask', 'url(../assets/stage/mask-' + o.id + '.png)');
     var cw = stage.clientWidth, ch = stage.clientHeight;
-    var f = frame(img, lot.car_box, cw, ch, o);
+    var f = frame(img, lot.stage_image ? lot.stage_box : lot.car_box, cw, ch, o);
     var c = f.car, m = 0.03 * (c.x1 - c.x0);
     var st = stages[name] || (stages[name] = { open: reduce ? 1 : (stages[name] ? stages[name].open : 1) });
     st.img = img; st.c = c; st.m = m; st.fx = 0.24 * cw; st.fy = 0.16 * ch; st.floor = o.floor || 0;
@@ -70,11 +73,10 @@
   }
   function layoutStages() {
     var phone = phoneMQ.matches;
-    var hero = $('.hero'), rost = $('.rostrum', hero);
     var heroH = $('[data-stage="hero"]').clientHeight;
     lightStage('hero', phone
-      ? { id: 73, fill: 0.92, maxH: 0.5, cx: 0.5, bottom: heroH * 0.82, floor: heroH * 0.1 }
-      : { id: 73, fill: 0.52, maxH: 0.5, cx: 0.6, bottom: heroH - rost.offsetHeight - 10, floor: 40 });
+      ? { id: 73, fill: 0.9, maxH: 0.7, cx: 0.5, bottom: heroH * 0.9 }
+      : { id: 73, fill: 0.44, maxH: 0.3, cx: 0.5, bottom: heroH * 0.94, free: true });
     var recH = $('[data-stage="record"]').clientHeight, base = $('.record__base').offsetHeight;
     lightStage('record', phone
       ? { id: 79, fill: 0.92, maxH: 0.5, cx: 0.5, bottom: recH * 0.84, floor: recH * 0.1 }
@@ -103,8 +105,8 @@
       n.dataset.id = l.feed_id;
       $('.card__link', n).href = 'lot.html?id=' + l.feed_id;
       var img = $('.plate__img', n);
-      img.src = l.image; img.alt = name + ', photographed at Patton Motors';
-      plates.push({ img: img, box: l.car_box, plate: $('.plate', n), fill: 0.76 });
+      img.src = l.stage_image || l.image; img.alt = name + (l.stage_image ? ', staged: car photographed at Patton Motors, setting generated' : ', photographed at Patton Motors');
+      plates.push({ img: img, box: l.stage_box || l.car_box, plate: $('.plate', n), fill: 0.7 });
       $('.card__name', n).textContent = name;
       $('.card__chassis', n).textContent = l.chassis + (l.mileage ? ' · ' + l.mileage.toLocaleString('en-US') + ' mi' : '');
       if (l.note) { var note = $('.card__note', n); note.hidden = false; note.textContent = l.note; }
@@ -112,7 +114,8 @@
       $('.dataline__bid', n).textContent = money(l.current_bid);
       $('.dataline__bids', n).textContent = l.bid_count + ' bids';
       $('[data-ends]', n).dataset.id = l.feed_id;
-      var w = $('.watch', n);
+      $('.card__lot', n).textContent = 'Lot ' + pad(l.lot);
+      var w = $('.watch-txt', n);
       w.dataset.watch = l.feed_id;
       w.setAttribute('aria-label', 'Watch ' + name);
       cardsEl.appendChild(n);
@@ -189,7 +192,7 @@
     $$('[data-watch]').forEach(function (b) {
       var on = watched.has(Number(b.dataset.watch));
       b.setAttribute('aria-pressed', String(on));
-      if (b.classList.contains('watch-btn')) b.textContent = on ? 'Watching' : 'Watch';
+      if (b.classList.contains('watch-btn') || b.classList.contains('watch-txt')) b.textContent = on ? 'Watching' : 'Watch';
     });
   }
   document.addEventListener('click', function (e) {

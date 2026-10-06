@@ -23,7 +23,14 @@
    "ends_in": 225429,
    "reserve": "met",
    "verified": true,
-   "location": "Pompano Beach, FL"
+   "location": "Pompano Beach, FL",
+   "stage_image": "assets/stage/gen-gla-hall-73.jpg",
+   "stage_box": [
+    0.245,
+    0.415,
+    0.699,
+    0.653
+   ]
   },
   {
    "lot": 2,
@@ -47,7 +54,14 @@
    "ends_in": 412300,
    "reserve": "yes",
    "verified": true,
-   "location": "Pompano Beach, FL"
+   "location": "Pompano Beach, FL",
+   "stage_image": "assets/stage/gen-gla-hall-82.jpg",
+   "stage_box": [
+    0.213,
+    0.381,
+    0.799,
+    0.672
+   ]
   },
   {
    "lot": 3,
@@ -71,7 +85,14 @@
    "ends_in": 301900,
    "reserve": "met",
    "verified": true,
-   "location": "Pompano Beach, FL"
+   "location": "Pompano Beach, FL",
+   "stage_image": "assets/stage/gen-gla-hall-79.jpg",
+   "stage_box": [
+    0.28,
+    0.419,
+    0.744,
+    0.705
+   ]
   },
   {
    "lot": 4,
@@ -95,7 +116,14 @@
    "ends_in": 518400,
    "reserve": "yes",
    "verified": true,
-   "location": "Pompano Beach, FL"
+   "location": "Pompano Beach, FL",
+   "stage_image": "assets/stage/gen-gla-hall-8.jpg",
+   "stage_box": [
+    0.246,
+    0.392,
+    0.768,
+    0.663
+   ]
   },
   {
    "lot": 5,
@@ -119,7 +147,14 @@
    "ends_in": 162000,
    "reserve": "met",
    "verified": true,
-   "location": "Pompano Beach, FL"
+   "location": "Pompano Beach, FL",
+   "stage_image": "assets/stage/gen-gla-hall-68.jpg",
+   "stage_box": [
+    0.279,
+    0.372,
+    0.728,
+    0.742
+   ]
   },
   {
    "lot": 6,
@@ -143,7 +178,14 @@
    "ends_in": 18240,
    "reserve": "met",
    "verified": true,
-   "location": "Pompano Beach, FL"
+   "location": "Pompano Beach, FL",
+   "stage_image": "assets/stage/gen-gla-hall-49.jpg",
+   "stage_box": [
+    0.226,
+    0.435,
+    0.745,
+    0.788
+   ]
   },
   {
    "lot": 7,
@@ -167,7 +209,14 @@
    "ends_in": 39600,
    "reserve": "yes",
    "verified": true,
-   "location": "Pompano Beach, FL"
+   "location": "Pompano Beach, FL",
+   "stage_image": "assets/stage/gen-gla-hall-35.jpg",
+   "stage_box": [
+    0.064,
+    0.282,
+    0.913,
+    0.79
+   ]
   },
   {
    "lot": 8,
@@ -191,7 +240,14 @@
    "ends_in": 2820,
    "reserve": "no",
    "verified": true,
-   "location": "Pompano Beach, FL"
+   "location": "Pompano Beach, FL",
+   "stage_image": "assets/stage/gen-gla-hall-19.jpg",
+   "stage_box": [
+    0.215,
+    0.388,
+    0.729,
+    0.716
+   ]
   },
   {
    "lot": 9,
@@ -215,7 +271,14 @@
    "ends_in": 1080,
    "reserve": "met",
    "verified": true,
-   "location": "Pompano Beach, FL"
+   "location": "Pompano Beach, FL",
+   "stage_image": "assets/stage/gen-gla-hall-70.jpg",
+   "stage_box": [
+    0.287,
+    0.462,
+    0.72,
+    0.722
+   ]
   },
   {
    "lot": 10,
@@ -239,7 +302,14 @@
    "ends_in": 345600,
    "reserve": "yes",
    "verified": true,
-   "location": "Pompano Beach, FL"
+   "location": "Pompano Beach, FL",
+   "stage_image": "assets/stage/gen-gla-hall-41.jpg",
+   "stage_box": [
+    0.155,
+    0.359,
+    0.865,
+    0.688
+   ]
   },
   {
    "lot": 11,
@@ -263,7 +333,14 @@
    "ends_in": 259200,
    "reserve": "no",
    "verified": true,
-   "location": "Pompano Beach, FL"
+   "location": "Pompano Beach, FL",
+   "stage_image": "assets/stage/gen-gla-hall-36.jpg",
+   "stage_box": [
+    0.095,
+    0.424,
+    0.845,
+    0.784
+   ]
   },
   {
    "lot": 12,
@@ -287,7 +364,14 @@
    "ends_in": 129600,
    "reserve": "no",
    "verified": true,
-   "location": "Pompano Beach, FL"
+   "location": "Pompano Beach, FL",
+   "stage_image": "assets/stage/gen-gla-hall-76.jpg",
+   "stage_box": [
+    0.286,
+    0.383,
+    0.735,
+    0.674
+   ]
   }
  ],
  "sold": [
@@ -381,5 +465,6 @@
    ],
    "result": 385000
   }
- ]
+ ],
+ "_staged": "Every lot plate/stage image is a staged composite: the car is the unaltered Patton photograph, registered and laid back pixel-for-pixel; the hall and platform are generated (fal-ai/nano-banana-pro/edit). See assets/stage/gen-gla-hall.json."
 }

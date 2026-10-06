@@ -8,35 +8,33 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500&family=IBM+Plex+Mono:wght@400;500&family=Libre+Caslon+Display&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="assets/lots/lot-73.jpg" fetchpriority="high">
-<link rel="stylesheet" href="css/gla.css?v=3">
+<link rel="preload" as="image" href="assets/stage/gen-gla-hall-73.jpg" fetchpriority="high">
+<link rel="stylesheet" href="css/gla.css?v=12">
 <script>if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('js-motion');</script>
 </head>
 <body>
 
 <header class="hdr">
   <div class="wrap hdr__in">
-    <a class="lockup" href="#top" aria-label="Golden Lion Auctions, home">
-      <img src="assets/mark-brass.svg" alt="" width="42" height="28">
-      <span class="lockup__word">Golden Lion <span>Auctions</span></span>
-    </a>
     <nav class="nav" aria-label="Primary">
       <a href="#floor" aria-current="page">Auctions</a>
       <a href="#sold">Results</a>
       <a href="#consign">Sell</a>
       <a href="#record">How it works</a>
     </nav>
+    <button class="icon-btn hdr__menu" type="button" aria-label="Menu" aria-expanded="false" aria-controls="menu-panel" id="menu-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16M4 6h16M4 18h16"/></svg>
+    </button>
+    <a class="lockup lockup--center" href="#top" aria-label="Golden Lion Auctions, home">
+      <img src="assets/mark-brass.svg" alt="" width="54" height="36">
+      <span class="lockup__word">Golden Lion</span>
+    </a>
     <div class="search" role="search"><label class="sr" for="q">Search lots</label><input id="q" type="search" placeholder="Make, model or chassis" autocomplete="off"></div>
     <div class="hdr__act">
-      <button class="icon-btn" type="button" aria-label="Search lots" aria-expanded="false" id="search-btn">
-        <!-- icons: Lucide (ISC) --><!-- deslop-ignore-next-line 24 -->
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-      </button>
+      <!-- icons: Lucide (ISC) --><!-- deslop-ignore-next-line 24 -->
+      <button class="icon-btn" type="button" aria-label="Search lots" aria-expanded="false" id="search-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></button>
       <a class="hdr__signin" href="#consign">Sign in</a>
-      <a class="btn btn--solid btn--sm" href="#consign">Register to bid</a>
-      <button class="icon-btn hdr__menu" type="button" aria-label="Menu" aria-expanded="false" aria-controls="menu-panel" id="menu-btn">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16M4 6h16M4 18h16"/></svg>
-      </button>
+      <a class="btn btn--line btn--sm hdr__reg" href="#consign">Register to bid</a>
     </div>
   </div>
 </header>
@@ -51,50 +49,38 @@
   <div class="act1">
     <section class="hero" aria-labelledby="hero-lot">
       <div class="stage" data-stage="hero">
-        <img class="stage__img" id="hero-img" src="assets/lots/lot-73.jpg" alt="1972 Lamborghini Miura P400 SV in blue with gold wheels, photographed at Patton Motors" width="1920" height="1279" fetchpriority="high">
+        <img class="stage__img" id="hero-img" src="assets/stage/gen-gla-hall-73.jpg" alt="1972 Lamborghini Miura P400 SV in blue with gold wheels, photographed at Patton Motors" width="1920" height="1279" fetchpriority="high">
       </div>
 
+      <span class="brackets" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
       <div class="hero__name">
         <div class="wrap">
           <!-- deslop-ignore-next-line 30 — a real lot number -->
-          <p class="occasion" data-in="side"><span class="live-dot" aria-hidden="true"></span><span class="live">Live</span> · Lot <span data-f="lotno">01</span> of 12</p>
-          <p class="hero__make" data-in="side" data-f="make">1972 Lamborghini</p>
-          <h1 class="hero__lot" id="hero-lot" data-in="side" data-f="model">Miura P400&nbsp;SV</h1>
-          <p class="hero__chassis data" data-in="side" data-f="chassis">Chassis 5066</p>
-          <p class="verified" data-in="side"><img src="assets/mark-brass.svg" alt="" width="36" height="24">Golden Lion Verified</p>
-        </div>
-      </div>
-
-      <div class="rostrum">
-        <p class="caption">Photographed at Patton Motors, Pompano Beach</p>
-        <div class="wrap">
-          <div class="grid rostrum__in">
-            <p class="rostrum__lede" data-in="rise">Collector and exotic cars at auction, each examined by Golden Lion.</p>
-            <div class="rostrum__bid" data-in="rise">
-              <span class="key">Current bid · sample</span>
-              <span class="val" data-f="bid">$1,850,000</span>
-              <span class="key rostrum__meta" data-f="reserve">Reserve met</span>
-            </div>
-            <div class="rostrum__clock" data-in="rise">
-              <span class="key">Ends in</span>
-              <span class="val" data-ends data-mode="hero" aria-live="off">—</span>
-              <span class="data rostrum__meta" data-f="meta">31 bids · 642 watching</span>
-            </div>
-            <div class="rostrum__cta" data-in="rise">
-              <a class="btn btn--solid" href="lot.html?id=73">View lot</a>
-              <button class="btn btn--line watch-btn" type="button" aria-pressed="false" data-watch="73">Watch</button>
-            </div>
+          <p class="occasion" data-in="rise"><span class="chip">Live</span><span>Lot <span data-f="lotno">01</span> of 12</span></p>
+          <p class="hero__make" data-in="rise" data-f="make">1972 Lamborghini</p>
+          <h1 class="hero__lot" id="hero-lot" data-in="rise" data-f="model">Miura P400&nbsp;SV</h1>
+          <div class="hero__data" data-in="rise">
+            <div><span class="key">Current bid · sample</span><span class="val" data-f="bid">$1,850,000</span></div>
+            <div><span class="key">Ends in</span><span class="val clock" data-ends data-mode="hero" aria-live="off">—</span></div>
+            <div><span class="key" data-f="reserve">Reserve met</span><span class="val small data" data-f="meta">31 bids · 642 watching</span></div>
           </div>
+          <div class="hero__cta" data-in="rise">
+            <a class="btn btn--brass" href="lot.html?id=73">View lot</a>
+            <button class="btn btn--line watch-btn" type="button" aria-pressed="false" data-watch="73">Watch</button>
+          </div>
+          <p class="hero__chassis data" data-in="rise" data-f="chassis">Chassis 5066</p>
         </div>
       </div>
+      <p class="caption hero__cap">Staged: car photographed at Patton Motors, setting generated</p>
     </section>
 
     <!-- 2 — the floor -->
     <section class="floor" id="floor" aria-labelledby="floor-title">
-      <div class="wrap">
-        <div class="grid floor__head">
-          <h2 class="section-line" id="floor-title" data-in="side">Twelve lots, open for bidding.</h2>
-          <p data-in="rise">Every car photographed, started and documented by a third party, then signed off by Golden Lion before it is offered.</p>
+      <div class="wrap floor__sheet">
+        <div class="floor__head">
+          <p class="label-rule" data-in="rise"><span>Live auctions</span></p>
+          <h2 class="section-line" id="floor-title" data-in="rise">Twelve lots, open for bidding.</h2>
+          <p class="floor__lede" data-in="rise">Every car photographed, started and documented by a third party, then signed off by Golden Lion before it is offered.</p>
         </div>
         <div class="tabs" role="tablist" aria-label="Filter lots">
           <button class="tab" role="tab" aria-selected="true" data-tab="live">Live<span data-count="live"></span></button>
@@ -117,25 +103,32 @@
   <!-- 3 — the record (peak) -->
   <section class="record" id="record" aria-labelledby="record-title">
     <div class="stage" data-stage="record">
-      <img class="stage__img" id="record-img" src="assets/lots/lot-79.jpg" alt="2024 Aston Martin Valour in black with gold trim, photographed at Patton Motors" width="1920" height="1279" loading="lazy">
+      <img class="stage__img" id="record-img" src="assets/stage/gen-gla-hall-79.jpg" alt="2024 Aston Martin Valour in black with gold trim, photographed at Patton Motors" width="1920" height="1279" loading="lazy">
     </div>
     <div class="record__text">
       <div class="wrap grid">
         <div class="record__col" id="record-col">
-          <p class="record__eyebrow" id="record-title">Golden Lion Verified</p>
-          <div class="seal" id="seal"><img src="assets/mark-struck-brass.svg" alt="Golden Lion hallmark" width="160" height="107"></div>
-          <p class="vin" aria-label="VIN S C F S B G K V 0 R G Z 1 0 0 7 7"><b>SCF</b>SBGKV<b>0</b><b>R</b>GZ10077</p>
-          <ul class="ticks">
-            <li>SCF · Aston Martin</li>
-            <li>R · model year 2024</li>
-            <li>Check digit 0 · valid</li>
-          </ul>
-          <ol class="steps">
-            <li>The VIN is read and decoded by AI.</li>
-            <li>An independent specialist photographs the car in full and records it starting.</li>
-            <li>AI drafts the listing and flags any shot or record that is missing.</li>
-            <li>A Golden Lion specialist checks it and signs it off, and the listing carries the hallmark.</li>
-          </ol>
+          <p class="label-rule label-rule--left" id="record-title"><span>Golden Lion Verified</span></p>
+          <article class="report" aria-label="Sample inspection record">
+            <header class="report__head">
+              <span>Inspection record</span><span class="report__sample">Sample</span>
+            </header>
+            <dl class="report__fields">
+              <div><dt>Lot</dt><dd>03 · 2024 Aston Martin Valour</dd></div>
+              <div><dt>VIN</dt><dd class="report__vin"><b>SCF</b>SBGKV<b>0</b><b>R</b>GZ10077</dd></div>
+              <div><dt>Decode</dt><dd>SCF Aston Martin · R 2024 · check digit 0, valid</dd></div>
+              <div><dt>Mileage</dt><dd>225 mi</dd></div>
+            </dl>
+            <ol class="report__checks">
+              <li>VIN read and decoded by AI</li>
+              <li>Full photo set by an independent specialist</li>
+              <li>Cold start recorded on video</li>
+              <li>Listing drafted by AI; missing shots flagged</li>
+              <li>Checked and signed off by a Golden Lion specialist</li>
+            </ol>
+            <footer class="report__sign"><span>Specialist</span><span class="report__line"></span><span>Date</span><span class="report__line report__line--short"></span></footer>
+            <div class="seal" id="seal"><img src="assets/mark-struck-brass.svg" alt="Golden Lion hallmark" width="160" height="107"></div>
+          </article>
         </div>
       </div>
     </div>
@@ -143,18 +136,19 @@
       <div class="wrap">
         <span class="key">Lot 03</span>
         <span class="name">2024 Aston Martin Valour</span>
-        <span class="key record__cap">Photographed at Patton Motors, Pompano Beach</span>
+        <span class="key record__cap">Staged: car photographed at Patton Motors, setting generated</span>
         <a class="btn btn--line btn--sm" href="lot.html?id=79">View lot</a>
       </div>
     </div>
   </section>
 
   <!-- 4 — recently sold -->
-  <section class="sold" id="sold" aria-labelledby="sold-title">
+  <section class="sold paper" id="sold" aria-labelledby="sold-title">
     <div class="wrap">
-      <div class="grid sold__head">
-        <h2 class="section-line" id="sold-title" data-in="side">Recently sold.</h2>
-        <p data-in="rise">Cars of this class sold by Patton Motors. Figures shown are sample data for this prototype.</p>
+      <div class="sold__head">
+        <p class="label-rule" data-in="rise"><span>Recent results</span></p>
+        <h2 class="section-line" id="sold-title" data-in="rise">Recently sold.</h2>
+        <p class="sold__lede" data-in="rise">Cars of this class sold by Patton Motors. Figures shown are sample data for this prototype.</p>
       </div>
       <ol class="ledger" id="ledger"></ol>
     </div>
@@ -162,23 +156,34 @@
 
   <!-- 5 — consign, and the house -->
   <section class="consign" id="consign" aria-labelledby="consign-title">
-    <div class="wrap grid">
-      <div class="consign__main">
-        <h2 class="section-line" id="consign-title" data-in="side">Your car, documented to the same standard.</h2>
-        <p class="lede" data-in="rise">Start with the VIN. Golden Lion arranges the specialist, the photographs and the record. You never write the listing yourself.</p>
-        <form class="vinform" id="vinform" novalidate>
-          <label class="key" for="vin">Vehicle identification number</label>
-          <input id="vin" name="vin" maxlength="17" autocomplete="off" spellcheck="false" placeholder="17 characters" aria-describedby="vinmsg">
-          <button class="btn btn--solid" type="submit">Begin</button>
-          <p class="vinform__msg key" id="vinmsg" role="status"></p>
-        </form>
-      </div>
-      <aside class="house" aria-label="Who stands behind Golden Lion">
-        <h3>Backed by Patton Motors</h3>
-        <p>Every car on this page stands in the Patton Motors room.</p>
-        <address>2901 Center Port Circle<br>Pompano Beach, FL 33064</address>
-      </aside>
+    <div class="consign__frame">
+      <img src="assets/stage/gen-gla-hall-36.jpg" alt="" loading="lazy" width="2528" height="1696">
     </div>
+    <div class="consign__panel paper">
+      <p class="label-rule label-rule--left"><span>Consign</span></p>
+      <h2 class="section-line" id="consign-title" data-in="rise">Your car, documented to the same standard.</h2>
+      <p class="lede" data-in="rise">Start with the VIN. Golden Lion arranges the specialist, the photographs and the record. You never write the listing yourself.</p>
+      <form class="vinform" id="vinform" novalidate>
+        <label class="key" for="vin">Vehicle identification number</label>
+        <input id="vin" name="vin" maxlength="17" autocomplete="off" spellcheck="false" placeholder="17 characters" aria-describedby="vinmsg">
+        <button class="btn btn--solid" type="submit">Begin</button>
+        <p class="vinform__msg key" id="vinmsg" role="status"></p>
+      </form>
+      <div class="house">
+        <h3>Backed by Patton Motors</h3>
+        <address>2901 Center Port Circle<br>Pompano Beach, FL 33064</address>
+      </div>
+    </div>
+  </section>
+  <!-- finale: the house, one last scene -->
+  <section class="finale" aria-label="Golden Lion">
+    <img class="finale__img" src="assets/stage/gen-gla-hall-41.jpg" alt="" loading="lazy" width="2528" height="1696">
+    <div class="finale__in">
+      <img src="assets/mark-struck-brass.svg" alt="" width="120" height="80">
+      <p class="finale__word">Golden Lion</p>
+      <p class="finale__line">Collector and exotic cars at auction, each examined by Golden Lion.</p>
+    </div>
+    <p class="caption finale__cap">Staged: cars photographed at Patton Motors, setting generated</p>
   </section>
 </main>
 
@@ -208,25 +213,23 @@
   <article class="card">
     <a class="card__link" href="lot.html">
       <div class="plate" data-reveal><div class="plate__inner"><div class="plate__frame"><img class="plate__img" src="assets/lots/lot-73.jpg" alt="" loading="lazy" width="1920" height="1280"></div></div></div>
+      <p class="card__lot key"></p>
       <h3 class="card__name"></h3>
       <p class="card__chassis data"></p>
       <p class="card__note key" hidden></p>
-      <div class="dataline">
-        <div class="dataline__top"><span class="key status"></span><span class="key reserve"></span></div>
-        <div class="dataline__nums"><span class="dataline__bid"></span><span class="dataline__time" data-ends data-mode="card"></span><span class="dataline__bids"></span></div>
-        <span class="key">Current bid · sample</span>
-      </div>
     </a>
-    <button class="watch" type="button" aria-pressed="false">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </button>
+    <div class="dataline">
+      <div class="dataline__top"><span class="key status"></span><span class="key reserve"></span></div>
+      <div class="dataline__nums"><span class="dataline__bid"></span><span class="dataline__time" data-ends data-mode="card"></span><span class="dataline__bids"></span></div>
+      <div class="dataline__foot"><span class="key">Current bid · sample</span><button class="watch-txt" type="button" aria-pressed="false">Watch</button></div>
+    </div>
   </article>
 </template>
 
-<script src="data/lots.js?v=3"></script>
+<script src="data/lots.js?v=12"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 <script src="https://unpkg.com/lenis@1.3.26/dist/lenis.min.js" defer></script>
-<script src="js/home.js?v=3" defer></script>
+<script src="js/home.js?v=12" defer></script>
 </body>
 </html>

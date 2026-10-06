@@ -1,0 +1,20 @@
+{
+ "file": "gen-gla-stage-73.jpg",
+ "kind": "staged composite: real photograph of the car + generated setting",
+ "date": "2026-10-05",
+ "subject": "1972 Lamborghini Miura P400 SV, Patton feed id 73",
+ "car": {
+  "origin": "client-supplied photograph, not generated",
+  "source": "https://www.pattonmotors.com/imagetag/73/main/l/Used-1972-Lamborghini-Miura-P400-SV-1780158651.jpg",
+  "pixels": "composited back pixel-identical from the original at native 1920x1279 through the pixelcut silhouette (full-mask-73.png), edge feathered 1.2px"
+ },
+ "setting": {
+  "origin": "synthetic",
+  "model": "fal-ai/nano-banana-pro/edit, 2K, 3:2",
+  "request": "01a10e7c-7e18-77f3-bc16-a4ee2f9e8aa8",
+  "method": "the whole real photo was edited so light and perspective follow the car; then the original car was laid back on top (alignment checked: 0px shift)",
+  "prompt": "Keep the car exactly as it is: same car, same position, same angle, same size, same paint, reflections, wheels, plate and every detail, pixel for pixel. Replace ONLY the surroundings: remove the entire showroom (walls, logos, plants, curtains, pillars, ceiling grid, other cars, ropes). The new setting is an empty, dark private auction hall: a deep charcoal seamless back wall falling into near-black, a dark graphite polished concrete floor with a soft, believable reflection of the car and a natural contact shadow under the tyres. One large soft overhead light above the car, matching the light already on the car's body, so the car reads as lit and the room falls into shadow towards the edges. Same camera, same lens, same perspective and horizon as the original photo. Restrained, quiet, expensive. No text, no letters, no logos, no signage, no people, no props, no gold, no neon, no glow, no haze, no lens flare."
+ },
+ "disclosure": "shown with the caption 'Staged: car photographed at Patton Motors, setting generated'. The lot gallery uses unaltered photographs.",
+ "brief": "BRIEF.md decision 3 and 7; CONCEPT.md section 7 recommendation"
+}
