@@ -1,0 +1,797 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Golden Lion Auctions — Collector and exotic cars at auction</title>
+<meta name="description" content="Walk the hall: twelve collector and exotic cars, each examined and documented by Golden Lion, open for bidding. Prototype: bids, timers and results are sample data.">
+<!--
+  HOME v6 "The Hall" — concept gate (scroll-site Step 4), kept with the page because this build may create no other files.
+  Reading this as the home page of a new online collector-car auction for serious bidders, leaning nocturne-industrial (preview night in a vast hall).
+  Mandate: REDESIGN of the HOME layout — fixed: name, lion-passant hallmark, champagne gilt, dark ground, staged hall imagery; in scope: structure, type, motion.
+  Style mode: DIRECTED HYBRID — anchor cinematic-industrial / contrast auction-editorial data / signature: the walk. Alex overrides the house dialect: cards, shadows, gradients allowed.
+  Dimensionality: MAIN for the hall (2.5D camera walk is the composition), ABSENT after it.
+  Concept: the home page is the preview night — you slide the hangar door and walk past twelve platforms; each car has its placard standing on the floor beside it.
+  Feeling curve: anticipation (door ajar, lead lot) → discovery (the walk, car after car) → control (all lots, sorted) → trust (the VIN decoded) → fairness (the clock resets) → proof (sold) → invitation (the next platform is yours).
+  Peak: "you scroll and the door slides away and you're walking past the cars, one platform after another."
+  Grammar: continuous world (v3 was chaptered cards; v4 theatre board; v5 catalogue on a desk).
+  Signature move: the hangar door slides off the lead lot, then a lateral dolly through stitched halls with the car separating from its hall (2.5D).
+  Shots: entrance = reveal (door) + push; walk = dolly with release at each stop; after = cuts to editorial chapters.
+  Mobile: no pin — a swipe rail of stops with snap; the 2.5D layer is dropped. Reduced motion: no pin, no parallax, vertical stops.
+  Budget: walk ≈ 12 viewports; LCP = hall 73 (0.41 MB) + HTML headline; per stop plate ≈0.25 MB + car ≈0.12 MB, lazy beyond stop 2.
+  Assets: halls are staged composites (car photographed by Patton Motors, setting generated — gen-gla-hall.json); assets/v6/plate-* are the same halls
+  with the car region inpainted (OpenCV Telea, setting only), assets/v6/car-* are the car pixels lifted unaltered from the same frames.
+  Claims ledger: cars, chassis/VIN, mileage, notes = Patton feed (data/lots.js). Bids, clocks, counts, reserve states, results = SAMPLE, marked in the render.
+  Anti-sniping rule = PROPOSED, marked. No fees, percentages or auction lengths are stated.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..800;1,6..96,400..700&family=Hanken+Grotesk:wght@400..700&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="assets/stage/gen-gla-hall-73.jpg" fetchpriority="high">
+<link rel="icon" href="assets/mark-brass.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://unpkg.com/lenis@1.3.26/dist/lenis.css">
+<link rel="stylesheet" href="css/v6.css?v=1">
+<script>
+  (function (d) {
+    var r = d.documentElement, m = function (q) { return window.matchMedia(q).matches; };
+    r.classList.add('js');
+    if (!m('(prefers-reduced-motion: reduce)')) {
+      r.classList.add('motion');
+      if (m('(min-width: 1024px) and (min-height: 620px) and (min-aspect-ratio: 5/4)')) {
+        r.classList.add('walk');
+        setTimeout(function () { if (!window.__v6ok) r.classList.remove('walk'); }, 4000);
+      }
+    }
+  })(document);
+</script>
+</head>
+<body>
+<a class="skip" href="#browse">Skip the hall: all lots</a>
+
+<header class="top" id="top">
+  <a class="lockup" href="#top" aria-label="Golden Lion Auctions, home">
+    <span class="mark" aria-hidden="true"></span>
+    <span class="lockup__word">Golden Lion</span>
+    <span class="lockup__sub">Auctions</span>
+  </a>
+  <nav class="top__nav" aria-label="Primary">
+    <a href="#browse">Auctions</a>
+    <a href="#results">Results</a>
+    <a href="#consign">Sell a car</a>
+    <a href="#verified">How it works</a>
+  </nav>
+  <div class="top__act">
+    <a class="top__search" href="#q" data-search>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg><span>Search</span>
+    </a>
+    <button class="btn btn--ink btn--sm" type="button" data-register>Register to bid</button>
+    <button class="top__menu" type="button" aria-expanded="false" aria-controls="menu" id="menu-btn"><span class="sr">Menu</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h16M4 15h16"/></svg></button>
+  </div>
+  <nav class="menu" id="menu" aria-label="Menu" hidden>
+    <a href="#browse">Auctions</a><a href="#results">Results</a><a href="#consign">Sell a car</a><a href="#verified">How it works</a><a href="#q" data-search>Search lots</a>
+  </nav>
+</header>
+
+<main>
+  <!-- 1 — THE HALL: the door, then the walk -->
+  <section class="hall" id="hall" aria-labelledby="hall-title">
+    <div class="hall__view" id="view">
+
+      <div class="door" id="door">
+        <div class="door__face">
+          <div class="door__in">
+            <h1 class="door__title" id="hall-title"><span class="mark mark--door" aria-hidden="true"></span>Golden Lion Auctions</h1>
+            <p class="door__lede">Collector and exotic cars, each examined and documented by Golden Lion before the first bid. The hall is open.</p>
+            <p class="door__live"><span class="pulse" aria-hidden="true"></span><b>12</b>&nbsp;auctions live now <span class="sample">· sample</span></p>
+
+            <div class="notice" aria-labelledby="lead-t">
+              <p class="notice__k">Lead lot · Lot 01</p>
+              <h2 class="notice__t" id="lead-t"><a href="lot.html?id=73">1972 Lamborghini Miura P400 SV</a></h2>
+              <dl class="notice__d">
+                <div><dt>Current bid <span>· sample</span></dt><dd>$1,850,000</dd></div>
+                <div><dt>Time left</dt><dd data-ends="73" data-mode="short">2d 14h</dd></div>
+              </dl>
+              <p class="notice__m">Reserve met · 31 bids</p>
+            </div>
+
+            <div class="door__cta">
+              <a class="btn btn--ink" href="#lot-01" data-go="0">Walk the hall<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
+              <a class="door__all" href="#browse">All 12 lots at a glance</a>
+            </div>
+          </div>
+          <span class="door__handle" aria-hidden="true"></span>
+        </div>
+        <img class="door__view" src="assets/stage/gen-gla-hall-73.jpg" alt="" width="2528" height="1696" aria-hidden="true">
+      </div>
+
+      <div class="track" id="track">
+      <article class="stop" id="lot-01" data-id="73" data-i="0" data-box="0.2445,0.4139,0.7168,0.6651" style="--cx:48.1%;--cy:53.9%;--cs:1.350" aria-labelledby="t-73">
+        <figure class="stop__scene">
+          <img class="stop__hall" src="assets/stage/gen-gla-hall-73.jpg" data-plate="assets/v6/plate-73.jpg" data-car="assets/v6/car-73.webp" alt="1972 Lamborghini Miura P400 SV on a low platform in a hall" width="2528" height="1696" fetchpriority="high" decoding="async">
+          <figcaption class="stop__cap">Staged · setting generated<br>Car photographed at Patton Motors</figcaption>
+        </figure>
+        <div class="plate">
+          <div class="plate__head">
+            <span class="plate__no" aria-hidden="true">01</span>
+            <p class="plate__lot">Lot 01 <span>of 12</span></p>
+          </div>
+          <h3 class="plate__title" id="t-73"><a href="lot.html?id=73">1972 Lamborghini Miura P400 SV</a></h3>
+          <p class="plate__chassis">Chassis 5066</p>
+          
+          <dl class="plate__bid">
+            <div class="plate__amount"><dt>Current bid <span>· sample</span></dt><dd>$1,850,000</dd></div>
+            <div class="plate__time"><dt>Time left</dt><dd data-ends="73" data-mode="long">2d 14h 37m 09s</dd></div>
+          </dl>
+          <p class="plate__meta"><span class="res res--met">Reserve met</span><span>31 bids</span><span>642 watching</span></p>
+          <div class="plate__act">
+            <a class="btn btn--ink" href="lot.html?id=73">View lot<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
+            <button class="btn btn--ghost watch" type="button" aria-pressed="false" data-watch="73" aria-label="Watch lot 01"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.6l2.5 5.4 5.9.6-4.4 4 1.3 5.8L12 16.5l-5.3 2.9 1.3-5.8-4.4-4 5.9-.6z"/></svg><span>Watch</span></button>
+          </div>
+          <p class="plate__staged" aria-hidden="true">Staged · setting generated. Car photographed at Patton Motors.</p>
+        </div>
+      </article>
+      <article class="stop" id="lot-02" data-id="82" data-i="1" data-box="0.2124,0.3803,0.8101,0.6987" style="--cx:51.1%;--cy:53.9%;--cs:1.350" aria-labelledby="t-82">
+        <figure class="stop__scene">
+          <img class="stop__hall" src="assets/stage/gen-gla-hall-82.jpg" data-plate="assets/v6/plate-82.jpg" data-car="assets/v6/car-82.webp" alt="2025 Alfa Romeo 33 Stradale on a low platform in a hall" width="2528" height="1696" loading="lazy" decoding="async">
+          <figcaption class="stop__cap">Staged · setting generated<br>Car photographed at Patton Motors</figcaption>
+        </figure>
+        <div class="plate">
+          <div class="plate__head">
+            <span class="plate__no" aria-hidden="true">02</span>
+            <p class="plate__lot">Lot 02 <span>of 12</span></p>
+          </div>
+          <h3 class="plate__title" id="t-82"><a href="lot.html?id=82">2025 Alfa Romeo 33 Stradale</a></h3>
+          <p class="plate__chassis">Chassis 1</p>
+          
+          <dl class="plate__bid">
+            <div class="plate__amount"><dt>Current bid <span>· sample</span></dt><dd>$2,400,000</dd></div>
+            <div class="plate__time"><dt>Time left</dt><dd data-ends="82" data-mode="long">4d 18h 31m 40s</dd></div>
+          </dl>
+          <p class="plate__meta"><span class="res res--yes">Reserve not yet met</span><span>22 bids</span><span>811 watching</span></p>
+          <div class="plate__act">
+            <a class="btn btn--ink" href="lot.html?id=82">View lot<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
+            <button class="btn btn--ghost watch" type="button" aria-pressed="false" data-watch="82" aria-label="Watch lot 02"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.6l2.5 5.4 5.9.6-4.4 4 1.3 5.8L12 16.5l-5.3 2.9 1.3-5.8-4.4-4 5.9-.6z"/></svg><span>Watch</span></button>
+          </div>
+          <p class="plate__staged" aria-hidden="true">Staged · setting generated. Car photographed at Patton Motors.</p>
+        </div>
+      </article>
+      <article class="stop" id="lot-03" data-id="79" data-i="2" data-box="0.2793,0.418,0.7631,0.7152" style="--cx:52.1%;--cy:56.7%;--cs:1.350" aria-labelledby="t-79">
+        <figure class="stop__scene">
+          <img class="stop__hall" src="assets/stage/gen-gla-hall-79.jpg" data-plate="assets/v6/plate-79.jpg" data-car="assets/v6/car-79.webp" alt="2024 Aston Martin Valour on a low platform in a hall" width="2528" height="1696" loading="lazy" decoding="async">
+          <figcaption class="stop__cap">Staged · setting generated<br>Car photographed at Patton Motors</figcaption>
+        </figure>
+        <div class="plate">
+          <div class="plate__head">
+            <span class="plate__no" aria-hidden="true">03</span>
+            <p class="plate__lot">Lot 03 <span>of 12</span></p>
+          </div>
+          <h3 class="plate__title" id="t-79"><a href="lot.html?id=79"><span class="nw">225-Mile</span> 2024 Aston Martin Valour</a></h3>
+          <p class="plate__chassis">VIN SCFSBGKV0RGZ10077</p>
+          
+          <dl class="plate__bid">
+            <div class="plate__amount"><dt>Current bid <span>· sample</span></dt><dd>$1,320,000</dd></div>
+            <div class="plate__time"><dt>Time left</dt><dd data-ends="79" data-mode="long">3d 11h 51m 40s</dd></div>
+          </dl>
+          <p class="plate__meta"><span class="res res--met">Reserve met</span><span>18 bids</span><span>577 watching</span></p>
+          <div class="plate__act">
+            <a class="btn btn--ink" href="lot.html?id=79">View lot<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
+            <button class="btn btn--ghost watch" type="button" aria-pressed="false" data-watch="79" aria-label="Watch lot 03"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.6l2.5 5.4 5.9.6-4.4 4 1.3 5.8L12 16.5l-5.3 2.9 1.3-5.8-4.4-4 5.9-.6z"/></svg><span>Watch</span></button>
+          </div>
+          <p class="plate__staged" aria-hidden="true">Staged · setting generated. Car photographed at Patton Motors.</p>
+        </div>
+      </article>
+      <article class="stop" id="lot-04" data-id="8" data-i="3" data-box="0.2453,0.3915,0.7745,0.691" style="--cx:51.0%;--cy:54.1%;--cs:1.350" aria-labelledby="t-8">
+        <figure class="stop__scene">
+          <img class="stop__hall" src="assets/stage/gen-gla-hall-8.jpg" data-plate="assets/v6/plate-8.jpg" data-car="assets/v6/car-8.webp" alt="1967 Alfa Romeo 33 Stradale on a low platform in a hall" width="2528" height="1696" loading="lazy" decoding="async">
+          <figcaption class="stop__cap">Staged · setting generated<br>Car photographed at Patton Motors</figcaption>
+        </figure>
+        <div class="plate">
+          <div class="plate__head">
+            <span class="plate__no" aria-hidden="true">04</span>
+            <p class="plate__lot">Lot 04 <span>of 12</span></p>
+          </div>
+          <h3 class="plate__title" id="t-8"><a href="lot.html?id=8"><span class="nw">25-Mile</span> 1967 Alfa Romeo 33 Stradale</a></h3>
+          <p class="plate__chassis">Chassis MP05</p>
+          
+          <dl class="plate__bid">
+            <div class="plate__amount"><dt>Current bid <span>· sample</span></dt><dd>$2,750,000</dd></div>
+            <div class="plate__time"><dt>Time left</dt><dd data-ends="8" data-mode="long">6d 0h 00m 00s</dd></div>
+          </dl>
+          <p class="plate__meta"><span class="res res--yes">Reserve not yet met</span><span>27 bids</span><span>903 watching</span></p>
+          <div class="plate__act">
+            <a class="btn btn--ink" href="lot.html?id=8">View lot<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
+            <button class="btn btn--ghost watch" type="button" aria-pressed="false" data-watch="8" aria-label="Watch lot 04"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.6l2.5 5.4 5.9.6-4.4 4 1.3 5.8L12 16.5l-5.3 2.9 1.3-5.8-4.4-4 5.9-.6z"/></svg><span>Watch</span></button>
+          </div>
+          <p class="plate__staged" aria-hidden="true">Staged · setting generated. Car photographed at Patton Motors.</p>
+        </div>
+      </article>
+      <article class="stop" id="lot-05" data-id="68" data-i="4" data-box="0.2714,0.3715,0.7421,0.7636" style="--cx:50.7%;--cy:56.8%;--cs:1.350" aria-labelledby="t-68">
+        <figure class="stop__scene">
+          <img class="stop__hall" src="assets/stage/gen-gla-hall-68.jpg" data-plate="assets/v6/plate-68.jpg" data-car="assets/v6/car-68.webp" alt="1965 Shelby Cobra 427 S/C on a low platform in a hall" width="2528" height="1696" loading="lazy" decoding="async">
+          <figcaption class="stop__cap">Staged · setting generated<br>Car photographed at Patton Motors</figcaption>
+        </figure>
+        <div class="plate">
+          <div class="plate__head">
+            <span class="plate__no" aria-hidden="true">05</span>
+            <p class="plate__lot">Lot 05 <span>of 12</span></p>
+          </div>
+          <h3 class="plate__title" id="t-68"><a href="lot.html?id=68">1965 Shelby Cobra 427 S/C</a></h3>
+          <p class="plate__chassis">Chassis CSX 4532</p>
+          <p class="plate__note">Lot car: centre</p>
+          <dl class="plate__bid">
+            <div class="plate__amount"><dt>Current bid <span>· sample</span></dt><dd>$1,650,000</dd></div>
+            <div class="plate__time"><dt>Time left</dt><dd data-ends="68" data-mode="long">1d 21h 00m 00s</dd></div>
+          </dl>
+          <p class="plate__meta"><span class="res res--met">Reserve met</span><span>24 bids</span><span>488 watching</span></p>
+          <div class="plate__act">
+            <a class="btn btn--ink" href="lot.html?id=68">View lot<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
+            <button class="btn btn--ghost watch" type="button" aria-pressed="false" data-watch="68" aria-label="Watch lot 05"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.6l2.5 5.4 5.9.6-4.4 4 1.3 5.8L12 16.5l-5.3 2.9 1.3-5.8-4.4-4 5.9-.6z"/></svg><span>Watch</span></button>
+          </div>
+          <p class="plate__staged" aria-hidden="true">Staged · setting generated. Car photographed at Patton Motors.</p>
+        </div>
+      </article>
+      <article class="stop" id="lot-06" data-id="49" data-i="5" data-box="0.2255,0.4186,0.7646,0.8007" style="--cx:49.5%;--cy:61.0%;--cs:1.350" aria-labelledby="t-49">
+        <figure class="stop__scene">
+          <img class="stop__hall" src="assets/stage/gen-gla-hall-49.jpg" data-plate="assets/v6/plate-49.jpg" data-car="assets/v6/car-49.webp" alt="2009 Mercedes-Benz SLR McLaren Roadster 722 S on a low platform in a hall" width="2528" height="1696" loading="lazy" decoding="async">
+          <figcaption class="stop__cap">Staged · setting generated<br>Car photographed at Patton Motors</figcaption>
+        </figure>
+        <div class="plate">
+          <div class="plate__head">
+            <span class="plate__no" aria-hidden="true">06</span>
+            <p class="plate__lot">Lot 06 <span>of 12</span></p>
+          </div>
+          <h3 class="plate__title" id="t-49"><a href="lot.html?id=49"><span class="nw">5,295-Mile</span> 2009 <span class="nw">Mercedes-Benz</span> SLR McLaren Roadster 722 S</a></h3>
+          <p class="plate__chassis">VIN WDDAK76F59MXXXXXX</p>
+          
+          <dl class="plate__bid">
+            <div class="plate__amount"><dt>Current bid <span>· sample</span></dt><dd>$780,000</dd></div>
+            <div class="plate__time"><dt>Time left</dt><dd data-ends="49" data-mode="long">5h 04m 00s</dd></div>
+          </dl>
+          <p class="plate__meta"><span class="res res--met">Reserve met</span><span>15 bids</span><span>301 watching</span></p>
+          <div class="plate__act">
+            <a class="btn btn--ink" href="lot.html?id=49">View lot<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
+            <button class="btn btn--ghost watch" type="button" aria-pressed="false" data-watch="49" aria-label="Watch lot 06"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.6l2.5 5.4 5.9.6-4.4 4 1.3 5.8L12 16.5l-5.3 2.9 1.3-5.8-4.4-4 5.9-.6z"/></svg><span>Watch</span></button>
+          </div>
+          <p class="plate__staged" aria-hidden="true">Staged · setting generated. Car photographed at Patton Motors.</p>
+        </div>
+      </article>
+      <article class="stop" id="lot-07" data-id="35" data-i="6" data-box="0.0633,0.2812,0.9209,0.8054" style="--cx:49.2%;--cy:54.3%;--cs:1.049" aria-labelledby="t-35">
+        <figure class="stop__scene">
+          <img class="stop__hall" src="assets/stage/gen-gla-hall-35.jpg" data-plate="assets/v6/plate-35.jpg" data-car="assets/v6/car-35.webp" alt="1955 Mercedes-Benz 300 SL by Kindig Design on a low platform in a hall" width="2528" height="1696" loading="lazy" decoding="async">
+          <figcaption class="stop__cap">Staged · setting generated<br>Car photographed at Patton Motors</figcaption>
+        </figure>
+        <div class="plate">
+          <div class="plate__head">
+            <span class="plate__no" aria-hidden="true">07</span>
+            <p class="plate__lot">Lot 07 <span>of 12</span></p>
+          </div>
+          <h3 class="plate__title" id="t-35"><a href="lot.html?id=35"><span class="nw">4,317-Mile</span> 1955 <span class="nw">Mercedes-Benz</span> 300 SL by Kindig Design</a></h3>
+          <p class="plate__chassis">VIN 1D9GR11T07887XXXX</p>
+          
+          <dl class="plate__bid">
+            <div class="plate__amount"><dt>Current bid <span>· sample</span></dt><dd>$1,150,000</dd></div>
+            <div class="plate__time"><dt>Time left</dt><dd data-ends="35" data-mode="long">11h 00m 00s</dd></div>
+          </dl>
+          <p class="plate__meta"><span class="res res--yes">Reserve not yet met</span><span>19 bids</span><span>455 watching</span></p>
+          <div class="plate__act">
+            <a class="btn btn--ink" href="lot.html?id=35">View lot<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
+            <button class="btn btn--ghost watch" type="button" aria-pressed="false" data-watch="35" aria-label="Watch lot 07"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.6l2.5 5.4 5.9.6-4.4 4 1.3 5.8L12 16.5l-5.3 2.9 1.3-5.8-4.4-4 5.9-.6z"/></svg><span>Watch</span></button>
+          </div>
+          <p class="plate__staged" aria-hidden="true">Staged · setting generated. Car photographed at Patton Motors.</p>
+        </div>
+      </article>
+      <article class="stop" id="lot-08" data-id="19" data-i="7" data-box="0.2104,0.3874,0.754,0.7441" style="--cx:48.2%;--cy:56.6%;--cs:1.350" aria-labelledby="t-19">
+        <figure class="stop__scene">
+          <img class="stop__hall" src="assets/stage/gen-gla-hall-19.jpg" data-plate="assets/v6/plate-19.jpg" data-car="assets/v6/car-19.webp" alt="2022 Ferrari SF90 Spider on a low platform in a hall" width="2528" height="1696" loading="lazy" decoding="async">
+          <figcaption class="stop__cap">Staged · setting generated<br>Car photographed at Patton Motors</figcaption>
+        </figure>
+        <div class="plate">
+          <div class="plate__head">
+            <span class="plate__no" aria-hidden="true">08</span>
+            <p class="plate__lot">Lot 08 <span>of 12</span></p>
+          </div>
+          <h3 class="plate__title" id="t-19"><a href="lot.html?id=19">No Reserve: <span class="nw">494-Mile</span> 2022 Ferrari SF90 Spider</a></h3>
+          <p class="plate__chassis">VIN ZFF96NMAXN0XXXXXX</p>
+          
+          <dl class="plate__bid">
+            <div class="plate__amount"><dt>Current bid <span>· sample</span></dt><dd>$455,000</dd></div>
+            <div class="plate__time is-urgent"><dt>Time left</dt><dd data-ends="19" data-mode="long">0h 47m 00s</dd></div>
+          </dl>
+          <p class="plate__meta"><span class="res res--no">No reserve</span><span>36 bids</span><span>267 watching</span></p>
+          <div class="plate__act">
+            <a class="btn btn--ink" href="lot.html?id=19">View lot<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
+            <button class="btn btn--ghost watch" type="button" aria-pressed="false" data-watch="19" aria-label="Watch lot 08"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.6l2.5 5.4 5.9.6-4.4 4 1.3 5.8L12 16.5l-5.3 2.9 1.3-5.8-4.4-4 5.9-.6z"/></svg><span>Watch</span></button>
+          </div>
+          <p class="plate__staged" aria-hidden="true">Staged · setting generated. Car photographed at Patton Motors.</p>
+        </div>
+      </article>
+      <article class="stop" id="lot-09" data-id="70" data-i="8" data-box="0.2812,0.4617,0.7231,0.727" style="--cx:50.2%;--cy:59.4%;--cs:1.350" aria-labelledby="t-70">
+        <figure class="stop__scene">
+          <img class="stop__hall" src="assets/stage/gen-gla-hall-70.jpg" data-plate="assets/v6/plate-70.jpg" data-car="assets/v6/car-70.webp" alt="2006 Ford GT on a low platform in a hall" width="2528" height="1696" loading="lazy" decoding="async">
+          <figcaption class="stop__cap">Staged · setting generated<br>Car photographed at Patton Motors</figcaption>
+        </figure>
+        <div class="plate">
+          <div class="plate__head">
+            <span class="plate__no" aria-hidden="true">09</span>
+            <p class="plate__lot">Lot 09 <span>of 12</span></p>
+          </div>
+          <h3 class="plate__title" id="t-70"><a href="lot.html?id=70"><span class="nw">15,750-Mile</span> 2006 Ford GT</a></h3>
+          <p class="plate__chassis">VIN 1FAFP90S36YXXXXXX</p>
+          
+          <dl class="plate__bid">
+            <div class="plate__amount"><dt>Current bid <span>· sample</span></dt><dd>$410,000</dd></div>
+            <div class="plate__time is-urgent"><dt>Time left</dt><dd data-ends="70" data-mode="long">0h 18m 00s</dd></div>
+          </dl>
+          <p class="plate__meta"><span class="res res--met">Reserve met</span><span>48 bids</span><span>392 watching</span></p>
+          <div class="plate__act">
+            <a class="btn btn--ink" href="lot.html?id=70">View lot<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
+            <button class="btn btn--ghost watch" type="button" aria-pressed="false" data-watch="70" aria-label="Watch lot 09"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.6l2.5 5.4 5.9.6-4.4 4 1.3 5.8L12 16.5l-5.3 2.9 1.3-5.8-4.4-4 5.9-.6z"/></svg><span>Watch</span></button>
+          </div>
+          <p class="plate__staged" aria-hidden="true">Staged · setting generated. Car photographed at Patton Motors.</p>
+        </div>
+      </article>
+      <article class="stop" id="lot-10" data-id="41" data-i="9" data-box="0.1547,0.3585,0.8655,0.6893" style="--cx:51.0%;--cy:52.4%;--cs:1.266" aria-labelledby="t-41">
+        <figure class="stop__scene">
+          <img class="stop__hall" src="assets/stage/gen-gla-hall-41.jpg" data-plate="assets/v6/plate-41.jpg" data-car="assets/v6/car-41.webp" alt="1955 Mercedes-Benz 300 SLR #658 by Scuderia Bucci on a low platform in a hall, with a second car beside it" width="2528" height="1696" loading="lazy" decoding="async">
+          <figcaption class="stop__cap">Staged · setting generated<br>Cars photographed at Patton Motors</figcaption>
+        </figure>
+        <div class="plate">
+          <div class="plate__head">
+            <span class="plate__no" aria-hidden="true">10</span>
+            <p class="plate__lot">Lot 10 <span>of 12</span></p>
+          </div>
+          <h3 class="plate__title" id="t-41"><a href="lot.html?id=41"><span class="nw">51-Mile</span> 1955 <span class="nw">Mercedes-Benz</span> 300 SLR #658 by Scuderia Bucci</a></h3>
+          <p class="plate__chassis">Chassis MB6588</p>
+          <p class="plate__note">Lot car: left, #658</p>
+          <dl class="plate__bid">
+            <div class="plate__amount"><dt>Current bid <span>· sample</span></dt><dd>$392,000</dd></div>
+            <div class="plate__time"><dt>Time left</dt><dd data-ends="41" data-mode="long">4d 0h 00m 00s</dd></div>
+          </dl>
+          <p class="plate__meta"><span class="res res--yes">Reserve not yet met</span><span>12 bids</span><span>214 watching</span></p>
+          <div class="plate__act">
+            <a class="btn btn--ink" href="lot.html?id=41">View lot<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
+            <button class="btn btn--ghost watch" type="button" aria-pressed="false" data-watch="41" aria-label="Watch lot 10"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.6l2.5 5.4 5.9.6-4.4 4 1.3 5.8L12 16.5l-5.3 2.9 1.3-5.8-4.4-4 5.9-.6z"/></svg><span>Watch</span></button>
+          </div>
+          <p class="plate__staged" aria-hidden="true">Staged · setting generated. Cars photographed at Patton Motors.</p>
+        </div>
+      </article>
+      <article class="stop" id="lot-11" data-id="36" data-i="10" data-box="0.07,0.4233,0.8485,0.7972" style="--cx:45.9%;--cy:61.0%;--cs:1.156" aria-labelledby="t-36">
+        <figure class="stop__scene">
+          <img class="stop__hall" src="assets/stage/gen-gla-hall-36.jpg" data-plate="assets/v6/plate-36.jpg" data-car="assets/v6/car-36.webp" alt="1956 Ferrari 612 TR by S-Klub Tempista on a low platform in a hall" width="2528" height="1696" loading="lazy" decoding="async">
+          <figcaption class="stop__cap">Staged · setting generated<br>Car photographed at Patton Motors</figcaption>
+        </figure>
+        <div class="plate">
+          <div class="plate__head">
+            <span class="plate__no" aria-hidden="true">11</span>
+            <p class="plate__lot">Lot 11 <span>of 12</span></p>
+          </div>
+          <h3 class="plate__title" id="t-36"><a href="lot.html?id=36">No Reserve: <span class="nw">15,849-Mile</span> 1956 Ferrari 612 TR by <span class="nw">S-Klub</span> Tempista</a></h3>
+          <p class="plate__chassis">VIN ZFFJB54A48015XXXX</p>
+          
+          <dl class="plate__bid">
+            <div class="plate__amount"><dt>Current bid <span>· sample</span></dt><dd>$520,000</dd></div>
+            <div class="plate__time"><dt>Time left</dt><dd data-ends="36" data-mode="long">3d 0h 00m 00s</dd></div>
+          </dl>
+          <p class="plate__meta"><span class="res res--no">No reserve</span><span>14 bids</span><span>233 watching</span></p>
+          <div class="plate__act">
+            <a class="btn btn--ink" href="lot.html?id=36">View lot<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
+            <button class="btn btn--ghost watch" type="button" aria-pressed="false" data-watch="36" aria-label="Watch lot 11"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.6l2.5 5.4 5.9.6-4.4 4 1.3 5.8L12 16.5l-5.3 2.9 1.3-5.8-4.4-4 5.9-.6z"/></svg><span>Watch</span></button>
+          </div>
+          <p class="plate__staged" aria-hidden="true">Staged · setting generated. Car photographed at Patton Motors.</p>
+        </div>
+      </article>
+      <article class="stop" id="lot-12" data-id="76" data-i="11" data-box="0.2836,0.3827,0.7429,0.681" style="--cx:51.3%;--cy:53.2%;--cs:1.350" aria-labelledby="t-76">
+        <figure class="stop__scene">
+          <img class="stop__hall" src="assets/stage/gen-gla-hall-76.jpg" data-plate="assets/v6/plate-76.jpg" data-car="assets/v6/car-76.webp" alt="1974 De Tomaso Pantera, Boss 429 on a low platform in a hall" width="2528" height="1696" loading="lazy" decoding="async">
+          <figcaption class="stop__cap">Staged · setting generated<br>Car photographed at Patton Motors</figcaption>
+        </figure>
+        <div class="plate">
+          <div class="plate__head">
+            <span class="plate__no" aria-hidden="true">12</span>
+            <p class="plate__lot">Lot 12 <span>of 12</span></p>
+          </div>
+          <h3 class="plate__title" id="t-76"><a href="lot.html?id=76">No Reserve: <span class="nw">9,000-Mile</span> 1974 De Tomaso Pantera, Boss 429</a></h3>
+          <p class="plate__chassis">Chassis THPNNE07004</p>
+          
+          <dl class="plate__bid">
+            <div class="plate__amount"><dt>Current bid <span>· sample</span></dt><dd>$248,000</dd></div>
+            <div class="plate__time"><dt>Time left</dt><dd data-ends="76" data-mode="long">1d 12h 00m 00s</dd></div>
+          </dl>
+          <p class="plate__meta"><span class="res res--no">No reserve</span><span>21 bids</span><span>198 watching</span></p>
+          <div class="plate__act">
+            <a class="btn btn--ink" href="lot.html?id=76">View lot<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
+            <button class="btn btn--ghost watch" type="button" aria-pressed="false" data-watch="76" aria-label="Watch lot 12"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.6l2.5 5.4 5.9.6-4.4 4 1.3 5.8L12 16.5l-5.3 2.9 1.3-5.8-4.4-4 5.9-.6z"/></svg><span>Watch</span></button>
+          </div>
+          <p class="plate__staged" aria-hidden="true">Staged · setting generated. Car photographed at Patton Motors.</p>
+        </div>
+      </article>
+      </div>
+
+      <nav class="rail" id="rail" aria-label="Lots in the hall">
+        <p class="rail__pos" aria-live="polite"><span>Lot</span> <b id="rail-n">01</b> <span>of 12</span></p>
+        <ol class="rail__ticks"><li><a class="rail__tick" href="#lot-01" data-go="0" aria-label="Lot 01, 1972 Lamborghini Miura P400 SV">01</a></li><li><a class="rail__tick" href="#lot-02" data-go="1" aria-label="Lot 02, 2025 Alfa Romeo 33 Stradale">02</a></li><li><a class="rail__tick" href="#lot-03" data-go="2" aria-label="Lot 03, 2024 Aston Martin Valour">03</a></li><li><a class="rail__tick" href="#lot-04" data-go="3" aria-label="Lot 04, 1967 Alfa Romeo 33 Stradale">04</a></li><li><a class="rail__tick" href="#lot-05" data-go="4" aria-label="Lot 05, 1965 Shelby Cobra 427 S/C">05</a></li><li><a class="rail__tick" href="#lot-06" data-go="5" aria-label="Lot 06, 2009 Mercedes-Benz SLR McLaren Roadster 722 S">06</a></li><li><a class="rail__tick" href="#lot-07" data-go="6" aria-label="Lot 07, 1955 Mercedes-Benz 300 SL by Kindig Design">07</a></li><li><a class="rail__tick" href="#lot-08" data-go="7" aria-label="Lot 08, 2022 Ferrari SF90 Spider">08</a></li><li><a class="rail__tick" href="#lot-09" data-go="8" aria-label="Lot 09, 2006 Ford GT">09</a></li><li><a class="rail__tick" href="#lot-10" data-go="9" aria-label="Lot 10, 1955 Mercedes-Benz 300 SLR #658 by Scuderia Bucci">10</a></li><li><a class="rail__tick" href="#lot-11" data-go="10" aria-label="Lot 11, 1956 Ferrari 612 TR by S-Klub Tempista">11</a></li><li><a class="rail__tick" href="#lot-12" data-go="11" aria-label="Lot 12, 1974 De Tomaso Pantera, Boss 429">12</a></li></ol>
+        <div class="rail__step">
+          <button class="rail__btn" type="button" data-step="-1" aria-label="Previous lot"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+          <button class="rail__btn" type="button" data-step="1" aria-label="Next lot"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+          <a class="rail__out" href="#browse">Leave the hall</a>
+        </div>
+      </nav>
+    </div>
+  </section>
+
+  <!-- 2 — ALL LOTS: the fast way through -->
+  <section class="browse" id="browse" aria-labelledby="browse-title">
+    <div class="wrap">
+      <div class="browse__head">
+        <h2 class="browse__title" id="browse-title"><span class="browse__n" id="live-n">12</span> auctions live</h2>
+        <p class="browse__sub">Every lot in the hall, in one list. Bids, clocks and counts are sample data.</p>
+      </div>
+
+      <form class="tools" id="tools" role="search" aria-label="Find a lot">
+        <fieldset class="seg">
+          <legend class="sr">Sort and show</legend>
+          <label><input type="radio" name="sort" value="ending" checked><span>Ending soonest</span></label>
+          <label><input type="radio" name="sort" value="new"><span>Newly listed</span></label>
+          <label><input type="radio" name="sort" value="noreserve"><span>No reserve</span></label>
+        </fieldset>
+        <div class="tools__field">
+          <label for="make">Make</label>
+          <select id="make" name="make"><option value="">All makes</option><option value="Alfa Romeo">Alfa Romeo</option><option value="Aston Martin">Aston Martin</option><option value="De Tomaso">De Tomaso</option><option value="Ferrari">Ferrari</option><option value="Ford">Ford</option><option value="Lamborghini">Lamborghini</option><option value="Mercedes-Benz">Mercedes-Benz</option><option value="Shelby">Shelby</option></select>
+        </div>
+        <div class="tools__field tools__q">
+          <label for="q">Search</label>
+          <input id="q" name="q" type="search" placeholder="Make, model, chassis or VIN" autocomplete="off">
+        </div>
+      </form>
+      <p class="browse__count" id="count" role="status">Showing all 12 lots, ending soonest first</p>
+
+      <ol class="rows" id="rows">
+        <li class="row" data-id="73" data-make="Lamborghini" data-reserve="met" data-ends-in="225429" data-q="1972 lamborghini miura p400 sv chassis 5066">
+          <img class="row__car" src="assets/v6/thumb-73.webp" alt="" width="560" height="280" loading="lazy" decoding="async">
+          <div class="row__id">
+            <p class="row__lot">Lot 01</p>
+            <h3 class="row__title"><a href="lot.html?id=73">1972 Lamborghini Miura P400 SV</a></h3>
+            <p class="row__chassis">Chassis 5066</p>
+          </div>
+          <dl class="row__data">
+            <div><dt>Bid <span>· sample</span></dt><dd class="row__bid">$1,850,000</dd></div>
+            <div class="row__time"><dt>Time left</dt><dd data-ends="73" data-mode="short">2d 14h</dd></div>
+            <div><dt>Bids</dt><dd>31</dd></div>
+          </dl>
+          <p class="row__res res res--met">Reserve met</p>
+          <button class="row__watch watch" type="button" aria-pressed="false" data-watch="73" aria-label="Watch lot 01"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.6l2.5 5.4 5.9.6-4.4 4 1.3 5.8L12 16.5l-5.3 2.9 1.3-5.8-4.4-4 5.9-.6z"/></svg></button>
+        </li>
+        <li class="row" data-id="82" data-make="Alfa Romeo" data-reserve="yes" data-ends-in="412300" data-q="2025 alfa romeo 33 stradale chassis 1">
+          <img class="row__car" src="assets/v6/thumb-82.webp" alt="" width="560" height="280" loading="lazy" decoding="async">
+          <div class="row__id">
+            <p class="row__lot">Lot 02</p>
+            <h3 class="row__title"><a href="lot.html?id=82">2025 Alfa Romeo 33 Stradale</a></h3>
+            <p class="row__chassis">Chassis 1</p>
+          </div>
+          <dl class="row__data">
+            <div><dt>Bid <span>· sample</span></dt><dd class="row__bid">$2,400,000</dd></div>
+            <div class="row__time"><dt>Time left</dt><dd data-ends="82" data-mode="short">4d 18h</dd></div>
+            <div><dt>Bids</dt><dd>22</dd></div>
+          </dl>
+          <p class="row__res res res--yes">Reserve not yet met</p>
+          <button class="row__watch watch" type="button" aria-pressed="false" data-watch="82" aria-label="Watch lot 02"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.6l2.5 5.4 5.9.6-4.4 4 1.3 5.8L12 16.5l-5.3 2.9 1.3-5.8-4.4-4 5.9-.6z"/></svg></button>
+        </li>
+        <li class="row" data-id="79" data-make="Aston Martin" data-reserve="met" data-ends-in="301900" data-q="225-mile 2024 aston martin valour vin scfsbgkv0rgz10077">
+          <img class="row__car" src="assets/v6/thumb-79.webp" alt="" width="560" height="280" loading="lazy" decoding="async">
+          <div class="row__id">
+            <p class="row__lot">Lot 03</p>
+            <h3 class="row__title"><a href="lot.html?id=79"><span class="nw">225-Mile</span> 2024 Aston Martin Valour</a></h3>
+            <p class="row__chassis">VIN SCFSBGKV0RGZ10077</p>
+          </div>
+          <dl class="row__data">
+            <div><dt>Bid <span>· sample</span></dt><dd class="row__bid">$1,320,000</dd></div>
+            <div class="row__time"><dt>Time left</dt><dd data-ends="79" data-mode="short">3d 11h</dd></div>
+            <div><dt>Bids</dt><dd>18</dd></div>
+          </dl>
+          <p class="row__res res res--met">Reserve met</p>
+          <button class="row__watch watch" type="button" aria-pressed="false" data-watch="79" aria-label="Watch lot 03"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.6l2.5 5.4 5.9.6-4.4 4 1.3 5.8L12 16.5l-5.3 2.9 1.3-5.8-4.4-4 5.9-.6z"/></svg></button>
+        </li>
+        <li class="row" data-id="8" data-make="Alfa Romeo" data-reserve="yes" data-ends-in="518400" data-q="25-mile 1967 alfa romeo 33 stradale chassis mp05">
+          <img class="row__car" src="assets/v6/thumb-8.webp" alt="" width="560" height="280" loading="lazy" decoding="async">
+          <div class="row__id">
+            <p class="row__lot">Lot 04</p>
+            <h3 class="row__title"><a href="lot.html?id=8"><span class="nw">25-Mile</span> 1967 Alfa Romeo 33 Stradale</a></h3>
+            <p class="row__chassis">Chassis MP05</p>
+          </div>
+          <dl class="row__data">
+            <div><dt>Bid <span>· sample</span></dt><dd class="row__bid">$2,750,000</dd></div>
+            <div class="row__time"><dt>Time left</dt><dd data-ends="8" data-mode="short">6d 0h</dd></div>
+            <div><dt>Bids</dt><dd>27</dd></div>
+          </dl>
+          <p class="row__res res res--yes">Reserve not yet met</p>
+          <button class="row__watch watch" type="button" aria-pressed="false" data-watch="8" aria-label="Watch lot 04"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.6l2.5 5.4 5.9.6-4.4 4 1.3 5.8L12 16.5l-5.3 2.9 1.3-5.8-4.4-4 5.9-.6z"/></svg></button>
+        </li>
+        <li class="row" data-id="68" data-make="Shelby" data-reserve="met" data-ends-in="162000" data-q="1965 shelby cobra 427 s/c chassis csx 4532">
+          <img class="row__car" src="assets/v6/thumb-68.webp" alt="" width="560" height="280" loading="lazy" decoding="async">
+          <div class="row__id">
+            <p class="row__lot">Lot 05</p>
+            <h3 class="row__title"><a href="lot.html?id=68">1965 Shelby Cobra 427 S/C</a></h3>
+            <p class="row__chassis">Chassis CSX 4532<span class="row__note">Lot car: centre</span></p>
+          </div>
+          <dl class="row__data">
+            <div><dt>Bid <span>· sample</span></dt><dd class="row__bid">$1,650,000</dd></div>
+            <div class="row__time"><dt>Time left</dt><dd data-ends="68" data-mode="short">1d 21h</dd></div>
+            <div><dt>Bids</dt><dd>24</dd></div>
+          </dl>
+          <p class="row__res res res--met">Reserve met</p>
+          <button class="row__watch watch" type="button" aria-pressed="false" data-watch="68" aria-label="Watch lot 05"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.6l2.5 5.4 5.9.6-4.4 4 1.3 5.8L12 16.5l-5.3 2.9 1.3-5.8-4.4-4 5.9-.6z"/></svg></button>
+        </li>
+        <li class="row" data-id="49" data-make="Mercedes-Benz" data-reserve="met" data-ends-in="18240" data-q="5,295-mile 2009 mercedes-benz slr mclaren roadster 722 s vin wddak76f59mxxxxxx">
+          <img class="row__car" src="assets/v6/thumb-49.webp" alt="" width="560" height="280" loading="lazy" decoding="async">
+          <div class="row__id">
+            <p class="row__lot">Lot 06</p>
+            <h3 class="row__title"><a href="lot.html?id=49"><span class="nw">5,295-Mile</span> 2009 <span class="nw">Mercedes-Benz</span> SLR McLaren Roadster 722 S</a></h3>
+            <p class="row__chassis">VIN WDDAK76F59MXXXXXX</p>
+          </div>
+          <dl class="row__data">
+            <div><dt>Bid <span>· sample</span></dt><dd class="row__bid">$780,000</dd></div>
+            <div class="row__time"><dt>Time left</dt><dd data-ends="49" data-mode="short">5h 04m</dd></div>
+            <div><dt>Bids</dt><dd>15</dd></div>
+          </dl>
+          <p class="row__res res res--met">Reserve met</p>
+          <button class="row__watch watch" type="button" aria-pressed="false" data-watch="49" aria-label="Watch lot 06"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.6l2.5 5.4 5.9.6-4.4 4 1.3 5.8L12 16.5l-5.3 2.9 1.3-5.8-4.4-4 5.9-.6z"/></svg></button>
+        </li>
+        <li class="row" data-id="35" data-make="Mercedes-Benz" data-reserve="yes" data-ends-in="39600" data-q="4,317-mile 1955 mercedes-benz 300 sl by kindig design vin 1d9gr11t07887xxxx">
+          <img class="row__car" src="assets/v6/thumb-35.webp" alt="" width="560" height="280" loading="lazy" decoding="async">
+          <div class="row__id">
+            <p class="row__lot">Lot 07</p>
+            <h3 class="row__title"><a href="lot.html?id=35"><span class="nw">4,317-Mile</span> 1955 <span class="nw">Mercedes-Benz</span> 300 SL by Kindig Design</a></h3>
+            <p class="row__chassis">VIN 1D9GR11T07887XXXX</p>
+          </div>
+          <dl class="row__data">
+            <div><dt>Bid <span>· sample</span></dt><dd class="row__bid">$1,150,000</dd></div>
+            <div class="row__time"><dt>Time left</dt><dd data-ends="35" data-mode="short">11h 00m</dd></div>
+            <div><dt>Bids</dt><dd>19</dd></div>
+          </dl>
+          <p class="row__res res res--yes">Reserve not yet met</p>
+          <button class="row__watch watch" type="button" aria-pressed="false" data-watch="35" aria-label="Watch lot 07"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.6l2.5 5.4 5.9.6-4.4 4 1.3 5.8L12 16.5l-5.3 2.9 1.3-5.8-4.4-4 5.9-.6z"/></svg></button>
+        </li>
+        <li class="row" data-id="19" data-make="Ferrari" data-reserve="no" data-ends-in="2820" data-q="no reserve: 494-mile 2022 ferrari sf90 spider vin zff96nmaxn0xxxxxx">
+          <img class="row__car" src="assets/v6/thumb-19.webp" alt="" width="560" height="280" loading="lazy" decoding="async">
+          <div class="row__id">
+            <p class="row__lot">Lot 08</p>
+            <h3 class="row__title"><a href="lot.html?id=19">No Reserve: <span class="nw">494-Mile</span> 2022 Ferrari SF90 Spider</a></h3>
+            <p class="row__chassis">VIN ZFF96NMAXN0XXXXXX</p>
+          </div>
+          <dl class="row__data">
+            <div><dt>Bid <span>· sample</span></dt><dd class="row__bid">$455,000</dd></div>
+            <div class="row__time is-urgent"><dt>Time left</dt><dd data-ends="19" data-mode="short">47:00</dd></div>
+            <div><dt>Bids</dt><dd>36</dd></div>
+          </dl>
+          <p class="row__res res res--no">No reserve</p>
+          <button class="row__watch watch" type="button" aria-pressed="false" data-watch="19" aria-label="Watch lot 08"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.6l2.5 5.4 5.9.6-4.4 4 1.3 5.8L12 16.5l-5.3 2.9 1.3-5.8-4.4-4 5.9-.6z"/></svg></button>
+        </li>
+        <li class="row" data-id="70" data-make="Ford" data-reserve="met" data-ends-in="1080" data-q="15,750-mile 2006 ford gt vin 1fafp90s36yxxxxxx">
+          <img class="row__car" src="assets/v6/thumb-70.webp" alt="" width="560" height="280" loading="lazy" decoding="async">
+          <div class="row__id">
+            <p class="row__lot">Lot 09</p>
+            <h3 class="row__title"><a href="lot.html?id=70"><span class="nw">15,750-Mile</span> 2006 Ford GT</a></h3>
+            <p class="row__chassis">VIN 1FAFP90S36YXXXXXX</p>
+          </div>
+          <dl class="row__data">
+            <div><dt>Bid <span>· sample</span></dt><dd class="row__bid">$410,000</dd></div>
+            <div class="row__time is-urgent"><dt>Time left</dt><dd data-ends="70" data-mode="short">18:00</dd></div>
+            <div><dt>Bids</dt><dd>48</dd></div>
+          </dl>
+          <p class="row__res res res--met">Reserve met</p>
+          <button class="row__watch watch" type="button" aria-pressed="false" data-watch="70" aria-label="Watch lot 09"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.6l2.5 5.4 5.9.6-4.4 4 1.3 5.8L12 16.5l-5.3 2.9 1.3-5.8-4.4-4 5.9-.6z"/></svg></button>
+        </li>
+        <li class="row" data-id="41" data-make="Mercedes-Benz" data-reserve="yes" data-ends-in="345600" data-q="51-mile 1955 mercedes-benz 300 slr #658 by scuderia bucci chassis mb6588">
+          <img class="row__car" src="assets/v6/thumb-41.webp" alt="" width="560" height="280" loading="lazy" decoding="async">
+          <div class="row__id">
+            <p class="row__lot">Lot 10</p>
+            <h3 class="row__title"><a href="lot.html?id=41"><span class="nw">51-Mile</span> 1955 <span class="nw">Mercedes-Benz</span> 300 SLR #658 by Scuderia Bucci</a></h3>
+            <p class="row__chassis">Chassis MB6588<span class="row__note">Lot car: left, #658</span></p>
+          </div>
+          <dl class="row__data">
+            <div><dt>Bid <span>· sample</span></dt><dd class="row__bid">$392,000</dd></div>
+            <div class="row__time"><dt>Time left</dt><dd data-ends="41" data-mode="short">4d 0h</dd></div>
+            <div><dt>Bids</dt><dd>12</dd></div>
+          </dl>
+          <p class="row__res res res--yes">Reserve not yet met</p>
+          <button class="row__watch watch" type="button" aria-pressed="false" data-watch="41" aria-label="Watch lot 10"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.6l2.5 5.4 5.9.6-4.4 4 1.3 5.8L12 16.5l-5.3 2.9 1.3-5.8-4.4-4 5.9-.6z"/></svg></button>
+        </li>
+        <li class="row" data-id="36" data-make="Ferrari" data-reserve="no" data-ends-in="259200" data-q="no reserve: 15,849-mile 1956 ferrari 612 tr by s-klub tempista vin zffjb54a48015xxxx">
+          <img class="row__car" src="assets/v6/thumb-36.webp" alt="" width="560" height="280" loading="lazy" decoding="async">
+          <div class="row__id">
+            <p class="row__lot">Lot 11</p>
+            <h3 class="row__title"><a href="lot.html?id=36">No Reserve: <span class="nw">15,849-Mile</span> 1956 Ferrari 612 TR by <span class="nw">S-Klub</span> Tempista</a></h3>
+            <p class="row__chassis">VIN ZFFJB54A48015XXXX</p>
+          </div>
+          <dl class="row__data">
+            <div><dt>Bid <span>· sample</span></dt><dd class="row__bid">$520,000</dd></div>
+            <div class="row__time"><dt>Time left</dt><dd data-ends="36" data-mode="short">3d 0h</dd></div>
+            <div><dt>Bids</dt><dd>14</dd></div>
+          </dl>
+          <p class="row__res res res--no">No reserve</p>
+          <button class="row__watch watch" type="button" aria-pressed="false" data-watch="36" aria-label="Watch lot 11"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.6l2.5 5.4 5.9.6-4.4 4 1.3 5.8L12 16.5l-5.3 2.9 1.3-5.8-4.4-4 5.9-.6z"/></svg></button>
+        </li>
+        <li class="row" data-id="76" data-make="De Tomaso" data-reserve="no" data-ends-in="129600" data-q="no reserve: 9,000-mile 1974 de tomaso pantera, boss 429 chassis thpnne07004">
+          <img class="row__car" src="assets/v6/thumb-76.webp" alt="" width="560" height="280" loading="lazy" decoding="async">
+          <div class="row__id">
+            <p class="row__lot">Lot 12</p>
+            <h3 class="row__title"><a href="lot.html?id=76">No Reserve: <span class="nw">9,000-Mile</span> 1974 De Tomaso Pantera, Boss 429</a></h3>
+            <p class="row__chassis">Chassis THPNNE07004</p>
+          </div>
+          <dl class="row__data">
+            <div><dt>Bid <span>· sample</span></dt><dd class="row__bid">$248,000</dd></div>
+            <div class="row__time"><dt>Time left</dt><dd data-ends="76" data-mode="short">1d 12h</dd></div>
+            <div><dt>Bids</dt><dd>21</dd></div>
+          </dl>
+          <p class="row__res res res--no">No reserve</p>
+          <button class="row__watch watch" type="button" aria-pressed="false" data-watch="76" aria-label="Watch lot 12"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.6l2.5 5.4 5.9.6-4.4 4 1.3 5.8L12 16.5l-5.3 2.9 1.3-5.8-4.4-4 5.9-.6z"/></svg></button>
+        </li>
+      </ol>
+      <div class="empty" id="empty" hidden>
+        <p>No live lot matches that. The hall changes every week.</p>
+        <button class="btn btn--ghost" type="button" id="clear">Clear search and filters</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 — GOLDEN LION VERIFIED: the record of Lot 03 -->
+  <section class="verified" id="verified" aria-labelledby="verified-title">
+    <div class="wrap verified__in" id="verified-in">
+      <div class="verified__top">
+        <div class="verified__copy">
+          <p class="verified__k"><span class="mark mark--sm" aria-hidden="true"></span>Golden Lion Verified</p>
+          <h2 class="verified__title" id="verified-title">Read the car before you bid on&nbsp;it.</h2>
+          <p class="verified__lede">The seller never writes the listing. Golden Lion builds the record, one standard for every lot, and a specialist puts a name to it. This is the record of Lot&nbsp;03.</p>
+        </div>
+        <figure class="verified__car">
+          <img src="assets/v6/valour.webp" alt="2024 Aston Martin Valour in black with gold trim, Lot 03" width="1182" height="496" loading="lazy" decoding="async">
+          <figcaption>Lot 03 · 2024 Aston Martin Valour · 225&nbsp;mi<br><span>Car photographed at Patton Motors</span></figcaption>
+        </figure>
+      </div>
+
+      <div class="vin" aria-labelledby="vin-k">
+        <p class="vin__k" id="vin-k">VIN, decoded</p>
+        <p class="vin__code" aria-label="S C F S B G K V 0 R G Z 1 0 0 7 7"><b>S</b><b>C</b><b>F</b><i>S</i><i>B</i><i>G</i><i>K</i><i>V</i><b>0</b><b>R</b><i>G</i><i>Z</i><i>1</i><i>0</i><i>0</i><i>7</i><i>7</i></p>
+        <ul class="vin__notes">
+          <li class="vin__note vin__note--wmi"><b>SCF</b><span>Maker: Aston Martin</span></li>
+          <li class="vin__note vin__note--chk"><b>0</b><span>Check digit: valid</span></li>
+          <li class="vin__note vin__note--yr"><b>R</b><span>Model year: 2024</span></li>
+        </ul>
+      </div>
+
+      <ol class="steps">
+        <li class="step"><span class="step__n" aria-hidden="true">1</span><h3>The VIN is read by AI</h3><p>Maker, model year and check digit are decoded before a word is written.</p></li>
+        <li class="step"><span class="step__n" aria-hidden="true">2</span><h3>An independent specialist photographs it</h3><p>The full set, inside and out, by someone who is not the seller.</p></li>
+        <li class="step"><span class="step__n" aria-hidden="true">3</span><h3>The cold start is filmed</h3><p>The engine is started from cold, on camera.</p></li>
+        <li class="step"><span class="step__n" aria-hidden="true">4</span><h3>AI drafts the listing and flags the gaps</h3><p>Missing photographs and open questions go back to the specialist.</p></li>
+        <li class="step step--sign"><span class="step__n" aria-hidden="true">5</span><h3>A named specialist signs</h3><p>A Golden Lion specialist checks the record and puts a name to it.</p><p class="step__sig"><span>Signed</span> <em>specialist name, on the live record</em></p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 4 — HOW THE HAMMER FALLS -->
+  <section class="hammer" id="hammer" aria-labelledby="hammer-title">
+    <div class="wrap hammer__in">
+      <div class="hammer__clock">
+        <p class="hammer__face" id="demo-clock" aria-live="off">2:00</p>
+        <p class="hammer__state" id="demo-state" role="status">A bid lands in the final two minutes. The clock goes back to 2:00.</p>
+        <div class="hammer__act">
+          <button class="btn btn--ink" type="button" id="demo-bid">Place a late bid</button>
+          <button class="btn btn--ghost" type="button" id="demo-run">Run the last minute</button>
+        </div>
+        <p class="hammer__sim">Simulation. No bid is placed.</p>
+      </div>
+      <div class="hammer__copy">
+        <p class="proposed"><span>Proposed rule</span> — to be confirmed</p>
+        <h2 class="hammer__title" id="hammer-title">How the hammer falls</h2>
+        <p>Any bid placed in the final two minutes resets the clock to two minutes. The lot closes only when two full minutes pass without a new bid.</p>
+        <p>Nobody wins by waiting for the last second. The car goes to whoever is still bidding when the room goes quiet.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 — RECENTLY SOLD -->
+  <section class="sold" id="results" aria-labelledby="sold-title">
+    <div class="wrap sold__in">
+      <div class="sold__head">
+        <h2 class="sold__title" id="sold-title">Recently sold</h2>
+        <p>What cars of this class have brought. The figures are sample data for this prototype.</p>
+      </div>
+      <ol class="results">
+          <li class="result">
+            <p class="result__label">Sold for <span>· sample</span></p>
+            <p class="result__amount">$2,950,000</p>
+            <p class="result__name">2022 Bugatti Chiron</p>
+            <p class="result__chassis">VIN VF9SW3V34NMXXXXXX</p>
+          </li>
+          <li class="result">
+            <p class="result__label">Sold for <span>· sample</span></p>
+            <p class="result__amount">$1,480,000</p>
+            <p class="result__name">1956 Mercedes-Benz 300 SL Gullwing</p>
+            <p class="result__chassis">Chassis 198.040.6500214</p>
+          </li>
+          <li class="result">
+            <p class="result__label">Sold for <span>· sample</span></p>
+            <p class="result__amount">$1,390,000</p>
+            <p class="result__name">1958 Mercedes-Benz 300 SL Roadster</p>
+            <p class="result__chassis">Chassis 1980427500154</p>
+          </li>
+          <li class="result">
+            <p class="result__label">Sold for <span>· sample</span></p>
+            <p class="result__amount">$1,210,000</p>
+            <p class="result__name">2022 Ford GT Alan Mann Heritage Edition</p>
+            <p class="result__chassis">VIN 2FAGP9EW0NHXXXXXX</p>
+          </li>
+          <li class="result">
+            <p class="result__label">Sold for <span>· sample</span></p>
+            <p class="result__amount">$415,000</p>
+            <p class="result__name">2006 Ferrari 575 Superamerica</p>
+            <p class="result__chassis">Chassis MP06</p>
+          </li>
+          <li class="result">
+            <p class="result__label">Sold for <span>· sample</span></p>
+            <p class="result__amount">$385,000</p>
+            <p class="result__name">2008 Alfa Romeo 8C Competizione</p>
+            <p class="result__chassis">VIN ZARJA281390050368</p>
+          </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 6 — CONSIGN -->
+  <section class="consign" id="consign" aria-labelledby="consign-title">
+    <div class="consign__sky" aria-hidden="true"><img src="assets/stage/gen-gla-hall-41.jpg" alt="" width="2528" height="1696" loading="lazy" decoding="async"></div>
+    <div class="wrap consign__in">
+      <h2 class="consign__title" id="consign-title">The next platform is&nbsp;yours.</h2>
+      <div class="consign__act">
+      <p class="consign__lede">Sell through Golden Lion and your car is documented to the same standard as every lot in the hall. Start with the VIN. Golden Lion arranges the specialist, the photographs and the record.</p>
+      <form class="vinform" id="vinform" novalidate>
+        <label for="vin">Vehicle identification number</label>
+        <div class="vinform__row">
+          <input id="vin" name="vin" maxlength="17" autocomplete="off" spellcheck="false" autocapitalize="characters" placeholder="17 characters" aria-describedby="vin-help vin-msg">
+          <button class="btn btn--ink" type="submit">Begin</button>
+        </div>
+        <p class="vinform__help" id="vin-help"><span id="vin-len">0</span> of 17 · letters and numbers, no I, O or Q. Cars built before 1981 carry older chassis numbers, which this form does not take.</p>
+        <p class="vinform__msg" id="vin-msg" role="status"></p>
+      </form>
+      <p class="consign__by">Backed by <b>Patton Motors</b>, Pompano Beach, Florida</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__top">
+      <form class="dispatch" id="dispatch" novalidate>
+        <h2 class="dispatch__t">The Dispatch</h2>
+        <p class="dispatch__d">New lots as they reach the hall, and the results when the hammer falls.</p>
+        <label class="sr" for="email">Email address</label>
+        <div class="dispatch__row">
+          <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" aria-describedby="email-msg">
+          <button class="btn btn--ghost" type="submit">Subscribe</button>
+        </div>
+        <p class="dispatch__msg" id="email-msg" role="status">Prototype: nothing is sent.</p>
+      </form>
+      <div class="foot__cols">
+        <div><h3>Buy</h3><ul><li><a href="#browse">Live auctions</a></li><li><a href="#results">Results</a></li><li><a href="#hammer">How the hammer falls</a></li></ul></div>
+        <div><h3>Sell</h3><ul><li><a href="#consign">Start with a VIN</a></li><li><a href="#verified">Golden Lion Verified</a></li></ul></div>
+        <div><h3>House</h3><ul><li><a href="#consign">Patton Motors</a></li><li><a href="#top">Back to the door</a></li></ul></div>
+      </div>
+    </div>
+    <div class="foot__base">
+      <a class="lockup lockup--foot" href="#top" aria-label="Golden Lion Auctions, home"><span class="mark" aria-hidden="true"></span><span class="lockup__word">Golden Lion</span><span class="lockup__sub">Auctions</span></a>
+      <p>© 2026 Golden Lion Auctions. Prototype: every bid, clock, count, reserve state and result is sample data. Hall images are staged: settings generated, cars photographed at Patton Motors.</p>
+    </div>
+  </div>
+</footer>
+
+<p class="toast" id="toast" role="status" hidden></p>
+
+<script src="data/lots.js?v=12"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script src="https://unpkg.com/lenis@1.3.26/dist/lenis.min.js" defer></script>
+<script src="js/v6.js?v=1" defer></script>
+</body>
+</html>

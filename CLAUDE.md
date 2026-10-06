@@ -86,3 +86,71 @@ The media doesn't perform: a still photo or an ambient loop, with no reveal on t
 Pinned length is ≈0.9 of a viewport (≈90vh) on desktop. No pin on phones or under `prefers-reduced-motion`.
 Animate the block's own `opacity`/`y`. A block centred with `translate(-50%)` gets
 `yPercent: -50` handed to GSAP first. Avoid long empty black gaps between sections.
+
+## Feedback log
+
+- **No decorative rules beside labels** (Alex, 6 Oct 2026: "полосочки не надо"). A section
+  label is plain tracked text; if a line is wanted at all, it is short and sits *under* the
+  text. The same goes for hairline frames around ledger cells and stage lines on panels:
+  separate by space, not by stripes.
+- **The old brass `#BFA26A` reads as "Claude brown"** (Alex, 6 Oct 2026). Gold is now
+  champagne gilt `#D9C48A`, sampled from the Valour's gold trim, used on the dark ground only
+  as a dot, a short line, the hallmark or an active state. Never a button fill or a chip block.
+  The primary button is solid ivory ink.
+- **Nothing covers the car** (Alex, 6 Oct 2026, on v1's inspection-record card over the
+  Valour). Panels and records sit beside or below a car photo, never over it.
+- **HOME v1 rated 5/10; v2 rejected as "Claude slop"** (6 Oct 2026). The tells Alex reads as
+  slop: one head formula repeated in every section (tracked micro-label + short rule + serif
+  heading + grey lede), mono data type, flat card-less ground, everything "tastefully" quiet.
+- **Current direction: `index-v3.html`** (6 Oct 2026). On Alex's instruction, cards, shadows
+  and background gradients are allowed here, against the house dialect. Each section takes a
+  different layout from the concept boards: hero scene + floating glass bid console (2/74),
+  cards + "Closing next" rail (2/79, 2/81), atmospheric banner + paper dossier (2/79, 2/76),
+  dark results card on a cream band (2/77), CONSIGN as a wide poster word (2/80), finale scene.
+  Type: Archivo Expanded for display caps, Libre Caslon only for car names, no mono.
+  Gold is a metallic champagne gradient on buttons and chips; never the old brown.
+- **v3 still "slop, not creative" → three directions built for Alex to choose** (6 Oct 2026):
+  `index-v4.html` Evening Sale (model name huge behind the car cut-out, lots called 01→12,
+  split-flap "Next to close" board), `index-v5.html` Dossier (paper catalogue on a dark desk,
+  file-divider tabs, VIN anatomy), `index-v6.html` The Hall (pinned scroll walk past all 12
+  platforms, 2.5D car/hall layers). BaT mechanics they share are in `BAT-NOTES.md`; the
+  two-minute rule is shown as *proposed*. Car layers: `assets/stage/car-cut-<id>.webp` (now the
+  complete v6 cut-outs); v6's `assets/v6/plate-<id>.jpg` are halls with the car removed by
+  OpenCV fill (setting only, car pixels untouched).
+- **v4–v6 approved as a base, not as finished** (Alex, 6 Oct 2026: "как база очень солидно",
+  but "доработка и докрутка по images/photos требуется мощная"). The layouts and ideas are the
+  foundation; the imagery is the open job and it is Alex's (BRIEF decision 8). Known image
+  weak points: one generated hall repeated across all 12 lots; car pixels come from 1920px
+  feed photos, soft at full width on retina; v6 car-removed plates are OpenCV fill and seam in
+  motion. Don't fall back to v2/v3 grammar.
+- **v7 = v6 revised on Alex's notes** (6 Oct 2026): the champagne/khaki gold reads brown —
+  gold is now a true light gold (`#FFF0C2` / `#F2CF6B` / `#EBC665`, `#D9A93A` for lines only;
+  large numerals use the paler `--gilt-type` gradient, the full metal reads olive on big type).
+  The hall never takes vertical scroll: it is its own horizontal stage (arrows, ticks, drag,
+  sideways wheel); nav is always visible; sections get real air (`--sec` 96–176px); Recently
+  sold is a photo gallery. "How the hammer falls" is scroll-driven by Alex's call: the clock
+  stays pinned, the right column steps 01→04 and the time follows the scroll, ending on SOLD.
+- **v7 accent moved from gold toward orange** (Alex, 6 Oct 2026: "золотой больше двинем в
+  orange"): `--gilt #F0A04E`, `--gilt-hi #FFE2BE`, `--gilt-mid #F6B261`, `--gilt-lo #D47F2A`
+  (lines only); big type uses `--gilt-type` #FFE2BE→#F0A04E. All ≥6.4:1 on the dark ground.
+  The token names stay `--gilt-*` so the change is one place.
+- **v8 = the synthesis (current base)** (6–7 Oct 2026), built from Alex's brief: v7 foundation +
+  v4 auction drama + v5 paper records (three objects only) + v2 ivory bands. Follow-ups that bind:
+  no glowing dots anywhere; no orange/brown tints on the dark ground (active plates, glows) —
+  neutral graphite/ivory instead; Recently sold is neutral grey, not warm paper; the paper clip
+  on the inspection record is gone ("cheap"); lot/price blocks sit high with air, never pinned to
+  the bottom edge; On the block = pinned horizontal track of lots 01–06 with See more ↓.
+- **HOW THE HAMMER FALLS** (v8): clock and right-column text tell one story (02:00 → late bid at
+  00:07 → back to 02:00 → quiet to 00:00 → SOLD); MM:SS, every second, closing-window gauge,
+  Going once / twice. A procedural dark-walnut 3D gavel (js/v8-gavel.js, Three.js lazy-loaded)
+  falls onto the clock at 00:00 (p ≈ .78), then ~20% pinned hold, then release. Never block wheel
+  input. Any 3D work loads the Design DNA skill `threejs-art-direction` (TA1–TA12).
+- **The house** carries imitation copy (specialists, hours, 555 phone) marked "Sample copy";
+  replace with Patton's real details before launch.
+- **Lot data = card** (approved): framed card, vertical dividers between cells, tags as pills sized to their text (never stretched), supporting text muted to `--ink-3`.
+- **Spacing and padding, always** (repeated): nothing touches. Pills, titles, cards and buttons each get their own air; check the gaps by measuring, not by eye.
+- **Gavel floats** (8 Oct 2026, Alex's three key frames; transitions are ours): F1 high by the clock, handle down-right · F2 closer/larger over the clock · F3 low by the steps, handle up-right · then a swing up over the clock and the strike on SOLD lands EXACTLY in F3 (his third frame = the last scene) and holds. Never invent a different end pose. F3 (Alex's frame): head upright, big (~half the section height), between the columns, top face seen from above; handle up-right toward the title. Sizes: F1 1.6, F2 2.0, F3 2.9 × base. Smooth lag behind the scroll, slow suspended drift when the scroll rests, no smoothing through the strike. May overlap type (allowed). ≥1200×640 only.
+- **Hero lot plate = On the block rostrum**: pill "Lot NN of 12", name + chassis on one line, price card, actions bottom-right. The big "01" numeral is gone. On the block starts at lot 02 (lot 01 is the hero).
+- **Prices realised**: paper card stays; only the header is ink. Don't restyle the whole sheet when asked for one element — change exactly what was named.
+- **Gavel is draggable** (8 Oct 2026): free rotation in every direction (angle + tilt) about its middle; a short throw, then it stays as turned — never springs back. Scroll choreography continues underneath the user's turn.
+- **Status colours on the lot plate** (8 Oct 2026): lot pill red `--lot-red #c4262e`, "Reserve met" green `--res-green #1e7a4c`, both white text; "Reserve not yet met" stays neutral. Same in hero and On the block.
