@@ -323,7 +323,7 @@ address { font-style: normal; }
 .row__result { font: 400 44px/1 var(--f-display); margin-bottom: var(--s3); }
 .row__name { font-size: 18px; line-height: 1.35; }
 .row__chassis { font-size: 14px; color: var(--pink-2); }
-.row__thumb { width: 96px; aspect-ratio: 3 / 2; overflow: hidden; background: #1B1E25; margin-bottom: var(--s3); }
+.row__thumb { width: 100%; aspect-ratio: 3 / 2; overflow: hidden; background: #1B1E25; margin: 0 0 var(--s4); }
 .row__thumb img { width: 100%; height: 100%; object-fit: cover; }
 
 @media (min-width: 1024px) {
@@ -333,14 +333,11 @@ address { font-style: normal; }
   .head--paper { display: block; margin: 0; padding-right: var(--s7); }
   .head--paper .head__r { display: block; margin-top: var(--s4); }
   .head--paper .lede { max-width: 32ch; }
-  .ledger { grid-template-columns: minmax(0, 1fr); gap: var(--s6) 0; }
-  /* thumb | figure | car: the photograph hangs from the plate's left edge, as tall as the row's text */
-  .row { grid-template-columns: 144px 288px minmax(0, 1fr); column-gap: var(--s6); row-gap: 0; }
-  .row__thumb { grid-column: 1; grid-row: 1 / 4; width: 144px; margin: 0; align-self: start; }
-  .row__key { grid-column: 2; grid-row: 1; }
-  .row__result { grid-column: 2; grid-row: 2; align-self: last baseline; margin-bottom: 0; }
-  .row__name { grid-column: 3; grid-row: 2; align-self: last baseline; }
-  .row__chassis { grid-column: 3; grid-row: 3; margin-top: var(--s1); }
+  /* three result cards in a row, hanging from the plate's left edge: photo, key, figure, car */
+  .ledger { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 var(--s6); }
+  .row { gap: 0; }
+  .row__result { margin: 0 0 var(--s3); }
+  .row__chassis { margin-top: var(--s1); }
 }
 
 /* paper sections meet on fractional pixels; a 1px overlap keeps the dark body from showing as a seam */
