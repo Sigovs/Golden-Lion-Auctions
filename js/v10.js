@@ -73,7 +73,11 @@
   sold.forEach(function (s) {
     var li = document.createElement('li');
     li.className = 'row';
-    li.innerHTML = '<p class="row__key">Sold · sample</p><p class="row__result"></p><p class="row__name"></p><p class="row__chassis data"></p>';
+    li.innerHTML = '<figure class="row__thumb"><img alt="" loading="lazy" width="1920" height="1280"></figure><p class="row__key">Sold · sample</p><p class="row__result"></p><p class="row__name"></p><p class="row__chassis data"></p>';
+    // a small photograph of the car as sold (Patton feed photo), framed on the car itself
+    var im = $('.row__thumb img', li), cb = s.car_box || [0, 0, 1, 1];
+    im.src = s.image; im.alt = s.year + ' ' + s.make + ' ' + s.model;
+    im.style.objectPosition = Math.round((cb[0] + cb[2]) * 50) + '% ' + Math.round((cb[1] + cb[3]) * 50) + '%';
     $('.row__result', li).textContent = money(s.result);
     $('.row__name', li).textContent = s.year + ' ' + s.make + ' ' + s.model;
     $('.row__chassis', li).textContent = s.chassis;
