@@ -1277,3 +1277,17 @@ html.intro .lotbar > * { opacity: 0; }
   .hammer__title { font-size: min(clamp(40px, 4.6vw, 76px), 8.4vh); }
 }
 @media (min-width: 900px) and (min-height: 640px) { .hammer { padding-block: clamp(20px, 3vh, 40px); } }
+
+/* v9 hero film: the video is the field; a scrim on the left and along the floor keeps the copy and the lot plate legible */
+.hero__scene { display: none; }
+.hero__video { display: block; width: 100%; aspect-ratio: 16 / 9; height: auto; object-fit: cover; background: var(--ground); order: 2; }
+@media (min-width: 1024px) {
+  .hero__video { position: absolute; inset: 0; z-index: 0; height: 100%; aspect-ratio: auto; object-position: 58% 50%; }
+  .hero::before {
+    content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background:
+      linear-gradient(90deg, rgba(10, 11, 12, .82) 0%, rgba(10, 11, 12, .55) 30%, rgba(10, 11, 12, 0) 58%),
+      linear-gradient(0deg, rgba(10, 11, 12, .92) 0%, rgba(10, 11, 12, .6) 30%, rgba(10, 11, 12, 0) 52%);
+  }
+  .hero__in { z-index: 2; }
+}
