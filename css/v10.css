@@ -57,6 +57,12 @@ address { font-style: normal; }
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .wrap { width: min(100% - 2 * var(--m), var(--max)); margin-inline: auto; }
 
+/* the client's crest (assets/logo) — the house mark in the lockup, on the record, at the finale */
+.crest { display: block; width: auto; object-fit: contain; flex: none; }
+.crest--hdr { height: 44px; }
+.crest--seal { height: 72px; }
+.crest--finale { height: 136px; }
+
 /* ---------- voices ---------- */
 .data { font-family: var(--f-data); font-weight: 400; letter-spacing: 0; }
 .key { font: 400 14px/1.4 var(--f-text); color: var(--ink-2); }
