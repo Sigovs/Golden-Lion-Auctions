@@ -48,10 +48,10 @@
   --sh-paper: 0 1px 1px rgba(0, 0, 0, .3), 0 10px 18px -8px rgba(0, 0, 0, .35), 0 40px 80px -30px rgba(0, 0, 0, .55);
   --sh-paper-dark: 0 1px 1px rgba(0, 0, 0, .5), 0 12px 22px -8px rgba(0, 0, 0, .6), 0 50px 100px -30px rgba(0, 0, 0, .9);
 
-  /* v9 (Alex, 8 Oct 2026): v4's type system. Display serif Instrument Serif (one weight, narrow, editorial); the big
+  /* v9 (Alex, 8 Oct 2026): Inter Tight is the face (display and text); the big
      called type and figures-as-graphics in Big Shoulders Display (the catalogue he likes); reading text and UI in
      Hanken Grotesk; data in Chivo Mono. */
-  --f-disp: 'Instrument Serif', 'Times New Roman', serif;
+  --f-disp: 'Inter Tight', 'Helvetica Neue', Arial, sans-serif;   /* Alex: Inter Tight is the face of v9 */
   --f-call: 'Big Shoulders Display', 'Arial Narrow', 'Roboto Condensed', sans-serif;
   --f-text: 'Inter Tight', 'Helvetica Neue', Arial, system-ui, sans-serif;   /* Alex: Inter Tight replaces Hanken */
   --f-mono: 'Chivo Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
@@ -1248,3 +1248,10 @@ html.intro .lotbar > * { opacity: 0; }
 .lockup__word { font: 600 20px/1 var(--f-text); letter-spacing: .14em; text-transform: uppercase; }
 .lockup__sub { font: 500 15px/1 var(--f-text); letter-spacing: .3em; text-transform: uppercase; padding-top: 1px; }
 @media (max-width: 639.98px) { .lockup__crest { height: 46px; } .lockup__word { font-size: 16px; } }
+
+/* v9 in Inter Tight (Alex, 8 Oct 2026): headlines tight and medium, italics kept as Inter Tight italic */
+:root { font-synthesis: none; }
+.hero__title, .block__title, .hammer__title, .verified__title, .consign__title, .sold__title, .house__title, .board__title, .dispatch__t { font-weight: 500; letter-spacing: -.035em; }
+.hero__title em, .block__title em, .hammer__title em, .consign__title em, .sold__title em, .house__title em { font-weight: 400; }
+.lotbar__title, .slide__name, .rows .row__title, .realised__name, .sold__name { font-weight: 500; letter-spacing: -.02em; }
+@media (min-width: 1024px) { .hero__title { font-size: clamp(52px, min(5.4vw, 7.6vh), 104px); line-height: .98; } }
