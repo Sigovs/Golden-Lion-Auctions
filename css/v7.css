@@ -835,3 +835,8 @@ html.walk:not(.walk-on) .plate { opacity: 0; visibility: hidden; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition-duration: 1ms !important; animation: none !important; scroll-behavior: auto !important; }
 }
+
+/* client slogan + CTA (BRIEF decision 9) */
+.slogan { font: 600 var(--t-15)/1.4 var(--f-text, system-ui); letter-spacing: .2em; text-transform: uppercase; color: var(--gilt-hi); }
+.door__slogan { margin-top: var(--s3); }
+.door__cta { margin-top: var(--s3); }
