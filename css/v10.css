@@ -156,26 +156,30 @@ address { font-style: normal; }
   transform-origin: 47% 55%;
 }
 .hero__cap { position: absolute; top: var(--s5); left: var(--s5); color: var(--ink); }
+/* Alex's frame: the scene darkens into the rostrum — plate tone, 267px, ending 117px above the plate's foot */
+.hero__plate::after { content: ''; position: absolute; left: 0; right: 0; bottom: 117px; height: 267px; background: linear-gradient(to top, #1B1E25, rgba(27, 30, 37, 0)); pointer-events: none; }
 
 .rostrum {
   position: relative; z-index: 2;
   width: min(100% - 2 * var(--m) - 2 * var(--s8), calc(var(--max) - 2 * var(--s8)));
-  margin: -96px auto 0; background: var(--g0);
-  display: grid; grid-template-columns: max-content max-content max-content 1fr;
-  align-items: end; column-gap: clamp(32px, 3.2vw, 64px); padding: var(--s6) var(--s7) var(--s5);
+  margin: -152px auto 0; background: var(--g0); border-radius: 8px;
+  display: grid; grid-template-columns: minmax(0, 1fr) max-content max-content max-content;
+  align-items: end; column-gap: var(--s5); padding: 60px var(--s7) 52px;
 }
-.occasion { display: flex; align-items: center; gap: var(--s2); font-size: 14px; color: var(--ink); margin-bottom: var(--s3); }
+/* the lot pill: deep violet, full round (Alex's frame) */
+.occasion { display: inline-flex; align-items: center; gap: .5ch; height: 28px; padding: 0 var(--s4); border-radius: 20px; background: #220E3A; font-size: 14px; color: var(--ink); margin-bottom: var(--s2); }
 .occasion .sep { color: var(--ink-2); }
 .live-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gilt); flex: none; }
 .rostrum__make { font-size: 18px; color: var(--ink-2); }
-.rostrum__lot { font: 400 clamp(44px, 4vw, 64px)/1 var(--f-display); letter-spacing: -0.01em; margin-top: var(--s1); white-space: nowrap; }
-.rostrum__cell { display: grid; grid-template-rows: auto 44px auto; gap: var(--s2); padding-bottom: var(--s1); }
+.rostrum__lot { font: 400 44px/1.1 var(--f-display); letter-spacing: -0.01em; margin-top: var(--s1); white-space: nowrap; }
+.rostrum__cell { display: grid; grid-template-rows: auto 44px auto; gap: var(--s2); padding: 0 0 0 var(--s6); border-left: 1px solid #2B2F32; min-width: 223px; }
 .rostrum__cell > * { line-height: 20px; }
 .rostrum__cell > .rostrum__bid, .rostrum__cell > .rostrum__clock { line-height: 44px; }
 .rostrum__bid { font: 400 40px/44px var(--f-display); white-space: nowrap; }
 .rostrum__clock { font: 400 26px/44px var(--f-data); white-space: nowrap; }
 .rostrum__clock small, .card__time small { font-size: 14px; color: var(--ink-2); margin: 0 6px 0 2px; }
-.rostrum__cta { display: grid; gap: var(--s2); justify-self: end; width: 168px; padding-bottom: var(--s1); }
+.rostrum__cell + .rostrum__cell { min-width: 257px; margin-right: calc(-1 * var(--s5)); }   /* the clock runs up to the buttons, as in Alex's frame */
+.rostrum__cta { display: grid; gap: var(--s2); justify-self: end; width: 168px; }
 .rostrum__cta .btn { width: 100%; }
 
 /* ---------- section heads ---------- */
@@ -365,6 +369,10 @@ address { font-style: normal; }
 @media (max-width: 1279px) {
   .rostrum { grid-template-columns: max-content max-content 1fr; gap: var(--s5) var(--s7); width: min(100% - 2 * var(--m) - 2 * var(--s6), 1100px); }
   .rostrum__name { grid-column: 1 / -1; }
+  /* two-row rostrum: the original overlap, no rules between cells (the first cell would start on a rule) */
+  .rostrum { margin-top: -96px; padding: var(--s6) var(--s7) var(--s5); }
+  .rostrum__cell, .rostrum__cell + .rostrum__cell { border-left: 0; padding-left: 0; min-width: 0; margin-right: 0; }
+  .hero__plate::after { bottom: 61px; }
   /* two-row rostrum: the plate gives up the second row so View lot and Watch stay on the first screen */
   .hero__plate { height: max(400px, calc(100svh - var(--hdr) - var(--s4) - 256px)); }
   .hero__img { object-position: 47% 100%; }
@@ -401,6 +409,8 @@ address { font-style: normal; }
   .hero__plate { width: 100%; height: auto; aspect-ratio: 4 / 5; max-height: 52svh; }
   .hero__img { object-position: 47% 60%; }
   .hero__cap { top: auto; bottom: var(--s4); right: var(--s4); left: var(--s4); text-align: right; }
+  .hero__plate::after { display: none; }
+  .rostrum { border-radius: 0; }
   .rostrum {
     width: calc(100% - 2 * var(--m)); margin-top: var(--s5);
     grid-template-columns: 1fr 1fr; gap: var(--s4); padding: 0;
