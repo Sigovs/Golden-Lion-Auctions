@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "clipped-overflow-container",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-10-06T00:17:57.353Z",
+        "reason": "Claude triage 2026-10-06: the clipped absolutely-positioned children are photo crops (stage images, lot plates, finale image, corner brackets) inside intentionally cropping frames; no tooltip, menu or popover lives inside them"
+      }
+    ]
+  }
+}

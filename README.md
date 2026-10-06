@@ -6,9 +6,23 @@ luxury presentation. The difference from BaT: every listing is documented to one
 standard by Golden Lion (a third-party specialist plus AI on the VIN and photos,
 then a human check), not written by the seller.
 
-**Status, 5 Oct 2026: HOME is built** as a static clickable prototype (stage 1),
-following concept v2. The lot page is a stub, and the full SRP and lot page are
-stage 2.
+**Status, 6 Oct 2026: HOME v2 is built** as a static clickable prototype (stage 1),
+on the layout grammar of Alex's concept boards (`__CONCEPTS/1`, `__CONCEPTS/2`).
+The lot page is a stub. The SRP and the full lot page are stage 2.
+
+## Pick up here (next session)
+
+1. **Images: Alex makes them himself.** Don't generate more. When new images
+   arrive, drop them into `assets/` and point `stage_image` in `data/lots.json` at
+   them, then regenerate `data/lots.js`. The 12 current hall images are staged
+   composites: real Patton car pixels on a generated hall, captioned as staged.
+2. **Still weak:**
+   - the Recently sold thumbnails are raw showroom photos;
+   - Alex hasn't reviewed the v2 layout yet;
+   - the font choices are not confirmed.
+3. **Open with the client:** the name (Auctions vs Collection), a vector logo, and
+   original high-res photos (BRIEF.md).
+4. **Then stage 2:** the SRP and lot page on the same `lots.json`.
 
 ## Run it
 
@@ -20,19 +34,22 @@ open http://localhost:8731/
 No build step. Fonts come from Google Fonts. GSAP, ScrollTrigger and Lenis load from
 CDNs. Everything else is local.
 
-## What HOME contains
+## What HOME contains (v2)
 
 | Section | What it is |
 |---|---|
-| Hero | Lot 01, 1972 Miura P400 SV, on the "house light": the car's own silhouette stays at full strength, the Patton room is dimmed. Below it, the rostrum: current bid (sample), countdown d·h·m·s, bids/watching, View lot, Watch |
-| The floor | 12 lots in tabs (Live / Ending soon / No reserve), masked plate reveals, live timers, watch (localStorage), and header search that filters the lots. It rises over the hero |
+| Header | Centred lockup (hallmark + GOLDEN LION), quiet nav left, search · Sign in · hairline Register to bid right |
+| Hero | Full-bleed hall scene, Miura on a platform. A centred stack over the car: LIVE chip · Lot 01 of 12 · name · data strip (current bid sample · ends in d·h·m·s · reserve/bids) · brass View lot + Watch. Brass corner brackets |
+| Live auctions | A sheet overlapping the hero: tracked label, centred head, tabs (Live / Ending soon / No reserve), 12 cards on the staged images, live timers, Watch in the data row, header search filters the cards |
 | Silence | One line: *Every lot is examined before it is offered.* |
-| Golden Lion Verified (peak) | Pinned (DNA95). The struck hallmark, the Valour VIN with three checks, four steps; the text exits on scroll, then the section follows |
-| Recently sold | 6 real Patton sold cars as a ledger; prices are sample data |
-| Consign + house | VIN input (validated, nothing is sent), Patton address |
+| Golden Lion Verified (peak) | Pinned (DNA95). A **paper inspection record** (sample) over the dark hall: VIN with decode, five checks, specialist sign line, struck hallmark. Valour on the right |
+| Recently sold | Cream band, 6 real Patton sold cars as a ledger; prices are sample |
+| Consign | A cream paper panel over a dark frame: VIN form (validated, nothing is sent) + Patton address |
+| Finale | Full-bleed scene with the struck hallmark and GOLDEN LION above the cars |
 | Footer | Nav plus the page-wide sample-data notice |
 
-`lot.html?id=<feed id>` is a stub lot page.
+`lot.html?id=<feed id>` is a stub lot page. On phones the hero stacks: text first,
+then the car.
 
 ## Files
 
@@ -40,17 +57,20 @@ CDNs. Everything else is local.
 |---|---|
 | `index.html`, `lot.html` | the pages |
 | `css/gla.css` | all tokens (top of the file) and styles |
-| `js/home.js` | framing (the car, not the photo, sets each crop), house light, tabs, search, watch, clocks, Lenis + GSAP motion |
-| `data/lots.json` → `data/lots.js` | 12 lots and 6 sold. Car, VIN, mileage and photo come from Patton's feed; bids, timers, counts, reserves and results are **sample**. Regenerate lots.js after editing the JSON |
+| `js/home.js` | framing (the car box, not the photo, sets each crop), tabs, search, watch, clocks, Lenis + GSAP motion |
+| `data/lots.json` → `data/lots.js` | 12 lots and 6 sold. Car, VIN, mileage and photo come from Patton's feed; bids, timers, counts, reserves and results are **sample**. `stage_image` / `stage_box` point at the hall images. Regenerate lots.js after editing the JSON |
 | `assets/lots/` | Patton feed photos, 1920px `main/l`, unaltered |
-| `assets/stage/mask-73.png`, `mask-79.png` | car silhouettes used only as CSS masks for the house light (sidecar `mask-73-79.json`) |
+| `assets/stage/gen-gla-hall-*.jpg` | the 12 staged lot images. Provenance in `gen-gla-hall.json`; per-image car registration in `hall-registration.json` |
+| `assets/stage/full-mask-*.png`, `mask-*.png` | car silhouettes (pixelcut), used to lay the real car back and for the old house-light mask |
 | `assets/mark*.svg` | the working hallmark: a lion passant in an assay cartouche. The lion is public domain (Fox-Davies via Wikimedia Commons), not from the client's art |
+| `__CONCEPTS/1`, `__CONCEPTS/2` | Alex's concept boards. The layout direction comes from these |
+| `clients bullshit/` | what the client sent; reference only |
 
 ## Checked
 
 - Desktop 1440 and phone 390; no horizontal scroll; no console errors.
-- kill-ai-slop scan clean. The intentional hits are pinned with `deslop-ignore` and a reason.
-- anti-ui-slop audit: three findings (inert buttons, clock units, sold crops), all fixed.
+- Every staged image: car pixels registered back from the original photo and checked by eye for ghost edges.
+- kill-ai-slop scan clean (intentional hits pinned with `deslop-ignore`).
 
 ## Read in this order
 
@@ -88,13 +108,5 @@ CDNs. Everything else is local.
   is in BRIEF.md decision 7.
 - **The brief contradicts itself, and that's normal.** Make a working decision, write
   it down, and keep moving.
-
-## Folders
-
-| Path | What it is |
-|---|---|
-| `clients bullshit/` | What the client sent: an AI video, a poster, logo.png. Reference only |
-| `PJEDESTAL. IMAGE POSSIBLE/` | Patton photos Alex collected as pedestal candidates (Porsche 550, Ferrari 612 TR, De Tomaso Pantera). Not reviewed yet |
-| `assets/stage/` | The rejected pedestal pilot, with a provenance sidecar |
 
 Repo: https://github.com/Sigovs/Golden-Lion-Auctions
