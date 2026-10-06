@@ -315,20 +315,20 @@ address { font-style: normal; }
 .pin-spacer:has(> .verified) { background: var(--paper); }
 
 /* ---------- 4 · recently sold ---------- */
-.sold { background: var(--paper); color: var(--pink); padding: var(--s9) 0 var(--s10); }
-.head--paper .lede { color: var(--pink-2); }
+.sold { background: var(--g1); color: var(--ink); padding: var(--s9) 0 var(--s10); }   /* its own chapter: graphite between two paper sections */
+.sold .lede { color: var(--ink-2); }
 .ledger { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s8) var(--s6); }
 .row { display: grid; gap: var(--s1); align-content: start; }
-.row__key { font: 400 14px/1.4 var(--f-text); color: var(--pink-2); margin-bottom: var(--s2); }
+.row__key { font: 400 14px/1.4 var(--f-text); color: var(--ink-2); margin-bottom: var(--s2); }
 .row__result { font: 400 44px/1 var(--f-display); margin-bottom: var(--s3); }
 .row__name { font-size: 18px; line-height: 1.35; }
-.row__chassis { font-size: 14px; color: var(--pink-2); }
+.row__chassis { font-size: 14px; color: var(--ink-2); }
 .row__thumb { width: 100%; aspect-ratio: 3 / 2; overflow: hidden; background: #1B1E25; margin: 0 0 var(--s4); }
 .row__thumb img { width: 100%; height: 100%; object-fit: cover; }
 
 @media (min-width: 1024px) {
   /* a ledger on Verified's 37/63 split: the head in the narrow column, the rows from the plate's left edge */
-  .sold { padding: var(--s8) 0 var(--s9); }
+  .sold { padding: var(--s9) 0 var(--s9); }
   .sold .wrap { display: grid; grid-template-columns: minmax(0, 37fr) minmax(0, 63fr); align-items: start; }
   .head--paper { display: block; margin: 0; padding-right: var(--s7); }
   .head--paper .head__r { display: block; margin-top: var(--s4); }
@@ -341,7 +341,7 @@ address { font-style: normal; }
 }
 
 /* paper sections meet on fractional pixels; a 1px overlap keeps the dark body from showing as a seam */
-.sold, .consign, .finale::before { box-shadow: 0 -1px 0 var(--paper); }
+.consign, .finale::before { box-shadow: 0 -1px 0 var(--paper); }
 
 /* ---------- 5 · consign ---------- */
 .consign { background: var(--paper); color: var(--pink); padding: var(--s9) 0 var(--s9); }
