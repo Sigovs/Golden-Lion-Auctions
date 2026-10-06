@@ -14,5 +14,13 @@
   "method": "silhouette from pixelcut on the original; registered to the car in the generated frame by bbox scale+offset with a local search (see hall-registration.json: scale, tx, ty, residual); original pixels composited back, edge feather 1.6px"
  },
  "disclosure": "captioned on the page as staged; the lot gallery uses unaltered photographs",
- "brief": "BRIEF.md decisions 3 and 7; reinstated 2026-10-05 after Alex rated the as-is photos 1/10 and supplied concept boards"
+ "brief": "BRIEF.md decisions 3 and 7; reinstated 2026-10-05 after Alex rated the as-is photos 1/10 and supplied concept boards",
+ "revision_2026-10-06": {
+  "why": "Alex: the earlier composites were crooked (cars off their platforms, tyres hanging in the air). The car had been re-registered onto a generated frame whose own car was drawn in a different perspective.",
+  "method": "Ideogram v4.5 edit on the ORIGINAL Patton photo, mask = everything except the car (edit_precision high), so the hall and platform are painted around the car where it actually stands; the original car pixels are then laid back on top; the frame is scaled uniformly to 2528 wide and padded by edge replication to 2528x1696. car-cut-<id>.webp is regenerated in the same coordinates.",
+  "references": "Valour, SLR, 300 SL Kindig, 612 TR, Ford GT: the lot's previous hall as reference. Miura, Cobra, Pantera: the Valour hall as reference. 2025 33 Stradale, SF90, 1967 33 Stradale, 300 SLR pair: no reference (a reference pulled the framing).",
+  "cleanup": "300 SLR frame: a generated background figure removed by inpainting (no people).",
+  "not_changed": "assets/v6/plate-*.jpg and assets/v6/car-*.webp (the v6/v7 hall walk) are untouched.",
+  "per_image": "hall-registration.json"
+ }
 }

@@ -1,194 +1,194 @@
 {
  "73": {
-  "diff": 30.7,
-  "scale": 1.2451,
-  "tx": 73.6,
-  "ty": -84.6,
+  "method": "Ideogram v4.5 edit, mask = everything except the car (edit_precision high), reference = the lot's previous hall; original car pixels laid back on top; uniform scale to 2528 wide + edge-replicated padding",
+  "source_result": "https://v3b.fal.media/files/b/0aad529b/-fBDlGME_dbBebUVlZmLG_GGobrVqm.png",
   "car_box": [
-   0.245,
-   0.415,
-   0.699,
-   0.653
+   0.228,
+   0.495,
+   0.709,
+   0.747
   ],
   "size": [
    2528,
    1696
-  ]
+  ],
+  "scale": 1.3167,
+  "pad_top": 6
  },
  "79": {
-  "diff": 29.0,
-  "scale": 1.3167,
-  "tx": 0,
-  "ty": 0,
+  "method": "Ideogram v4.5 edit, mask = everything except the car (edit_precision high), reference = the lot's previous hall; original car pixels laid back on top; uniform scale to 2528 wide + edge-replicated padding",
+  "source_result": "https://v3b.fal.media/files/b/0aad52ad/pFj9XBeIvxg69RatEA8AF_Y3R7m66u.png",
   "car_box": [
    0.28,
-   0.419,
+   0.422,
    0.744,
-   0.705
+   0.709
   ],
   "size": [
    2528,
    1696
-  ]
+  ],
+  "scale": 1.3167,
+  "pad_top": 6
  },
  "82": {
-  "diff": 22.7,
-  "scale": 0.8933,
-  "tx": 411.2,
-  "ty": 246.6,
+  "method": "Ideogram v4.5 edit, mask = everything except the car (edit_precision high), reference = the lot's previous hall; original car pixels laid back on top; uniform scale to 2528 wide + edge-replicated padding",
+  "source_result": "https://v3b.fal.media/files/b/0aad52ba/TFcyULfjwjicKNrA50Zk8_e3wlsZJk.png",
   "car_box": [
-   0.213,
-   0.381,
-   0.799,
-   0.672
+   0.074,
+   0.349,
+   0.939,
+   0.778
   ],
   "size": [
    2528,
    1696
-  ]
+  ],
+  "scale": 1.3167,
+  "pad_top": 4
  },
  "8": {
-  "diff": 35.4,
-  "scale": 0.9699,
-  "tx": 335.9,
-  "ty": 32.9,
+  "method": "Ideogram v4.5 edit, mask = everything except the car (edit_precision high), reference = the lot's previous hall; original car pixels laid back on top; uniform scale to 2528 wide + edge-replicated padding",
+  "source_result": "https://v3b.fal.media/files/b/0aad52ba/dlhgjeLsdr7RETynxH14C_JJISXuyv.png",
   "car_box": [
-   0.246,
-   0.392,
-   0.768,
-   0.663
+   0.153,
+   0.509,
+   0.862,
+   0.877
   ],
   "size": [
    2528,
    1696
-  ]
+  ],
+  "scale": 1.3167,
+  "pad_top": 5
  },
  "68": {
-  "diff": 55.4,
-  "scale": 1.3544,
-  "tx": 2.9,
-  "ty": -247.9,
+  "method": "Ideogram v4.5 edit, mask = everything except the car (edit_precision high), reference = the lot's previous hall; original car pixels laid back on top; uniform scale to 2528 wide + edge-replicated padding",
+  "source_result": "https://v3b.fal.media/files/b/0aad529b/iKwVSt3PhGO4oZDrW5TdE_61B4DvKn.png",
   "car_box": [
-   0.279,
-   0.372,
-   0.728,
-   0.742
+   0.271,
+   0.508,
+   0.707,
+   0.867
   ],
   "size": [
    2528,
    1696
-  ]
+  ],
+  "scale": 1.3167,
+  "pad_top": 6
  },
  "49": {
-  "diff": 29.9,
-  "scale": 1.3167,
-  "tx": 0,
-  "ty": 0,
+  "method": "Ideogram v4.5 edit, mask = everything except the car (edit_precision high), reference = the lot's previous hall; original car pixels laid back on top; uniform scale to 2528 wide + edge-replicated padding",
+  "source_result": "https://v3b.fal.media/files/b/0aad52ad/L10SXRZa7gusPwrCwS4df_7UtMJghg.png",
   "car_box": [
    0.226,
-   0.435,
+   0.439,
    0.745,
-   0.788
+   0.791
   ],
   "size": [
    2528,
    1696
-  ]
+  ],
+  "scale": 1.3167,
+  "pad_top": 6
  },
  "35": {
-  "diff": 31.3,
-  "scale": 1.3167,
-  "tx": 0,
-  "ty": 0,
+  "method": "Ideogram v4.5 edit, mask = everything except the car (edit_precision high), reference = the lot's previous hall; original car pixels laid back on top; uniform scale to 2528 wide + edge-replicated padding",
+  "source_result": "https://v3b.fal.media/files/b/0aad52ad/RrhVf8P4-WYqB-hUfgP4G_vif9WmmA.png",
   "car_box": [
    0.064,
-   0.282,
+   0.285,
    0.913,
-   0.79
+   0.793
   ],
   "size": [
    2528,
    1696
-  ]
+  ],
+  "scale": 1.3167,
+  "pad_top": 5
  },
  "19": {
-  "diff": 71.5,
-  "scale": 0.8907,
-  "tx": 395.3,
-  "ty": 227.4,
+  "method": "Ideogram v4.5 edit, mask = everything except the car (edit_precision high), reference = the lot's previous hall; original car pixels laid back on top; uniform scale to 2528 wide + edge-replicated padding",
+  "source_result": "https://v3b.fal.media/files/b/0aad52b9/eBrdTyK2eVpSmzAY_Rnez_iiTsdK3o.png",
   "car_box": [
-   0.215,
-   0.388,
-   0.729,
-   0.716
+   0.087,
+   0.378,
+   0.847,
+   0.864
   ],
   "size": [
    2528,
    1696
-  ]
+  ],
+  "scale": 1.3167,
+  "pad_top": 5
  },
  "70": {
-  "diff": 37.7,
-  "scale": 1.3037,
-  "tx": 19.3,
-  "ty": -193.6,
+  "method": "Ideogram v4.5 edit, mask = everything except the car (edit_precision high), reference = the lot's previous hall; original car pixels laid back on top; uniform scale to 2528 wide + edge-replicated padding",
+  "source_result": "https://v3b.fal.media/files/b/0aad52ad/LJlr42eUGZjZAMsTBEqiV_b5tkTWMb.png",
   "car_box": [
-   0.287,
-   0.462,
-   0.72,
-   0.722
+   0.282,
+   0.586,
+   0.719,
+   0.848
   ],
   "size": [
    2528,
    1696
-  ]
+  ],
+  "scale": 1.3167,
+  "pad_top": 6
  },
  "41": {
-  "diff": 60.9,
-  "scale": 0.9569,
-  "tx": 368.5,
-  "ty": 229.6,
+  "method": "Ideogram v4.5 edit, mask = everything except the car (edit_precision high), reference = the lot's previous hall; original car pixels laid back on top; uniform scale to 2528 wide + edge-replicated padding",
+  "source_result": "file:///tmp/ideo-41-clean.png",
   "car_box": [
-   0.155,
-   0.359,
-   0.865,
-   0.688
+   0.013,
+   0.311,
+   0.99,
+   0.763
   ],
   "size": [
    2528,
    1696
-  ]
+  ],
+  "scale": 1.3167,
+  "pad_top": 5
  },
  "36": {
-  "diff": 33.6,
-  "scale": 1.3167,
-  "tx": 0,
-  "ty": 0,
+  "method": "Ideogram v4.5 edit, mask = everything except the car (edit_precision high), reference = the lot's previous hall; original car pixels laid back on top; uniform scale to 2528 wide + edge-replicated padding",
+  "source_result": "https://v3b.fal.media/files/b/0aad52ad/bfRw5tVwzJvWOWORAL2tl_AK5wUBV4.png",
   "car_box": [
    0.095,
-   0.424,
+   0.427,
    0.845,
-   0.784
+   0.787
   ],
   "size": [
    2528,
    1696
-  ]
+  ],
+  "scale": 1.3167,
+  "pad_top": 5
  },
  "76": {
-  "diff": 54.0,
-  "scale": 1.2674,
-  "tx": 52.9,
-  "ty": -266.9,
+  "method": "Ideogram v4.5 edit, mask = everything except the car (edit_precision high), reference = the lot's previous hall; original car pixels laid back on top; uniform scale to 2528 wide + edge-replicated padding",
+  "source_result": "https://v3b.fal.media/files/b/0aad529b/m6Ko8cPChs6P3vNv6PVAE_nn0RtYRH.png",
   "car_box": [
-   0.286,
-   0.383,
-   0.735,
-   0.674
+   0.275,
+   0.565,
+   0.742,
+   0.868
   ],
   "size": [
    2528,
    1696
-  ]
+  ],
+  "scale": 1.3167,
+  "pad_top": 6
  }
 }

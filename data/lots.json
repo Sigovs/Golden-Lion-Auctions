@@ -26,10 +26,10 @@
    "location": "Pompano Beach, FL",
    "stage_image": "assets/stage/gen-gla-hall-73.jpg",
    "stage_box": [
-    0.245,
-    0.415,
-    0.699,
-    0.653
+    0.228,
+    0.495,
+    0.709,
+    0.747
    ]
   },
   {
@@ -57,10 +57,10 @@
    "location": "Pompano Beach, FL",
    "stage_image": "assets/stage/gen-gla-hall-82.jpg",
    "stage_box": [
-    0.213,
-    0.381,
-    0.799,
-    0.672
+    0.074,
+    0.349,
+    0.939,
+    0.778
    ]
   },
   {
@@ -89,9 +89,9 @@
    "stage_image": "assets/stage/gen-gla-hall-79.jpg",
    "stage_box": [
     0.28,
-    0.419,
+    0.422,
     0.744,
-    0.705
+    0.709
    ]
   },
   {
@@ -119,10 +119,10 @@
    "location": "Pompano Beach, FL",
    "stage_image": "assets/stage/gen-gla-hall-8.jpg",
    "stage_box": [
-    0.246,
-    0.392,
-    0.768,
-    0.663
+    0.153,
+    0.509,
+    0.862,
+    0.877
    ]
   },
   {
@@ -150,10 +150,10 @@
    "location": "Pompano Beach, FL",
    "stage_image": "assets/stage/gen-gla-hall-68.jpg",
    "stage_box": [
-    0.279,
-    0.372,
-    0.728,
-    0.742
+    0.271,
+    0.508,
+    0.707,
+    0.867
    ]
   },
   {
@@ -182,9 +182,9 @@
    "stage_image": "assets/stage/gen-gla-hall-49.jpg",
    "stage_box": [
     0.226,
-    0.435,
+    0.439,
     0.745,
-    0.788
+    0.791
    ]
   },
   {
@@ -213,9 +213,9 @@
    "stage_image": "assets/stage/gen-gla-hall-35.jpg",
    "stage_box": [
     0.064,
-    0.282,
+    0.285,
     0.913,
-    0.79
+    0.793
    ]
   },
   {
@@ -243,10 +243,10 @@
    "location": "Pompano Beach, FL",
    "stage_image": "assets/stage/gen-gla-hall-19.jpg",
    "stage_box": [
-    0.215,
-    0.388,
-    0.729,
-    0.716
+    0.087,
+    0.378,
+    0.847,
+    0.864
    ]
   },
   {
@@ -274,10 +274,10 @@
    "location": "Pompano Beach, FL",
    "stage_image": "assets/stage/gen-gla-hall-70.jpg",
    "stage_box": [
-    0.287,
-    0.462,
-    0.72,
-    0.722
+    0.282,
+    0.586,
+    0.719,
+    0.848
    ]
   },
   {
@@ -305,10 +305,10 @@
    "location": "Pompano Beach, FL",
    "stage_image": "assets/stage/gen-gla-hall-41.jpg",
    "stage_box": [
-    0.155,
-    0.359,
-    0.865,
-    0.688
+    0.013,
+    0.311,
+    0.99,
+    0.763
    ]
   },
   {
@@ -337,9 +337,9 @@
    "stage_image": "assets/stage/gen-gla-hall-36.jpg",
    "stage_box": [
     0.095,
-    0.424,
+    0.427,
     0.845,
-    0.784
+    0.787
    ]
   },
   {
@@ -367,10 +367,10 @@
    "location": "Pompano Beach, FL",
    "stage_image": "assets/stage/gen-gla-hall-76.jpg",
    "stage_box": [
-    0.286,
-    0.383,
-    0.735,
-    0.674
+    0.275,
+    0.565,
+    0.742,
+    0.868
    ]
   }
  ],
