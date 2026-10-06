@@ -7,7 +7,7 @@
   var D = window.GLA;
   if (!D) return;
   // the hero is the featured Miura (73); the grid shows six other cars
-  var lots = D.lots.filter(function (l) { return l.feed_id !== 73; }).slice(0, 6), sold = D.sold.slice(0, 3);
+  var lots = D.lots.filter(function (l) { return l.feed_id !== 73; }).slice(0, 6), sold = D.sold.slice(0, 6);
   var allLots = D.lots;
   var root = document.documentElement;
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -84,6 +84,21 @@
     li.setAttribute('data-in', '');
     ol.appendChild(li);
   });
+
+  /* recently sold: a horizontal track, stepped by the arrows one card at a time */
+  var prev = $('.sold__prev'), next = $('.sold__next');
+  if (prev && next) {
+    var step = function () { var c = ol.children[0]; return c ? c.getBoundingClientRect().width + parseFloat(getComputedStyle(ol).columnGap || 0) : 320; };
+    var ends = function () {
+      prev.disabled = ol.scrollLeft <= 2;
+      next.disabled = ol.scrollLeft + ol.clientWidth >= ol.scrollWidth - 2;
+    };
+    prev.addEventListener('click', function () { ol.scrollBy({ left: -step(), behavior: reduce ? 'auto' : 'smooth' }); });
+    next.addEventListener('click', function () { ol.scrollBy({ left: step(), behavior: reduce ? 'auto' : 'smooth' }); });
+    ol.addEventListener('scroll', ends, { passive: true });
+    window.addEventListener('resize', ends);
+    ends();
+  }
 
   /* six live lots only: no tabs on the home page (filters live on the auctions page) */
   var current = 'live';

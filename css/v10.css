@@ -156,8 +156,8 @@ address { font-style: normal; }
   transform-origin: 47% 55%;
 }
 .hero__cap { position: absolute; top: var(--s5); left: var(--s5); color: var(--ink); }
-/* Alex's frame: the scene darkens into the rostrum — plate tone, 267px, ending 117px above the plate's foot */
-.hero__plate::after { content: ''; position: absolute; left: 0; right: 0; bottom: 117px; height: 267px; background: linear-gradient(to top, #1B1E25, rgba(27, 30, 37, 0)); pointer-events: none; }
+/* the scene darkens into the rostrum down to the plate's foot (Alex: the gradient runs to the end of the image) */
+.hero__plate::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 384px; background: linear-gradient(to top, #1B1E25 30%, rgba(27, 30, 37, 0)); pointer-events: none; }
 
 .rostrum {
   position: relative; z-index: 2;
@@ -282,9 +282,20 @@ address { font-style: normal; }
 }
 
 /* ---------- 4 · recently sold ---------- */
-.sold { background: var(--g1); color: var(--ink); padding: var(--s9) 0 var(--s10); }   /* its own chapter: graphite between two paper sections */
+.sold { background: var(--g1); color: var(--ink); padding: var(--s9) 0 var(--s10); overflow-x: clip; }   /* its own chapter: graphite between two paper sections */
 .sold .lede { color: var(--ink-2); }
-.ledger { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s8) var(--s6); }
+.ledger {
+  /* a horizontal track: six results, snapped card by card, running off the right edge */
+  display: grid; grid-auto-flow: column; grid-auto-columns: min(78vw, 320px); column-gap: var(--s5);
+  overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scrollbar-width: none;
+  margin-right: calc(-1 * var(--m)); padding-right: var(--m); scroll-padding-left: 0;
+}
+.ledger::-webkit-scrollbar { display: none; }
+.ledger:focus-visible { outline: 1px solid var(--gilt); outline-offset: 6px; }
+.row { scroll-snap-align: start; }
+.sold__actions { display: flex; gap: var(--s2); margin-top: var(--s6); flex-wrap: wrap; }
+.sold__arrow { width: 48px; padding: 0; justify-content: center; }
+.sold__arrow:disabled { opacity: .35; cursor: default; }
 .row { display: grid; gap: var(--s1); align-content: start; }
 .row__key { font: 400 14px/1.4 var(--f-text); color: var(--ink-2); margin-bottom: var(--s2); }
 .row__result { font: 400 44px/1 var(--f-display); margin-bottom: var(--s3); }
@@ -292,7 +303,6 @@ address { font-style: normal; }
 .row__chassis { font-size: 14px; color: var(--ink-2); }
 .row__thumb { width: 100%; aspect-ratio: 3 / 2; overflow: hidden; background: #1B1E25; margin: 0 0 var(--s4); }
 .row__thumb img { width: 100%; height: 100%; object-fit: cover; }
-.sold__more { margin-top: var(--s6); }
 
 @media (min-width: 1024px) {
   /* a ledger on Verified's 37/63 split: the head in the narrow column, the rows from the plate's left edge */
@@ -302,7 +312,7 @@ address { font-style: normal; }
   .head--paper .head__r { display: block; margin-top: var(--s4); }
   .head--paper .lede { max-width: 32ch; }
   /* three result cards in a row, hanging from the plate's left edge: photo, key, figure, car */
-  .ledger { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 var(--s6); }
+  .ledger { grid-auto-columns: clamp(260px, 17vw, 320px); column-gap: var(--s6); margin-right: calc(-1 * max(var(--m), (100vw - var(--max)) / 2)); padding-right: max(var(--m), (100vw - var(--max)) / 2); }
   .row { gap: 0; }
   .row__result { margin: 0 0 var(--s3); }
   .row__chassis { margin-top: var(--s1); }
@@ -372,7 +382,7 @@ address { font-style: normal; }
   /* two-row rostrum: the original overlap, no rules between cells (the first cell would start on a rule) */
   .rostrum { margin-top: -96px; padding: var(--s6) var(--s7) var(--s5); }
   .rostrum__cell, .rostrum__cell + .rostrum__cell { border-left: 0; padding-left: 0; min-width: 0; margin-right: 0; }
-  .hero__plate::after { bottom: 61px; }
+  .hero__plate::after { height: 328px; }
   /* two-row rostrum: the plate gives up the second row so View lot and Watch stay on the first screen */
   .hero__plate { height: max(400px, calc(100svh - var(--hdr) - var(--s4) - 256px)); }
   .hero__img { object-position: 47% 100%; }
@@ -388,7 +398,6 @@ address { font-style: normal; }
   .hero__plate { height: max(400px, calc(100svh - var(--hdr) - var(--s4) - 330px)); }
   .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s8) var(--s5); }
   .head { grid-template-columns: 1fr; gap: var(--s5); align-items: start; }
-  .ledger { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .consign__grid { grid-template-columns: 1fr; text-align: center; gap: var(--s6); }
   .consign__side { padding-bottom: 0; }
   .consign__side.lede { margin-inline: auto; order: 2; }
@@ -427,7 +436,6 @@ address { font-style: normal; }
   .tabs { gap: var(--s4); flex-wrap: wrap; }
   .head { margin-bottom: var(--s7); }
   .mark--ink { width: 56px; }
-  .ledger { grid-template-columns: 1fr; gap: var(--s7); }
   .row__result { font-size: 40px; }
   .consign { padding-bottom: var(--s10); }
   .finale__plate { width: 100%; aspect-ratio: 4 / 3; }

@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500&family=IBM+Plex+Mono:wght@400;500&family=Libre+Caslon+Display&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="assets/stage/gen-gla-hall-73.jpg" fetchpriority="high">
 <link rel="icon" href="assets/logo/crest-favicon.png" type="image/png">
-<link rel="stylesheet" href="css/v10.css?v=24">
+<link rel="stylesheet" href="css/v10.css?v=27">
 <script>if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('js-motion');</script>
 </head>
 <body>
@@ -145,10 +145,14 @@
         <div class="head__r">
           <p class="lede" data-in>Cars of this class sold by Patton Motors. The figures are sample data for this prototype.</p>
           <!-- the full results archive is an internal page: stage 2 -->
-          <a class="btn btn--line sold__more" href="#sold">View all results</a>
+          <div class="sold__actions">
+            <a class="btn btn--line" href="#sold">View all results</a>
+            <button class="btn btn--line sold__arrow sold__prev" type="button" aria-label="Previous results" aria-controls="ledger"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+            <button class="btn btn--line sold__arrow sold__next" type="button" aria-label="Next results" aria-controls="ledger"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+          </div>
         </div>
       </div>
-      <ol class="ledger" id="ledger"></ol>
+      <ol class="ledger" id="ledger" tabindex="0" aria-label="Recently sold, scroll sideways"></ol>
     </div>
   </section>
 
@@ -223,6 +227,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 <script src="https://unpkg.com/lenis@1.3.26/dist/lenis.min.js" defer></script>
-<script src="js/v10.js?v=6" defer></script>
+<script src="js/v10.js?v=7" defer></script>
 </body>
 </html>
