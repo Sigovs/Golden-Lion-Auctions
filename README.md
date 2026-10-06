@@ -84,6 +84,7 @@ then the car.
    [CONCEPT-v1.md](CONCEPT-v1.md) is the rejected version, "too archival and dry".
 4. **[REFERENCES.md](REFERENCES.md)** is the vault read: Semler (SRP/VDP), Rolls-Royce,
    and RM Sotheby's as the anti-reference.
+6. **[SKILLS.md](SKILLS.md)** lists every skill and plugin this project uses, with install commands for another machine.
 5. **[CLAUDE.md](CLAUDE.md)** holds the working rules for agents: Design DNA, Lenis,
    the pin rule for big sections (DNA95), and how to treat the client's material.
 
