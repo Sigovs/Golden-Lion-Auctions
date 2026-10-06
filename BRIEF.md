@@ -168,3 +168,11 @@ Tactics:
      - Consign as a paper panel over a dark frame;
      - a closing full-bleed scene with the wordmark.
    - Brass now also fills the primary CTA, as the concepts do.
+9. **Slogan and CTA: the client's own words, kept (Alex, 6 Oct 2026).** From the
+   client's poster and video end card (`clients bullshit/image (4).png`):
+   - **Slogan:** *Curated cars. Smarter bids.*
+   - **Primary CTA:** *Join the online auction*
+
+   These are the client's sentences, so use them as written; it's the poster artwork
+   that stays unused, not the words. Place them where a tagline and a primary call
+   to action belong (hero, finale, register-to-bid).
