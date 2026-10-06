@@ -152,7 +152,7 @@ address { font-style: normal; }
 }
 .hero__img {
   width: 100%; height: 100%; object-fit: cover;
-  object-position: 47% 62%;     /* car centre x≈0.47; ceiling cropped so the platform clears the rostrum */
+  object-position: 50% 50%;     /* Alex's featured frame, composed for the 1920 plate (1560x842); its transparent foot shows the plate tone */
   transform-origin: 47% 55%;
 }
 .hero__cap { position: absolute; top: var(--s5); left: var(--s5); color: var(--ink); }
@@ -415,7 +415,7 @@ address { font-style: normal; }
   .search { position: absolute; left: var(--m); right: calc(var(--m) + 44px); top: 12px; }
   .search input { width: 100%; }
   .hero { padding-top: var(--s2); }
-  .hero__plate { width: 100%; height: auto; aspect-ratio: 4 / 5; max-height: 52svh; }
+  .hero__plate { width: 100%; height: auto; aspect-ratio: 1 / 1; max-height: 52svh; }   /* square: the featured frame's whole car fits the phone width */
   .hero__img { object-position: 47% 60%; }
   .hero__cap { top: auto; bottom: var(--s4); right: var(--s4); left: var(--s4); text-align: right; }
   .hero__plate::after { display: none; }

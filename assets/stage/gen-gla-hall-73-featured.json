@@ -1,0 +1,9 @@
+{
+ "file": "assets/stage/gen-gla-hall-73-featured.webp",
+ "derived_from": "assets/stage/featured_auction.png (Alex, 6 Oct 2026, composed for the 1920 hero plate 1560x842)",
+ "origin": "synthetic setting + real car",
+ "setting": "generated hall (same Ideogram v4.5 staging as gen-gla-hall-73)",
+ "car": "1972 Lamborghini Miura P400 SV, photographed at Patton Motors (feed 73) \u2014 car pixels are the photograph",
+ "notes": "bottom 117px transparent by design; the page's plate tone and gradient show through",
+ "date": "2026-10-06"
+}
