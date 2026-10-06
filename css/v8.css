@@ -1198,3 +1198,21 @@ html.intro .lotbar > * { opacity: 0; }
 /* the finale crest: more room under the name so the shield's point is never cut by the footer rule */
 .finale__word { padding-bottom: clamp(72px, 8vw, 140px); }
 .finale__word::before { top: 47%; height: 96%; }
+/* header air (Alex, 8 Oct 2026, repeated: "spacing, padding, air; nothing touches anything"): a taller bar so the
+   crest has room above and below, and clear gaps between crest, name, nav and actions */
+@media (min-width: 1024px) {
+  :root { --top-h: 96px; }
+  .top { gap: clamp(32px, 3vw, 56px); }
+  .lockup { gap: 18px; }
+  .lockup__sub { margin-left: 4px; }
+  .top__nav { gap: clamp(24px, 2.2vw, 40px); }
+  .top__act { gap: clamp(20px, 1.8vw, 32px); }
+}
+@media (max-width: 639.98px) { .lockup__crest { height: 40px; } .lockup { gap: 12px; } }
+/* the taller header takes 20px from every one-screen section: the hero headline and the hammer copy give it back */
+@media (min-width: 1024px) {
+  .hero__head { padding-top: clamp(40px, 5vh, 64px); }
+  .hammer__title { font-size: min(clamp(40px, 4.6vw, 76px), 8.4vh); }
+}
+@media (min-width: 900px) and (min-height: 640px) { .hammer { padding-block: clamp(20px, 3vh, 40px); } }
+@media (min-width: 1024px) { .hero__title { font-size: clamp(48px, min(5.2vw, 6.6vh), 96px); } }
