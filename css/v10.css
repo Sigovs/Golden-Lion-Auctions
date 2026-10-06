@@ -325,6 +325,7 @@ address { font-style: normal; }
 .row__chassis { font-size: 14px; color: var(--ink-2); }
 .row__thumb { width: 100%; aspect-ratio: 3 / 2; overflow: hidden; background: #1B1E25; margin: 0 0 var(--s4); }
 .row__thumb img { width: 100%; height: 100%; object-fit: cover; }
+.sold__more { margin-top: var(--s6); }
 
 @media (min-width: 1024px) {
   /* a ledger on Verified's 37/63 split: the head in the narrow column, the rows from the plate's left edge */
