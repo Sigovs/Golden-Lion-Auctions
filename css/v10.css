@@ -180,7 +180,7 @@ address { font-style: normal; }
 .head__r { display: grid; gap: var(--s5); justify-items: start; }
 
 /* ---------- 2 · the floor ---------- */
-.floor { padding: var(--s10) 0 var(--s10); }
+.floor { padding: var(--s10) 0 var(--s8); }   /* v10: bottom 128 → 64, the dark run into Verified ~20% shorter */
 .tabs { display: flex; gap: var(--s5); }
 .tab {
   position: relative; background: none; border: 0; padding: var(--s3) 0; cursor: pointer;
@@ -268,8 +268,11 @@ address { font-style: normal; }
 .sold, .consign, .finale::before { box-shadow: 0 -1px 0 var(--paper); }
 
 /* ---------- 5 · consign ---------- */
-.consign { background: var(--paper); color: var(--pink); padding: var(--s9) 0 var(--s10); }
-.consign__grid { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 6fr) minmax(0, 3fr); gap: var(--s7); align-items: center; }
+.consign { background: var(--paper); color: var(--pink); padding: var(--s9) 0 var(--s9); }
+.consign__grid { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 6fr) minmax(0, 3fr); gap: var(--s7); align-items: end; }
+/* v10: the two sides stand on the same line as the VIN field, not floating at mid-height */
+.consign__side { padding-bottom: calc(2.8 * 14px + var(--s2)); }   /* = the status line under the field + its gap */
+.consign__house address { margin-bottom: 0; }
 .consign__main { text-align: center; }
 .consign__main .display { margin: 0 auto var(--s7); max-width: 16ch; }
 .consign__side.lede { color: var(--pink-2); font-size: 16px; }
@@ -346,6 +349,7 @@ address { font-style: normal; }
   .verified__text { padding-top: 0; }
   .ledger { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .consign__grid { grid-template-columns: 1fr; text-align: center; gap: var(--s6); }
+  .consign__side { padding-bottom: 0; }
   .consign__side.lede { margin-inline: auto; order: 2; }
   .consign__house { justify-self: center; text-align: center; order: 3; }
   .finale__plate { width: min(100% - 2 * var(--m), 1240px); }
@@ -375,7 +379,7 @@ address { font-style: normal; }
   .rostrum__clock { font-size: 22px; line-height: 32px; }
   .rostrum__cta { grid-column: 1 / -1; }
   .rostrum__cta .btn { flex: 1; }
-  .floor { padding: var(--s9) 0; }
+  .floor { padding: var(--s9) 0 var(--s8); }
   .cards { grid-template-columns: 1fr; gap: var(--s8); }
   .tabs { gap: var(--s4); flex-wrap: wrap; }
   .head { margin-bottom: var(--s7); }

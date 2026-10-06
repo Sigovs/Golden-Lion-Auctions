@@ -6,7 +6,8 @@
   'use strict';
   var D = window.GLA;
   if (!D) return;
-  var lots = D.lots.slice(0, 6), sold = D.sold.slice(0, 3);
+  // the hero is the featured Miura (73); the grid shows six other cars
+  var lots = D.lots.filter(function (l) { return l.feed_id !== 73; }).slice(0, 6), sold = D.sold.slice(0, 3);
   var allLots = D.lots;
   var root = document.documentElement;
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
