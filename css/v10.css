@@ -250,25 +250,24 @@ address { font-style: normal; }
 .verified__plate img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 62%; }
 .verified__plate .cap { position: absolute; bottom: var(--s5); right: calc(var(--m) + var(--s2)); color: var(--ink); text-align: right; }
 
-/* the record: a sheet of the same paper, lifted, with the seal struck on it */
+/* the record: a flat graphite data plate continuing the photograph down-left — no paper, no shadow */
 .record {
   width: calc(100% + 224px); max-width: 720px;
-  background: #EFEDE8; color: var(--pink);
+  background: var(--g0); color: var(--ink);
   padding: var(--s5) var(--s7) var(--s6);
-  box-shadow: 0 1px 2px rgba(14, 16, 18, .10), 0 28px 48px -32px rgba(14, 16, 18, .55);
 }
-.record__id { display: grid; grid-template-columns: 1fr auto; gap: var(--s6); align-items: start; padding-bottom: var(--s5); }
+.record__id { display: grid; grid-template-columns: 1fr auto; gap: var(--s6); align-items: start; }
 .record__vin { display: grid; gap: var(--s2); }
-.record .key { color: var(--pink-2); text-wrap: pretty; }
-.record__num { font-size: clamp(24px, 2.3vw, 34px); line-height: 1.1; letter-spacing: .05em; color: var(--pink); }
+.record .key { color: var(--ink-2); text-wrap: pretty; }
+.record__num { font-size: clamp(24px, 2.3vw, 34px); line-height: 1.1; letter-spacing: .05em; color: var(--ink); }
 .record__num b { font-weight: 500; text-decoration: underline 1px; text-underline-offset: 6px; }
 .record__seal { display: grid; justify-items: center; gap: var(--s2); text-align: center; }
 .record__seal .key { white-space: nowrap; }
-.record .mark--ink { width: 64px; }
-/* the five checks as a numbered system: two columns, read down */
-.steps { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: repeat(3, auto); grid-auto-flow: column; gap: var(--s2) var(--s6); }
-.steps li { display: grid; grid-template-columns: 32px 1fr; font-size: 15px; line-height: 1.4; text-wrap: pretty; }
-.steps .data { font-size: 14px; color: var(--pink-2); padding-top: 1px; }
+.record .mark--ink { width: 64px; background: var(--gilt); }   /* the hallmark in gilt: gold on dark only */
+/* the five checks — the difference from every other auction — set at reading size, numbered like lots */
+.steps { display: grid; gap: var(--s5); margin-top: var(--s8); }
+.steps li { display: grid; grid-template-columns: 56px minmax(0, 1fr); align-items: baseline; font-size: 18px; line-height: 1.4; color: var(--pink); text-wrap: pretty; }
+.steps .data { font: 400 32px/1 var(--f-display); color: var(--pink); letter-spacing: 0; }
 
 @media (min-width: 1024px) {
   /* one sequence on two rows: row 1 = argument + plate, row 2 = the record crossing the plate's foot */
@@ -287,25 +286,18 @@ address { font-style: normal; }
     grid-column: 1; grid-row: 2; position: relative; z-index: 2;
     margin-top: calc(-1 * var(--s10));
     width: min(720px, calc(100% + 224px)); max-width: none;
-    padding: var(--s6) var(--s7) var(--s7);
-    /* the sheet's own grid: the VIN across, then the steps on two columns, the seal in the free cell under 05 */
-    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    grid-template-rows: auto repeat(3, minmax(42px, auto));
-    column-gap: var(--s6); row-gap: var(--s3);
+    padding: var(--s7);                                       /* one margin all round, like a printed form */
   }
-  .record__id { display: contents; }
-  .record__vin { grid-column: 1 / -1; grid-row: 1; padding-bottom: calc(var(--s6) - var(--s3)); }   /* 32px to step 01 */
-  .steps {
-    grid-column: 1 / -1; grid-row: 2 / 5;
-    grid-template-columns: subgrid; grid-template-rows: subgrid; grid-auto-flow: column; gap: inherit;
-  }
-  .record__seal {
-    grid-column: 2; grid-row: 4; align-self: center;
-    grid-auto-flow: column; justify-content: start; justify-items: start; align-items: center;
-    gap: var(--s3); text-align: left;
-  }
-  .record__seal .key { white-space: normal; }
-  .record .mark--ink { width: 48px; }
+  /* the sheet: a letterhead row (VIN left, seal right, one top line), then the five checks in one column */
+  .record__id { grid-template-columns: minmax(0, 1fr) auto; gap: var(--s6); align-items: start; }
+  .record__seal { justify-items: center; text-align: center; gap: var(--s2); padding-top: 2px; }
+  .record__seal .key { white-space: nowrap; }
+  .record .mark--ink { width: 56px; }
+  /* the checks take the section's full width as their own row under plate and record */
+  .verified { padding-bottom: var(--s9); }
+  .steps { grid-column: 1 / -1; grid-row: 3; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--s6); margin-top: var(--s9); }
+  .steps li { display: block; padding-right: var(--s3); }
+  .steps .data { display: block; font-size: 44px; margin-bottom: var(--s4); }
 }
 @media (min-width: 1024px) and (max-width: 1439px) {
   .verified__plate { aspect-ratio: 1.45 / 1; }
