@@ -225,12 +225,13 @@ address { font-style: normal; }
 .empty { grid-column: 1 / -1; color: var(--ink-2); padding: var(--s8) 0; }
 
 /* ---------- 3 · verified: the inspection record is the object ----------
-   The Valour takes ~62% of the width and bleeds off the right edge, its top standing in a short dark
-   band (the turn from the floor). The argument sits left; the record it produces is laid on the
+   The Valour takes ~63% of the width and bleeds off the right edge, its top standing in a short dark
+   band (the turn from the floor). The left column is set from the bottom up, anchored to the plate's
+   foot: the record crosses that foot by a fixed --s10, the argument sits --s7 above the record, and
+   any spare air goes above the label, never between lede and record. The record lies on the
    photograph's lower-left corner, over floor and platform only — never over the car. */
 .verified {
   --band: 40px;      /* the turn: the plate's top stands in the floor's dark */
-  --overhang: 96px;  /* the record always runs at least this far past the plate's foot */
   position: relative; isolation: isolate; overflow-x: clip;
   background: var(--paper); color: var(--pink); padding-bottom: var(--s7);
 }
@@ -243,16 +244,14 @@ address { font-style: normal; }
 .verified__text .lede { color: var(--pink-2); max-width: 44ch; }
 .verified__plate {
   position: relative; overflow: hidden; background: #1B1E25;
-  aspect-ratio: 1.93 / 1; align-self: start;
+  aspect-ratio: 1.6 / 1; align-self: start;
   margin-right: calc(-1 * max(var(--m), (100vw - var(--max)) / 2));   /* bleeds to the page edge at any width */
-  margin-bottom: var(--overhang);
 }
 .verified__plate img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 62%; }
 .verified__plate .cap { position: absolute; bottom: var(--s5); right: calc(var(--m) + var(--s2)); color: var(--ink); text-align: right; }
 
 /* the record: a sheet of the same paper, lifted, with the seal struck on it */
 .record {
-  margin-top: auto;                            /* sits at the foot of the column, across the plate's corner */
   width: calc(100% + 224px); max-width: 720px;
   background: #EFEDE8; color: var(--pink);
   padding: var(--s5) var(--s7) var(--s6);
@@ -271,6 +270,47 @@ address { font-style: normal; }
 .steps li { display: grid; grid-template-columns: 32px 1fr; font-size: 15px; line-height: 1.4; text-wrap: pretty; }
 .steps .data { font-size: 14px; color: var(--pink-2); padding-top: 1px; }
 
+@media (min-width: 1024px) {
+  /* one sequence on two rows: row 1 = argument + plate, row 2 = the record crossing the plate's foot */
+  .verified__grid { grid-template-rows: auto auto; }
+  .verified__col { display: contents; }
+  .verified__text {
+    grid-column: 1; grid-row: 1; align-self: end; position: relative; z-index: 2;
+    padding-top: calc(var(--band) + var(--s8));               /* the label never closer than 64px to the band */
+    padding-bottom: calc(var(--s10) + var(--s7));             /* the record's crossing + the 48px to the lede */
+  }
+  /* the plate sets row 1; stretch keeps its foot on the row's foot even when the argument is taller */
+  .verified__plate { grid-column: 2; grid-row: 1; align-self: stretch; }
+  /* at 1.6/1 the photo is width-fit: show more of its floor so the front tyre stands >=32px above the record */
+  .verified__plate img { object-position: 50% 85%; }
+  .record {
+    grid-column: 1; grid-row: 2; position: relative; z-index: 2;
+    margin-top: calc(-1 * var(--s10));
+    width: min(720px, calc(100% + 224px)); max-width: none;
+    padding: var(--s6) var(--s7) var(--s7);
+    /* the sheet's own grid: the VIN across, then the steps on two columns, the seal in the free cell under 05 */
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-rows: auto repeat(3, minmax(42px, auto));
+    column-gap: var(--s6); row-gap: var(--s3);
+  }
+  .record__id { display: contents; }
+  .record__vin { grid-column: 1 / -1; grid-row: 1; padding-bottom: calc(var(--s6) - var(--s3)); }   /* 32px to step 01 */
+  .steps {
+    grid-column: 1 / -1; grid-row: 2 / 5;
+    grid-template-columns: subgrid; grid-template-rows: subgrid; grid-auto-flow: column; gap: inherit;
+  }
+  .record__seal {
+    grid-column: 2; grid-row: 4; align-self: center;
+    grid-auto-flow: column; justify-content: start; justify-items: start; align-items: center;
+    gap: var(--s3); text-align: left;
+  }
+  .record__seal .key { white-space: normal; }
+  .record .mark--ink { width: 48px; }
+}
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .verified__plate { aspect-ratio: 1.45 / 1; }
+}
+
 /* pinned on desktop (DNA95): the pin spacer keeps the paper so no dark shows under the short section */
 .pin-spacer:has(> .verified) { background: var(--paper); }
 
@@ -283,6 +323,21 @@ address { font-style: normal; }
 .row__result { font: 400 44px/1 var(--f-display); margin-bottom: var(--s3); }
 .row__name { font-size: 18px; line-height: 1.35; }
 .row__chassis { font-size: 14px; color: var(--pink-2); }
+
+@media (min-width: 1024px) {
+  /* a ledger on Verified's 37/63 split: the head in the narrow column, the rows from the plate's left edge */
+  .sold { padding: var(--s8) 0 var(--s9); }
+  .sold .wrap { display: grid; grid-template-columns: minmax(0, 37fr) minmax(0, 63fr); align-items: start; }
+  .head--paper { display: block; margin: 0; padding-right: var(--s7); }
+  .head--paper .head__r { display: block; margin-top: var(--s4); }
+  .head--paper .lede { max-width: 32ch; }
+  .ledger { grid-template-columns: minmax(0, 1fr); gap: var(--s6) 0; }
+  .row { grid-template-columns: 288px minmax(0, 1fr); column-gap: var(--s6); row-gap: 0; }
+  .row__key { grid-column: 1; grid-row: 1; }
+  .row__result { grid-column: 1; grid-row: 2; align-self: last baseline; margin-bottom: 0; }
+  .row__name { grid-column: 2; grid-row: 2; align-self: last baseline; }
+  .row__chassis { grid-column: 2; grid-row: 3; margin-top: var(--s1); }
+}
 
 /* paper sections meet on fractional pixels; a 1px overlap keeps the dark body from showing as a seam */
 .sold, .consign, .finale::before { box-shadow: 0 -1px 0 var(--paper); }
