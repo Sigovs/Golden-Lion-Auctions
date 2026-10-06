@@ -1193,3 +1193,8 @@ html.intro .lotbar > * { opacity: 0; }
   opacity: .42; filter: saturate(.8) brightness(.8); pointer-events: none;
 }
 .finale__w { position: relative; }
+/* Alex, 8 Oct 2026: the per-scene staging captions are removed (the footer keeps the staging note) */
+.scene__cap { display: none !important; }
+/* the finale crest: more room under the name so the shield's point is never cut by the footer rule */
+.finale__word { padding-bottom: clamp(72px, 8vw, 140px); }
+.finale__word::before { top: 47%; height: 96%; }

@@ -1255,3 +1255,8 @@ html.intro .lotbar > * { opacity: 0; }
 .hero__title em, .block__title em, .hammer__title em, .consign__title em, .sold__title em, .house__title em { font-weight: 400; }
 .lotbar__title, .slide__name, .rows .row__title, .realised__name, .sold__name { font-weight: 500; letter-spacing: -.02em; }
 @media (min-width: 1024px) { .hero__title { font-size: clamp(52px, min(5.4vw, 7.6vh), 104px); line-height: .98; } }
+/* Alex, 8 Oct 2026: the per-scene staging captions are removed (the footer keeps the staging note) */
+.scene__cap { display: none !important; }
+/* the finale crest: more room under the name so the shield's point is never cut by the footer rule */
+.finale__word { padding-bottom: clamp(72px, 8vw, 140px); }
+.finale__word::before { top: 47%; height: 96%; }
