@@ -27,10 +27,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=Inter+Tight:ital,wght@0,300..800;1,300..800&family=Chivo+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="assets/video/hero-v9-poster-start.jpg" fetchpriority="high">
+<link rel="preload" as="image" href="assets/stage/gen-gla-hall-73.jpg" fetchpriority="high">
+<link rel="preload" as="image" href="assets/stage/car-cut-73.webp" fetchpriority="high">
 <link rel="icon" href="assets/crest-favicon.png" type="image/png">
 <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.26/dist/lenis.css">
-<link rel="stylesheet" href="css/v9.css?v=14">
+<link rel="stylesheet" href="css/v9.css?v=13">
 <script>
   (function (d) {
     var r = d.documentElement;
@@ -76,19 +77,6 @@
   <!-- 01 HERO · FULL. The lead lot in its hall. The scene is graded down around the car (the hall and its low stage
        recede); the car layer is the unaltered Patton photograph, registered on the staged frame. Nothing sits on the car. -->
   <section class="hero" id="top-scene" aria-labelledby="hero-title">
-    <!-- v9 hero film (8 Oct 2026): one continuous 17 s loop, generated from Alex's storyboard; no text or logos in it.
-         Reduced motion: the poster frame only. The staged scene below stays in the markup but is not shown in v9. -->
-    <video class="hero__video" id="hero-video" muted loop playsinline autoplay preload="auto" poster="assets/video/hero-v9-poster-start.jpg" aria-hidden="true" tabindex="-1">
-      <source src="assets/video/hero-v9.webm" type="video/webm">
-      <source src="assets/video/hero-v9-web.mp4" type="video/mp4">
-    </video>
-    <script>
-      (function () {
-        var v = document.getElementById('hero-video');
-        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { v.removeAttribute('autoplay'); v.pause(); }
-        else { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
-      })();
-    </script>
     <figure class="scene hero__scene" style="--x0:0.245;--y0:0.415;--x1:0.699;--y1:0.653">
       <div class="scene__stage scene__stage--back" aria-hidden="true">
         <img class="scene__hall" src="assets/stage/gen-gla-hall-73.jpg" alt="" width="2528" height="1696" fetchpriority="high" decoding="async">
