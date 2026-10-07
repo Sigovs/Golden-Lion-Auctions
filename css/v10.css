@@ -16,9 +16,9 @@
   --pink-2: #55575B;
   --line: rgba(236, 234, 228, .14);
   --pline: rgba(20, 22, 25, .18);
-  /* the one accent: champagne gilt, sampled from the Valour's gold trim (#EBD494) and set a step
-     deeper so it reads as metal on the dark ground. Dark ground only — never on paper, never a fill. */
-  --gilt: #D9C48A;
+  /* the one accent: the crest's gold, so the page and the logo speak one metal. Dark ground only —
+     never on paper, never a fill. */
+  --gilt: #D4A85F;          /* Alex, 6 Oct 2026: the crest's gold (sampled: mid #BF965A, light #DFB16C) */
 
   /* type */
   --f-display: 'Oswald', 'Helvetica Neue', Impact, sans-serif;   /* Alex, 6 Oct 2026: the PATTON mockup (index6) type */
@@ -567,3 +567,8 @@ body { font-weight: 300; }
 
 /* the finale plate carries the showroom film */
 .finale__film { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
+
+/* the occasion pill follows the crest too (Alex, 6 Oct 2026): the purple is gone; a black field inside a gold rim,
+   like the shield's border */
+.occasion { background: rgba(14, 16, 18, .55); border: 1px solid rgba(212, 168, 95, .7); color: var(--ink); }
+.occasion .sep { color: var(--gilt); }
