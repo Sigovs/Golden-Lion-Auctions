@@ -448,3 +448,23 @@ address { font-style: normal; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition-duration: 0ms !important; }
 }
+
+/* ---------- 0 · the film (Alex, 6 Oct 2026) ----------
+   Full screen under the header. The film plays once and holds its last frame; it ends on a push-in (car left of
+   centre, lion right of centre), so the copy takes the dark upper left: above the car, left of the lion. A soft
+   corner shade keeps it legible over the spotlight haze. The lead lot follows below. */
+.film { position: relative; height: calc(100svh - var(--hdr)); min-height: 560px; overflow: hidden; background: var(--g0); }
+.film__video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
+.film::after { content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: radial-gradient(70% 62% at 0% 0%, rgba(14, 16, 18, .82) 0%, rgba(14, 16, 18, .5) 45%, rgba(14, 16, 18, 0) 100%); }
+.film__in { position: absolute; z-index: 2; left: 50%; top: clamp(32px, 5vh, 64px); transform: translateX(-50%); width: min(100% - 2 * var(--m), var(--max)); }
+.film__copy { max-width: min(560px, 40vw); }
+.film__kick { margin: 0; font-size: 14px; letter-spacing: .04em; color: var(--ink-2); }
+.film__title { margin: 0; font: 400 clamp(40px, 4.2vw, 68px)/1.02 var(--f-display); letter-spacing: -.01em; }
+.film__cta { display: flex; flex-wrap: wrap; gap: var(--s3); margin-top: var(--s5); }
+.hero { margin-top: var(--s8); }
+@media (max-width: 899.98px) {
+  .film__video { object-position: 64% 50%; }
+  .film__copy { max-width: none; }
+  .film::after { background: linear-gradient(to bottom, rgba(14, 16, 18, .85) 0%, rgba(14, 16, 18, .4) 40%, rgba(14, 16, 18, 0) 62%); }
+}

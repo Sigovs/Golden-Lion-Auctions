@@ -8,9 +8,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500&family=IBM+Plex+Mono:wght@400;500&family=Libre+Caslon+Display&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="assets/stage/gen-gla-hall-73.jpg" fetchpriority="high">
+<link rel="preload" as="image" href="assets/video/hero-v10-start.jpg" fetchpriority="high">
 <link rel="icon" href="assets/logo/crest-favicon.png" type="image/png">
-<link rel="stylesheet" href="css/v10.css?v=29">
+<link rel="stylesheet" href="css/v10.css?v=32">
 <script>if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('js-motion');</script>
 </head>
 <body>
@@ -46,6 +46,32 @@
 
 <main id="top">
 
+  <!-- 0 — the film (Alex, 6 Oct 2026): full screen under the header; plays once and holds its last frame.
+       Reduced motion: the last frame as a still. Copy sits in the dark upper left, above the car and left of the lion (the film ends on a push-in). -->
+  <section class="film" aria-labelledby="film-title">
+    <video class="film__video" id="film-video" muted playsinline autoplay preload="auto" poster="assets/video/hero-v10-start.jpg" aria-hidden="true" tabindex="-1">
+      <source src="assets/video/hero-v10.webm" type="video/webm">
+      <source src="assets/video/hero-v10.mp4" type="video/mp4">
+    </video>
+    <script>
+      (function () {
+        var v = document.getElementById('film-video');
+        if (matchMedia('(prefers-reduced-motion: reduce)').matches) { v.removeAttribute('autoplay'); v.preload = 'none'; v.poster = 'assets/video/hero-v10-end.jpg'; return; }
+        var p = v.play(); if (p && p.catch) p.catch(function () { v.poster = 'assets/video/hero-v10-end.jpg'; });
+        v.addEventListener('ended', function () { v.pause(); });   // no loop: the last frame holds
+      })();
+    </script>
+    <div class="film__in">
+      <div class="film__copy">
+        <h1 class="film__title" id="film-title">Curated cars.<br>Smarter&nbsp;bids.</h1>
+        <div class="film__cta">
+          <a class="btn btn--solid" href="#consign">Join the online auction</a>
+          <a class="btn btn--line" href="#floor">Browse live lots</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- 1 — the lead lot: a framed scene, and the rostrum that overlaps its lower edge -->
   <section class="hero" aria-labelledby="hero-lot">
     <figure class="hero__plate">
@@ -57,7 +83,7 @@
       <div class="rostrum__name">
         <p class="occasion data">Live <span class="sep">·</span> Lot <span data-f="lotno">01</span> of 12</p>
         <p class="rostrum__make" data-f="make">1972 Lamborghini</p>
-        <h1 class="rostrum__lot" id="hero-lot" data-f="model">Miura P400&nbsp;SV</h1>
+        <h2 class="rostrum__lot" id="hero-lot" data-f="model">Miura P400&nbsp;SV</h2>
       </div>
       <div class="rostrum__cell">
         <span class="key">Current bid · sample</span>
