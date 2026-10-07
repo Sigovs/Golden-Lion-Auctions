@@ -258,12 +258,17 @@
     var list = $('.steps');
     list.classList.add('is-live');
     var items = $$('.steps li');
+    var shots = $$('.verified__shot'), plate = $('.verified__plate');
+    function shotTo(n) { shots.forEach(function (s, k) { s.classList.toggle('is-in', k <= n); }); plate.classList.toggle('has-shot', n >= 0); }
     items.forEach(function (li, i) {
       // the last check (the signature) stays lit through the record it produces
       var last = i === items.length - 1;
-      ST.create({ trigger: li, start: 'top 50%', endTrigger: last ? '.verified' : li, end: last ? 'bottom top' : 'bottom 50%', toggleClass: { targets: li, className: 'is-on' } });
+      ST.create({ trigger: li, start: 'top 50%', endTrigger: last ? '.verified' : li, end: last ? 'bottom top' : 'bottom 50%', toggleClass: { targets: li, className: 'is-on' },
+        // each check brings its photograph, opening from the centre of the one before (Alex, 6 Oct 2026)
+        onEnter: function () { shotTo(i); }, onEnterBack: function () { shotTo(i); },
+        onLeaveBack: function () { if (i === 0) shotTo(-1); } });
     });
-    return function () { list.classList.remove('is-live'); items.forEach(function (li) { li.classList.remove('is-on'); }); };
+    return function () { list.classList.remove('is-live'); items.forEach(function (li) { li.classList.remove('is-on'); }); shotTo(-1); };
   });
 
   window.addEventListener('load', refresh);
