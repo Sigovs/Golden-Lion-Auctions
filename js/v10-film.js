@@ -25,10 +25,10 @@
   // duration) and the seconds left
   function setBar(i, f, secsLeft) {
     f = Math.max(0, Math.min(1, f));
-    bars[i].firstElementChild.style.transform = 'scaleX(' + f + ')';
+    if (bars[i]) bars[i].firstElementChild.style.transform = 'scaleX(' + f + ')';
     if (i === cur) {
       ring.style.strokeDashoffset = String(1 - f);
-      if (secsLeft != null) leftEl.textContent = '· 0:' + pad(Math.max(0, Math.ceil(secsLeft)));
+      if (secsLeft != null && leftEl) leftEl.textContent = '· 0:' + pad(Math.max(0, Math.ceil(secsLeft)));
     }
   }
 
@@ -61,7 +61,7 @@
     if (n === cur) return;
     var prev = cur; cur = n;
     stop(prev);
-    bars.forEach(function (b, k) { if (k === n) b.setAttribute('aria-current', 'true'); else b.removeAttribute('aria-current'); setBar(k, k < n ? 1 : 0); });
+    bars.forEach(function (b, k) { if (!b) return; if (k === n) b.setAttribute('aria-current', 'true'); else b.removeAttribute('aria-current'); setBar(k, k < n ? 1 : 0); });
     nEl.textContent = pad(n + 1);
     slides.forEach(function (s, k) {
       s.classList.toggle('is-on', k === n);
