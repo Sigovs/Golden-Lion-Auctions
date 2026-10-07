@@ -555,11 +555,12 @@ body { font-weight: 300; }
 }
 .film__kick { color: var(--ink); text-shadow: 0 1px 12px rgba(0, 0, 0, .6); }
 
-/* Verified: one photograph per check, each opening as a circle from the centre of the one before (desktop with
+/* Verified: one photograph per check, each arriving behind a diagonal cut over the one before (desktop with
    motion; elsewhere the staged Valour stands alone) */
 .verified__shot { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1;
-  clip-path: circle(0% at 50% 50%); transition: clip-path 1.3s cubic-bezier(.65, 0, .25, 1); }
-.verified__shot.is-in { clip-path: circle(75% at 50% 50%); }
+  clip-path: polygon(0 0, 0 0, -40% 100%, 0 100%); transition: clip-path 1.2s cubic-bezier(.65, 0, .25, 1); }
+/* a diagonal cut (Alex): the next photograph sweeps in from the left behind a slanted edge */
+.verified__shot.is-in { clip-path: polygon(0 0, 140% 0, 100% 100%, 0 100%); }
 .verified__plate .cap { z-index: 2; transition: opacity .4s var(--ease); }
 .verified__plate.has-shot .cap { opacity: 0; }
 @media (prefers-reduced-motion: reduce) { .verified__shot { display: none; } }
