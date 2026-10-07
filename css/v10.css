@@ -639,3 +639,5 @@ html.js-motion .brk.is-foot .brk__foot > * { opacity: 1; transform: none; }
 /* the controller stands vertically on the right (Alex): the count on top, the ring under the figures */
 .film__ctrl--solo { top: 36%; bottom: auto; transform: translateY(-50%);   /* in the dark between the pillars, above the cars */ flex-direction: column; align-items: center; gap: var(--s4); }
 .film__ctrl--solo .film__count { margin: 0; writing-mode: horizontal-tb; font-size: 15px; letter-spacing: .04em; }
+/* CTAs sit on the slogan's baseline (Alex): the controls moved up the right edge, so nothing reserves room below */
+.film__cta { margin-bottom: 0; padding-bottom: 0; }
