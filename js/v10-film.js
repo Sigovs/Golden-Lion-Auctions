@@ -18,10 +18,11 @@
   function show(n) {
     n = (n + msgs.length) % msgs.length;
     msgs.forEach(function (m, k) {
-      // re-adding the class restarts the staircase on the incoming message
-      m.classList.remove('is-cur');
-      if (k === n) { void m.offsetWidth; m.classList.add('is-cur'); m.removeAttribute('aria-hidden'); }
-      else m.setAttribute('aria-hidden', 'true');
+      // the outgoing message glides off left while the incoming one glides in from the right
+      var was = m.classList.contains('is-cur');
+      m.classList.toggle('is-cur', k === n);
+      if (was && k !== n) { m.classList.add('is-out'); setTimeout(function () { m.classList.remove('is-out'); }, 900); }
+      if (k === n) { m.classList.remove('is-out'); m.removeAttribute('aria-hidden'); } else m.setAttribute('aria-hidden', 'true');
     });
     cur = n; if (nEl) nEl.textContent = pad(n + 1);
     t0 = performance.now(); left = MSG_MS; setRing(0);
