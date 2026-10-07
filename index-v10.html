@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto+Condensed:wght@300;400;500;700&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="assets/video/hero-v10-loop2-start.jpg" fetchpriority="high">
 <link rel="icon" href="assets/logo/crest-favicon.png" type="image/png">
-<link rel="stylesheet" href="css/v10.css?v=71">
+<link rel="stylesheet" href="css/v10.css?v=72">
 <script>if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('js-motion');</script>
 </head>
 <body>
@@ -96,7 +96,14 @@
 
   <!-- 1 — the lead lot: a framed scene, and the rostrum that overlaps its lower edge -->
   <section class="hero" aria-labelledby="hero-lot">
+    <!-- the lead lot is named for what it is (Alex, 6 Oct 2026): the featured auction, in the same label voice as the
+         other sections, plus a gold "Featured" mark on the photograph itself -->
+    <header class="hero__head">
+      <p class="label">Featured auction</p>
+      <p class="hero__headline">The lot of the week</p>
+    </header>
     <figure class="hero__plate">
+      <span class="hero__flag">Featured</span>
       <img class="hero__img" id="hero-img" src="assets/stage/gen-gla-hall-73-featured.webp" alt="1972 Lamborghini Miura P400 SV in blue with gold wheels, on a low platform in a hall" width="1560" height="842" fetchpriority="high">
       <figcaption class="cap hero__cap">Staged · setting generated<br>Car photographed at Patton Motors</figcaption>
     </figure>
