@@ -546,3 +546,11 @@ body { font-weight: 300; }
 .film { margin-top: calc(var(--hdr) * -1); height: 100svh; }
 .film__in, .film__ctrl { --film-top: var(--hdr); }
 .nav a, .hdr__signin { font-size: 17px; }
+/* header air (Alex, 6 Oct 2026): a taller bar on desktop, so the nav sits with room above it */
+@media (min-width: 900px) { :root { --hdr: 96px; } }
+/* the crest: larger over the film, smaller once the page scrolls (a transform, so nothing below moves) */
+@media (min-width: 900px) {
+  .crest--hdr { height: 66px; width: auto; transform-origin: 50% 50%; transition: transform .5s var(--ease); }
+  .hdr:not(.is-over) .crest--hdr { transform: scale(.7); }
+}
+.film__kick { color: var(--ink); text-shadow: 0 1px 12px rgba(0, 0, 0, .6); }
