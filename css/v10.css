@@ -450,21 +450,25 @@ address { font-style: normal; }
 }
 
 /* ---------- 0 · the film (Alex, 6 Oct 2026) ----------
-   Full screen under the header. The film plays once and holds its last frame; it ends on a push-in (car left of
-   centre, lion right of centre), so the copy takes the dark upper left: above the car, left of the lion. A soft
-   corner shade keeps it legible over the spotlight haze. The lead lot follows below. */
+   Full screen under the header; the film plays once and holds its last frame. Display copy sits in the lower left
+   on the floor, below the car, with no field behind it. Two bottom gradients of different heights (a long soft one,
+   a short dense one) carry the film into the page ground, so the next scene starts without a seam. */
 .film { position: relative; height: calc(100svh - var(--hdr)); min-height: 560px; overflow: hidden; background: var(--g0); }
 .film__video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
-.film::after { content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
-  background: radial-gradient(70% 62% at 0% 0%, rgba(14, 16, 18, .82) 0%, rgba(14, 16, 18, .5) 45%, rgba(14, 16, 18, 0) 100%); }
-.film__in { position: absolute; z-index: 2; left: 50%; top: clamp(32px, 5vh, 64px); transform: translateX(-50%); width: min(100% - 2 * var(--m), var(--max)); }
-.film__copy { max-width: min(560px, 40vw); }
-.film__kick { margin: 0; font-size: 14px; letter-spacing: .04em; color: var(--ink-2); }
-.film__title { margin: 0; font: 400 clamp(40px, 4.2vw, 68px)/1.02 var(--f-display); letter-spacing: -.01em; }
-.film__cta { display: flex; flex-wrap: wrap; gap: var(--s3); margin-top: var(--s5); }
-.hero { margin-top: var(--s8); }
+.film::before, .film::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; z-index: 1; pointer-events: none; }
+.film::before { height: 52%; background: linear-gradient(to top, rgba(14, 16, 18, .72) 0%, rgba(14, 16, 18, .38) 45%, rgba(14, 16, 18, 0) 100%); }
+.film::after { height: 16%; background: linear-gradient(to top, var(--g0) 0%, rgba(14, 16, 18, .85) 40%, rgba(14, 16, 18, 0) 100%); }
+.film__in {
+  position: absolute; z-index: 2; left: 50%; bottom: clamp(28px, 5vh, 64px); transform: translateX(-50%);
+  width: min(100% - 2 * var(--m), var(--max)); display: flex; align-items: flex-end; gap: clamp(32px, 4vw, 72px);
+}
+.film__title { margin: 0; font: 400 clamp(52px, 5.4vw, 104px)/.98 var(--f-display); letter-spacing: -.015em; text-shadow: 0 2px 24px rgba(0, 0, 0, .35); }
+.film__cta { display: flex; flex-direction: column; align-items: flex-start; gap: var(--s4); padding-bottom: .3em; }   /* stacked: the lion's paws reach the floor to the right */
+.film__link { color: var(--ink); text-decoration: underline; text-underline-offset: 6px; text-decoration-color: rgba(236, 234, 228, .45); }
+.film__link:hover { text-decoration-color: var(--ink); }
+.hero { margin-top: var(--s7); }
 @media (max-width: 899.98px) {
   .film__video { object-position: 64% 50%; }
-  .film__copy { max-width: none; }
-  .film::after { background: linear-gradient(to bottom, rgba(14, 16, 18, .85) 0%, rgba(14, 16, 18, .4) 40%, rgba(14, 16, 18, 0) 62%); }
+  .film__in { flex-direction: column; align-items: flex-start; gap: var(--s5); }
+  .film::before { height: 64%; }
 }

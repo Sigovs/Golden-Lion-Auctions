@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500&family=IBM+Plex+Mono:wght@400;500&family=Libre+Caslon+Display&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="assets/video/hero-v10-start.jpg" fetchpriority="high">
 <link rel="icon" href="assets/logo/crest-favicon.png" type="image/png">
-<link rel="stylesheet" href="css/v10.css?v=32">
+<link rel="stylesheet" href="css/v10.css?v=34">
 <script>if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('js-motion');</script>
 </head>
 <body>
@@ -47,7 +47,7 @@
 <main id="top">
 
   <!-- 0 — the film (Alex, 6 Oct 2026): full screen under the header; plays once and holds its last frame.
-       Reduced motion: the last frame as a still. Copy sits in the dark upper left, above the car and left of the lion (the film ends on a push-in). -->
+       Reduced motion: the last frame as a still. Display copy in the lower left on the floor, below the car; two bottom gradients carry the film into the next scene. -->
   <section class="film" aria-labelledby="film-title">
     <video class="film__video" id="film-video" muted playsinline autoplay preload="auto" poster="assets/video/hero-v10-start.jpg" aria-hidden="true" tabindex="-1">
       <source src="assets/video/hero-v10.webm" type="video/webm">
@@ -64,10 +64,10 @@
     <div class="film__in">
       <div class="film__copy">
         <h1 class="film__title" id="film-title">Curated cars.<br>Smarter&nbsp;bids.</h1>
-        <div class="film__cta">
-          <a class="btn btn--solid" href="#consign">Join the online auction</a>
-          <a class="btn btn--line" href="#floor">Browse live lots</a>
-        </div>
+      </div>
+      <div class="film__cta">
+        <a class="btn btn--solid" href="#consign">Join the online auction</a>
+        <a class="film__link" href="#floor">Browse live lots</a>
       </div>
     </div>
   </section>
