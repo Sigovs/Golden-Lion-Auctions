@@ -454,21 +454,56 @@ address { font-style: normal; }
    on the floor, below the car, with no field behind it. Two bottom gradients of different heights (a long soft one,
    a short dense one) carry the film into the page ground, so the next scene starts without a seam. */
 .film { position: relative; height: calc(100svh - var(--hdr)); min-height: 560px; overflow: hidden; background: var(--g0); }
-.film__video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
-.film::before, .film::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; z-index: 1; pointer-events: none; }
-.film::before { height: 52%; background: linear-gradient(to top, rgba(14, 16, 18, .72) 0%, rgba(14, 16, 18, .38) 45%, rgba(14, 16, 18, 0) 100%); }
-.film::after { height: 16%; background: linear-gradient(to top, var(--g0) 0%, rgba(14, 16, 18, .85) 40%, rgba(14, 16, 18, 0) 100%); }
+.film__slide { position: absolute; inset: 0; visibility: hidden; }
+.film__slide.is-on, .film__slide.is-off { visibility: visible; }
+.film__media { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
+.film__slide[data-kind="still"] .film__media { object-position: 50% 55%; }
+.film__cta .btn--line { background: rgba(14, 16, 18, .3); }
+/* the incoming slide is uncovered right to left; its copy follows line by line */
+html.js-motion .film__slide.is-on { animation: film-wipe 1.2s var(--ease) both; }
+html.js-motion .film__slide.is-on .fl { animation: film-line .9s var(--ease) both; animation-delay: .45s; }
+html.js-motion .film__slide.is-on .fl + .fl { animation-delay: .55s; }
+html.js-motion .film__slide.is-on .film__kick, html.js-motion .film__slide.is-on .film__cta { animation: film-line .9s var(--ease) both; animation-delay: .65s; }
+@keyframes film-wipe { from { clip-path: inset(0 0 0 100%); } to { clip-path: inset(0 0 0 0); } }
+@keyframes film-line { from { clip-path: inset(0 0 100% 0); transform: translateY(.35em); } to { clip-path: inset(-.2em -.2em -.3em -.2em); transform: none; } }
+.fl { display: block; }
+/* controls: bottom right, on the same line as the copy's foot */
+.film__ctrl { position: absolute; z-index: 3; right: max(var(--m), calc((100% - var(--max)) / 2)); bottom: clamp(28px, 5vh, 64px); display: flex; align-items: center; gap: var(--s3); }
+.film__count { margin: 0 var(--s3) 0 0; font-size: 14px; color: var(--ink-2); }
+.film__count b { color: var(--ink); font-weight: 400; }
+.film__bars { display: flex; gap: var(--s2); margin-right: var(--s3); }
+.film__bar { position: relative; width: 48px; height: 24px; padding: 0; border: 0; background: none; cursor: pointer; }
+.film__bar::before, .film__bar i { content: ''; position: absolute; left: 0; right: 0; top: 50%; height: 2px; margin-top: -1px; background: rgba(236, 234, 228, .28); }
+.film__bar i { background: var(--ink); transform: scaleX(0); transform-origin: left; }
+.film__btn { width: 44px; height: 44px; display: grid; place-items: center; padding: 0; border: 1px solid rgba(236, 234, 228, .35); border-radius: 50%; background: rgba(14, 16, 18, .25); color: var(--ink); cursor: pointer; transition: border-color var(--dur-1) var(--ease); }
+.film__btn:hover { border-color: var(--ink); }
+.film__btn svg { width: 18px; height: 18px; }
+.film__btn .i-play, .film.is-paused .film__btn .i-pause { display: none; }
+.film.is-paused .film__btn .i-play { display: inline; }
+.film__kick { margin: 0 0 var(--s4); font-size: 14px; letter-spacing: .04em; color: var(--ink-2); }
+.film__slide::before, .film__slide::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; z-index: 1; pointer-events: none; }
+.film__slide::before { height: 52%; background: linear-gradient(to top, rgba(14, 16, 18, .72) 0%, rgba(14, 16, 18, .38) 45%, rgba(14, 16, 18, 0) 100%); }
+.film__slide::after { height: 16%; background: linear-gradient(to top, var(--g0) 0%, rgba(14, 16, 18, .85) 40%, rgba(14, 16, 18, 0) 100%); }
 .film__in {
   position: absolute; z-index: 2; left: 50%; bottom: clamp(28px, 5vh, 64px); transform: translateX(-50%);
   width: min(100% - 2 * var(--m), var(--max)); display: flex; align-items: flex-end; gap: clamp(32px, 4vw, 72px);
 }
 .film__title { margin: 0; font: 400 clamp(52px, 5.4vw, 104px)/.98 var(--f-display); letter-spacing: -.015em; text-shadow: 0 2px 24px rgba(0, 0, 0, .35); }
-.film__cta { display: flex; flex-direction: column; align-items: flex-start; gap: var(--s4); padding-bottom: .3em; }   /* stacked: the lion's paws reach the floor to the right */
+.film__cta { display: flex; flex-direction: row; align-items: center; gap: var(--s3); margin-left: auto; margin-bottom: calc(44px + var(--s6)); }   /* right-aligned, side by side, above the slide controls */   /* stacked: the lion's paws reach the floor to the right */
 .film__link { color: var(--ink); text-decoration: underline; text-underline-offset: 6px; text-decoration-color: rgba(236, 234, 228, .45); }
 .film__link:hover { text-decoration-color: var(--ink); }
 .hero { margin-top: var(--s7); }
 @media (max-width: 899.98px) {
-  .film__video { object-position: 64% 50%; }
+  .film__media { object-position: 64% 50%; }
+  .film__ctrl { left: var(--m); right: auto; bottom: auto; top: var(--s5); }
   .film__in { flex-direction: column; align-items: flex-start; gap: var(--s5); }
-  .film::before { height: 64%; }
+  .film__slide::before { height: 64%; }
 }
+
+/* the slide's duration as a preloader: a ring that fills round the pause button, and the seconds left */
+.film__btn--ring { position: relative; border-color: transparent; }
+.film__ring { position: absolute; inset: -1px; width: calc(100% + 2px) !important; height: calc(100% + 2px) !important; transform: rotate(-90deg); pointer-events: none; }
+.film__ring circle { fill: none; stroke: rgba(236, 234, 228, .28); stroke-width: 1.5; }
+.film__ring .film__ring-fill { stroke: var(--ink); stroke-width: 2; stroke-dasharray: 1; stroke-dashoffset: 1; }
+.film__left { margin-left: var(--s2); color: var(--ink-2); }
+.film__bar::before, .film__bar i { height: 3px; margin-top: -1.5px; }
