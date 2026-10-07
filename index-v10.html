@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto+Condensed:wght@300;400;500;700&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="assets/video/hero-v10-loop-start.jpg" fetchpriority="high">
 <link rel="icon" href="assets/logo/crest-favicon.png" type="image/png">
-<link rel="stylesheet" href="css/v10.css?v=61">
+<link rel="stylesheet" href="css/v10.css?v=63">
 <script>if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('js-motion');</script>
 </head>
 <body>
@@ -55,19 +55,35 @@
         <source src="assets/video/hero-v10-loop.webm" type="video/webm">
         <source src="assets/video/hero-v10-loop.mp4" type="video/mp4">
       </video>
-      <div class="film__in">
-        <div class="film__copy"><p class="film__kick data">Online collector car auctions <span class="sep">·</span> Pompano Beach</p><h1 class="film__title"><span class="fl">Curated cars.</span><span class="fl">Smarter&nbsp;bids.</span></h1></div>
+      <!-- three messages over the loop (Alex, 6 Oct 2026): what the site is for, one at a time. Each holds ~6 s,
+           then the next rises in; the ring on the pause button counts the current one down. -->
+      <div class="film__in film__msg is-cur" data-msg="0">
+        <div class="film__copy"><p class="film__kick data">Live online auctions <span class="sep">·</span> Pompano Beach</p><h1 class="film__title"><span class="fl">Curated cars.</span><span class="fl">Smarter&nbsp;bids.</span></h1></div>
         <div class="film__cta">
-          <a class="btn btn--solid" href="#consign">Join the online auction</a>
-          <a class="btn btn--line" href="#floor">Browse live lots</a>
+          <a class="btn btn--solid" href="#floor">Browse live lots</a>
+          <a class="btn btn--line" href="#consign">Register to bid</a>
+        </div>
+      </div>
+      <div class="film__in film__msg" data-msg="1" aria-hidden="true">
+        <div class="film__copy"><p class="film__kick data">Golden Lion Verified</p><p class="film__title" role="heading" aria-level="2"><span class="fl">Every lot examined</span><span class="fl">before the first&nbsp;bid.</span></p></div>
+        <div class="film__cta">
+          <a class="btn btn--solid" href="#verified">How it works</a>
+          <a class="btn btn--line" href="#sold">Recent results</a>
+        </div>
+      </div>
+      <div class="film__in film__msg" data-msg="2" aria-hidden="true">
+        <div class="film__copy"><p class="film__kick data">Sell with Golden Lion</p><p class="film__title" role="heading" aria-level="2"><span class="fl">Your car,</span><span class="fl">to the same&nbsp;standard.</span></p></div>
+        <div class="film__cta">
+          <a class="btn btn--solid" href="#consign">Consign a car</a>
+          <a class="btn btn--line" href="#consign">Start with the VIN</a>
         </div>
       </div>
     </div>
     <div class="film__ctrl film__ctrl--solo" role="group" aria-label="Film">
-      <span class="film__count" hidden><b id="film-n">01</b><span id="film-left"></span></span>
-      <button class="film__btn film__btn--ring" type="button" id="film-pause" aria-label="Pause slideshow" aria-pressed="false"><svg class="film__ring" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="22.5"/><circle class="film__ring-fill" id="film-ring" cx="24" cy="24" r="22.5" pathLength="1"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path class="i-pause" d="M9 5v14M15 5v14"/><path class="i-play" d="M8 5l11 7-11 7z"/></svg></button>
+      <span class="film__count data"><b id="film-n">01</b> / 03</span>
+      <button class="film__btn film__btn--ring" type="button" id="film-pause" aria-label="Pause" aria-pressed="false"><svg class="film__ring" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="22.5"/><circle class="film__ring-fill" id="film-ring" cx="24" cy="24" r="22.5" pathLength="1"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path class="i-pause" d="M9 5v14M15 5v14"/><path class="i-play" d="M8 5l11 7-11 7z"/></svg></button>
     </div>
-    <script src="js/v10-film.js?v=4" defer></script>
+    <script src="js/v10-film.js?v=5" defer></script>
     <script>
       // the header has no backing over the top of the film; it gains one as soon as the page moves down
       (function () {
