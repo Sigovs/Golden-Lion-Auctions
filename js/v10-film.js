@@ -1,7 +1,7 @@
 /* Golden Lion Auctions — v10 hero slideshow (Alex, 6 Oct 2026).
    Slide 1 the lion film, slide 2 the Patton showroom film, slide 3 a still. A film slide advances when its film
    ends; the still holds 7 s. The progress bar of the current slide fills with the film's own time (or the still's
-   timer). Transition: the incoming slide is uncovered by a right-to-left wipe while its copy rises line by line.
+   timer). Transition: a soft, feathered right-to-left wipe; the incoming picture settles, its copy rises line by line.
    Controls: bars (go to), previous / next, pause. Reduced motion: nothing plays or advances on its own; slides
    switch instantly; films show their final frame where one is given. */
 (function () {
@@ -70,7 +70,7 @@
       s.style.zIndex = k === n ? 2 : (k === prev ? 1 : 0);
     });
     // the previous slide stays under the wipe until it is covered, then rests
-    setTimeout(function () { slides[prev].classList.remove('is-off'); }, reduce ? 0 : 1300);
+    setTimeout(function () { slides[prev].classList.remove('is-off'); }, reduce ? 0 : 1700);
     if (!paused) start(n);
   }
 

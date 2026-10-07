@@ -460,15 +460,23 @@ address { font-style: normal; }
 .film__slide[data-kind="still"] .film__media { object-position: 50% 55%; }
 .film__cta .btn--line { background: rgba(14, 16, 18, .3); }
 /* the incoming slide is uncovered right to left; its copy follows line by line */
-html.js-motion .film__slide.is-on { animation: film-wipe 1.2s var(--ease) both; }
-html.js-motion .film__slide.is-on .fl { animation: film-line .9s var(--ease) both; animation-delay: .45s; }
-html.js-motion .film__slide.is-on .fl + .fl { animation-delay: .55s; }
-html.js-motion .film__slide.is-on .film__kick, html.js-motion .film__slide.is-on .film__cta { animation: film-line .9s var(--ease) both; animation-delay: .65s; }
-@keyframes film-wipe { from { clip-path: inset(0 0 0 100%); } to { clip-path: inset(0 0 0 0); } }
+/* soft change (Alex): a feathered wipe, its edge about half the screen wide, travelling right to left; the incoming
+   picture settles from 1.05 while the outgoing one dims a little under it */
+html.js-motion .film__slide.is-on {
+  -webkit-mask-image: linear-gradient(90deg, transparent 0 40%, #000 60% 100%); mask-image: linear-gradient(90deg, transparent 0 40%, #000 60% 100%);
+  -webkit-mask-size: 250% 100%; mask-size: 250% 100%; animation: film-wipe 1.6s cubic-bezier(.45, 0, .2, 1) both;
+}
+html.js-motion .film__slide.is-on .film__media { animation: film-settle 2.4s cubic-bezier(.2, .6, .2, 1) both; }
+html.js-motion .film__slide.is-off .film__media { filter: brightness(.7); transition: filter 1.6s ease; }
+html.js-motion .film__slide.is-on .fl { animation: film-line 1s var(--ease) both; animation-delay: .7s; }
+html.js-motion .film__slide.is-on .fl + .fl { animation-delay: .82s; }
+html.js-motion .film__slide.is-on .film__kick, html.js-motion .film__slide.is-on .film__cta { animation: film-line 1s var(--ease) both; animation-delay: .95s; }
+@keyframes film-wipe { from { -webkit-mask-position: 0% 0; mask-position: 0% 0; } to { -webkit-mask-position: 100% 0; mask-position: 100% 0; } }
+@keyframes film-settle { from { transform: scale(1.05); } to { transform: none; } }
 @keyframes film-line { from { clip-path: inset(0 0 100% 0); transform: translateY(.35em); } to { clip-path: inset(-.2em -.2em -.3em -.2em); transform: none; } }
 .fl { display: block; }
 /* controls: bottom right, on the same line as the copy's foot */
-.film__ctrl { position: absolute; z-index: 3; right: max(var(--m), calc((100% - var(--max)) / 2)); bottom: clamp(28px, 5vh, 64px); display: flex; align-items: center; gap: var(--s3); }
+.film__ctrl { position: absolute; z-index: 3; right: max(var(--m), calc((100% - var(--max)) / 2)); bottom: clamp(44px, 7.2vh, 88px); display: flex; align-items: center; gap: var(--s3); }
 .film__count { margin: 0 var(--s3) 0 0; font-size: 14px; color: var(--ink-2); }
 .film__count b { color: var(--ink); font-weight: 400; }
 .film__bars { display: flex; gap: var(--s2); margin-right: var(--s3); }
@@ -485,7 +493,7 @@ html.js-motion .film__slide.is-on .film__kick, html.js-motion .film__slide.is-on
 .film__slide::before { height: 52%; background: linear-gradient(to top, rgba(14, 16, 18, .72) 0%, rgba(14, 16, 18, .38) 45%, rgba(14, 16, 18, 0) 100%); }
 .film__slide::after { height: 16%; background: linear-gradient(to top, var(--g0) 0%, rgba(14, 16, 18, .85) 40%, rgba(14, 16, 18, 0) 100%); }
 .film__in {
-  position: absolute; z-index: 2; left: 50%; bottom: clamp(28px, 5vh, 64px); transform: translateX(-50%);
+  position: absolute; z-index: 2; left: 50%; bottom: clamp(44px, 7.2vh, 88px); transform: translateX(-50%);
   width: min(100% - 2 * var(--m), var(--max)); display: flex; align-items: flex-end; gap: clamp(32px, 4vw, 72px);
 }
 .film__title { margin: 0; font: 400 clamp(52px, 5.4vw, 104px)/.98 var(--f-display); letter-spacing: -.015em; text-shadow: 0 2px 24px rgba(0, 0, 0, .35); }
