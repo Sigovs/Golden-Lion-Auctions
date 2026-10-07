@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto+Condensed:wght@300;400;500;700&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="assets/video/hero-v10-start.jpg" fetchpriority="high">
 <link rel="icon" href="assets/logo/crest-favicon.png" type="image/png">
-<link rel="stylesheet" href="css/v10.css?v=52">
+<link rel="stylesheet" href="css/v10.css?v=53">
 <script>if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('js-motion');</script>
 </head>
 <body>
@@ -243,8 +243,20 @@
   <!-- finale: one last scene, standing across paper and dark -->
   <section class="finale" aria-label="Golden Lion">
     <figure class="finale__plate">
-      <img src="assets/stage/gen-gla-hall-41.jpg" alt="Two Mercedes-Benz 300 SLR race cars, numbers 658 and 722, on a platform in a hall" loading="lazy" width="2528" height="1696">
-      <figcaption class="cap">Staged · setting generated<br>Cars photographed at Patton Motors</figcaption>
+      <!-- the Patton showroom film from the hero (Alex, 6 Oct 2026): loops silently while the plate is on screen -->
+      <video class="finale__film" id="finale-film" muted loop playsinline preload="none" poster="assets/video/hero-v10-showroom-start.jpg" aria-hidden="true" tabindex="-1">
+        <source src="assets/video/hero-v10-showroom.webm" type="video/webm">
+        <source src="assets/video/hero-v10-showroom.mp4" type="video/mp4">
+      </video>
+      <script>
+        (function () {
+          var v = document.getElementById('finale-film');
+          if (matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return;
+          new IntersectionObserver(function (en) {
+            if (en[0].isIntersecting) { v.preload = 'auto'; var p = v.play(); if (p && p.catch) p.catch(function () {}); } else v.pause();
+          }, { threshold: .15 }).observe(v);
+        })();
+      </script>
     </figure>
     <div class="finale__sign">
       <img class="crest crest--finale" src="assets/logo/crest-288.webp" srcset="assets/logo/crest-288.webp 1x, assets/logo/crest-544.webp 2x" alt="" width="96" height="136" loading="lazy">

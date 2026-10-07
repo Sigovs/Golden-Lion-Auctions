@@ -564,3 +564,6 @@ body { font-weight: 300; }
 .verified__plate .cap { z-index: 2; transition: opacity .4s var(--ease); }
 .verified__plate.has-shot .cap { opacity: 0; }
 @media (prefers-reduced-motion: reduce) { .verified__shot { display: none; } }
+
+/* the finale plate carries the showroom film */
+.finale__film { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
