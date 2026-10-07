@@ -677,7 +677,12 @@ html.js-motion .brk.is-foot .brk__foot > * { opacity: 1; transform: none; }
 
 /* ---------- v11: the featured auction opens the page (no hero film) ----------
    First screen = header + section head + plate + the part of the rostrum below it, with ~32px of air. */
-.hero { margin-top: var(--s6); }
+.hero { margin-top: 0; }   /* Alex, 7 Oct: the photograph sits higher — 16px under the header */
 @media (min-width: 1280px) {
-  .hero__plate { height: max(440px, calc(100svh - var(--hdr) - 236px)); }
+  .hero__plate { height: max(440px, calc(100svh - var(--hdr) - 151px)); }   /* no section head above it any more */
 }
+/* Alex, 7 Oct: the section head is gone; the Featured flag stands top-left on the photograph; the violet is back —
+   the gold-brown fields read brown. Flag and lot pill share the deep violet. */
+.hero__flag { left: var(--s5); right: auto; background: #220E3A; color: var(--ink); }
+.occasion { background: #220E3A; border: 0; }
+.occasion .sep { color: var(--ink-2); }
