@@ -641,3 +641,16 @@ html.js-motion .brk.is-foot .brk__foot > * { opacity: 1; transform: none; }
 .film__ctrl--solo .film__count { margin: 0; writing-mode: horizontal-tb; font-size: 15px; letter-spacing: .04em; }
 /* CTAs sit on the slogan's baseline (Alex): the controls moved up the right edge, so nothing reserves room below */
 .film__cta { margin-bottom: 0; padding-bottom: 0; }
+/* hero messages: a clear staircase (Alex) — each piece slides in from the right a full beat after the one above */
+.film__msg .film__kick, .film__msg .fl, .film__msg .film__cta > * { transform: translateX(140px); transition: opacity 1s cubic-bezier(.2, .7, .2, 1), transform 1.3s cubic-bezier(.16, .84, .24, 1); }
+.film__msg.is-out .film__kick, .film__msg.is-out .fl, .film__msg.is-out .film__cta > * { transform: translateX(-100px); transition-duration: .55s, .65s; }
+.film__msg.is-cur .film__kick { transition-delay: .3s; }
+.film__msg.is-cur .fl:nth-child(1) { transition-delay: .5s; }
+.film__msg.is-cur .fl:nth-child(2) { transition-delay: .7s; }
+.film__msg.is-cur .film__cta > :nth-child(1) { transition-delay: .9s; }
+.film__msg.is-cur .film__cta > :nth-child(2) { transition-delay: 1.05s; }
+.film__msg.is-out .film__kick { transition-delay: 0s; }
+.film__msg.is-out .fl:nth-child(1) { transition-delay: .06s; }
+.film__msg.is-out .fl:nth-child(2) { transition-delay: .12s; }
+.film__msg.is-out .film__cta > :nth-child(1) { transition-delay: .18s; }
+.film__msg.is-out .film__cta > :nth-child(2) { transition-delay: .24s; }

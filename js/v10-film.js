@@ -21,7 +21,7 @@
       // the outgoing message glides off left while the incoming one glides in from the right
       var was = m.classList.contains('is-cur');
       m.classList.toggle('is-cur', k === n);
-      if (was && k !== n) { m.classList.add('is-out'); setTimeout(function () { m.classList.remove('is-out'); }, 900); }
+      if (was && k !== n) { m.classList.add('is-out'); setTimeout(function () { m.classList.remove('is-out'); }, 1000); }
       if (k === n) { m.classList.remove('is-out'); m.removeAttribute('aria-hidden'); } else m.setAttribute('aria-hidden', 'true');
     });
     cur = n; if (nEl) nEl.textContent = pad(n + 1);
