@@ -674,3 +674,8 @@ html.js-motion .brk.is-foot .brk__foot > * { opacity: 1; transform: none; }
 .steps__d { display: block; margin-top: 0; max-width: 38ch; font: 400 17px/1.5 var(--f-text); color: var(--pink-2); }
 .steps.is-live li:not(.is-on) .steps__d { opacity: .55; }
 .steps__d { transition: opacity var(--dur-2) var(--ease); }
+
+/* the bid line on each lot card stands in its own field (Alex, 7 Oct 2026): current bid left, time left right,
+   on a graphite one step up from the page — space and tone, no rules */
+.card__nums { background: #1A1D22; padding: 14px var(--s4); align-items: center; }
+.card__foot { margin-top: var(--s2); }
