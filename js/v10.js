@@ -268,6 +268,12 @@
         onEnter: function () { shotTo(i); }, onEnterBack: function () { shotTo(i); },
         onLeaveBack: function () { if (i === 0) shotTo(-1); } });
     });
+    // the lion break holds (pin) while the film plays out: the slogan rises first, then the paragraph and the call
+    // to action arrive; then the page moves on (Alex: "pin, stop on scroll, as we did")
+    var brk = $('#brk');
+    if (brk) ST.create({ trigger: brk, start: 'top top', end: '+=110%', pin: true, anticipatePin: 1,
+      onUpdate: function (s) { brk.classList.toggle('is-foot', s.progress > .3); },
+      onLeave: function () { brk.classList.add('is-foot'); } });
     return function () { list.classList.remove('is-live'); items.forEach(function (li) { li.classList.remove('is-on'); }); shotTo(-1); };
   });
 
