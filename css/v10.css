@@ -669,3 +669,8 @@ html.js-motion .brk.is-foot .brk__foot > * { opacity: 1; transform: none; }
   font: 600 13px/1.2 var(--f-text); letter-spacing: .16em; text-transform: uppercase; }
 .hero__plate .hero__cap, .hero__plate .cap { display: none; }
 @media (max-width: 639.98px) { .hero__head { flex-direction: column; align-items: flex-start; gap: var(--s3); } }
+
+/* a short line under each check (Alex) */
+.steps__d { display: block; margin-top: 0; max-width: 38ch; font: 400 17px/1.5 var(--f-text); color: var(--pink-2); }
+.steps.is-live li:not(.is-on) .steps__d { opacity: .55; }
+.steps__d { transition: opacity var(--dur-2) var(--ease); }
