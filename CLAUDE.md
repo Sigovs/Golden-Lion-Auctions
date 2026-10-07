@@ -167,3 +167,4 @@ Animate the block's own `opacity`/`y`. A block centred with `translate(-50%)` ge
   - Recently sold → lion break (`hero-v10.*`, plays once on arrival, pinned hold): its own copy "The Golden Lion standard / Nothing reaches the block unwatched." + paragraph + CTAs; seamless graphite fade at the top.
   - Finale plate: the Patton showroom film. Type = Oswald + Roboto Condensed (mockup index6). Accent = crest gold `#D4A85F`.
   - Copy I wrote (step lines, "The lot of the week", break copy) is proposal copy — Patton to confirm.
+- **v11 = v10 without the hero film** (Alex, 7 Oct 2026: "v10 is excellent, copy it"): the Featured auction (1972 Miura) opens the page; everything else is v10 as is (lion break and finale films stay). Files: `index-v11.html`, `css/v11.css`, `js/v11.js`. The model name is the page's h1. First screen fits header + section head + plate + rostrum at 1920×1080 and 1440×900.
